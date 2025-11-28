@@ -1,0 +1,17 @@
+// Fibonacci sequence in Pent
+fn fibonacci(n: int) -> int {
+    if n <= 1 {
+        return n;
+    } else {
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+}
+
+fn main() {
+    let mut i = 0;
+    while i < 10 {
+        let result = fibonacci(i);
+        println(result);
+        i = i + 1;
+    }
+}

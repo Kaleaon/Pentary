@@ -1,0 +1,45 @@
+// Neural network inference example in Pent
+use std::neural;
+
+struct NeuralNet {
+    weights: Matrix<pent>,
+    bias: Vector<pent>,
+}
+
+impl NeuralNet {
+    fn forward(&self, input: Vector<pent>) -> Vector<pent> {
+        // Matrix-vector multiplication (in-memory compute)
+        let output = matvec(self.weights, input);
+        
+        // Add bias
+        let biased = output + self.bias;
+        
+        // Apply ReLU activation
+        let activated = relu(biased);
+        
+        // Quantize to 5 levels
+        let quantized = quantize(activated);
+        
+        return quantized;
+    }
+}
+
+fn main() {
+    // Load neural network
+    let net = NeuralNet {
+        weights: load_weights("model.pent"),
+        bias: load_bias("bias.pent"),
+    };
+    
+    // Input vector (example)
+    let input = Vector::from([⊕+, +⊕, ⊕0, -⊖, 0, +, ⊕, ⊖, -+, ⊕⊕]);
+    
+    // Forward pass
+    let output = net.forward(input);
+    
+    // Print results
+    println("Neural Network Output:");
+    for i in 0..output.len() {
+        println(output[i]);
+    }
+}

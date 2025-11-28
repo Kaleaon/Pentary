@@ -1,0 +1,21 @@
+// Pentary arithmetic examples
+fn main() {
+    // Pentary literals
+    let a = ⊕+;      // 2*5 + 1 = 11
+    let b = +⊕;      // 1*5 + 2 = 7
+    let c = ⊖⊕0;     // -2*25 + 2*5 + 0 = -40
+    
+    // Arithmetic operations
+    let sum = a + b;        // 11 + 7 = 18
+    let diff = a - b;       // 11 - 7 = 4
+    let doubled = a * 2;    // 11 * 2 = 22
+    let shifted = a << 1;   // 11 * 5 = 55
+    let negated = -a;       // -11
+    
+    println("Arithmetic Results:");
+    println(sum);
+    println(diff);
+    println(doubled);
+    println(shifted);
+    println(negated);
+}
