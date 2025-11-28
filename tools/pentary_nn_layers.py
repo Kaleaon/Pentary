@@ -6,8 +6,6 @@ Implements neural network layers using pentary arithmetic
 
 import numpy as np
 from typing import Tuple, Optional, List
-from pentary_converter import PentaryConverter
-from pentary_arithmetic import PentaryArithmetic
 
 
 class PentaryQuantizer:
@@ -151,11 +149,10 @@ class PentaryLinear:
             # For efficiency, we'll use numpy but simulate pentary behavior
             # In hardware, this would use memristor crossbar arrays
             
-            # Scale input appropriately
-            x_scaled = x / self.weight_scale if self.weight_scale > 0 else x
-            
-            # Matrix multiply with pentary weights
-            output = np.dot(x_scaled, self.weight_pentary.T.astype(np.float32))
+            # Matrix multiply with pentary weights, then dequantize by scaling the result
+            output = np.dot(x, self.weight_pentary.T.astype(np.float32))
+            # Dequantize by scaling the matmul result, not the input
+            output = output * (self.weight_scale if self.weight_scale > 0 else 1.0)
             
             # Add bias
             if self.use_bias and self.bias_pentary is not None:
