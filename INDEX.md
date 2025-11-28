@@ -24,6 +24,7 @@ This index provides quick access to all documentation in the Pentary Processor p
 |----------|-------------|-------|--------|
 | [pentary_foundations.md](research/pentary_foundations.md) | Complete theory | 4,500 | Number system, arithmetic, conversions, applications |
 | [pentary_gaussian_splatting.md](research/pentary_gaussian_splatting.md) | 3D rendering analysis | 8,000 | Gaussian splatting, 3D rendering, performance analysis |
+| [pentary_graphics_processor.md](research/pentary_graphics_processor.md) | Graphics processor analysis | 12,000 | Graphics pipeline, vertex processing, fragment shading, GPU comparison |
 
 **Key Sections:**
 - Balanced pentary representation {-2, -1, 0, +1, +2}
@@ -34,6 +35,9 @@ This index provides quick access to all documentation in the Pentary Processor p
 - **Gaussian splatting performance analysis**
 - **3D rendering speedup evaluation**
 - **Triangle rasterization comparison**
+- **Complete graphics pipeline analysis**
+- **Vertex and fragment shader performance**
+- **Graphics processor architecture design**
 
 ### Logic Design
 | Document | Description | Words | Topics |
@@ -210,10 +214,13 @@ Pentary/
 ├── RESEARCH_COMPLETE.md              # Milestone summary
 ├── todo.md                           # Project roadmap
 │
-├── research/                         # Theory (16,000 words)
+├── research/                         # Theory (28,000 words)
 │   ├── pentary_foundations.md
 │   ├── pentary_logic_gates.md
 │   ├── pentary_gaussian_splatting.md
+│   ├── pentary_graphics_processor.md
+│   ├── GAUSSIAN_SPLATTING_SUMMARY.md
+│   ├── GRAPHICS_PROCESSOR_SUMMARY.md
 │   └── eggroll_pentary_integration.md
 │
 ├── architecture/                     # Design (9,000 words)
@@ -237,9 +244,9 @@ Pentary/
 ## 📈 Project Statistics
 
 ### Documentation
-- **Total Words**: 24,500+
-- **Total Pages**: ~150 (equivalent)
-- **Documents**: 16
+- **Total Words**: 36,500+
+- **Total Pages**: ~220 (equivalent)
+- **Documents**: 18
 - **Diagrams**: 10+
 
 ### Code
