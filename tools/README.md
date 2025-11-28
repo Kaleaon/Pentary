@@ -70,6 +70,7 @@ python tools/pentary_simulator.py
 - 32 registers + memory
 - Instruction execution
 - Debugging support
+- **Automatic Assembly**: Automatically assembles code with labels
 
 **Example**:
 ```python
@@ -78,17 +79,40 @@ from pentary_simulator import PentaryProcessor
 # Create processor
 proc = PentaryProcessor()
 
-# Load program
+# Load program (can use labels!)
 program = [
+    "start:",
     "MOVI P1, 5",
     "MOVI P2, 3",
     "ADD P3, P1, P2",
+    "JUMP end",
+    "MOVI P3, 0",  # skipped
+    "end:",
     "HALT"
 ]
 
 proc.load_program(program)
 proc.run(verbose=True)
 proc.print_state()
+```
+
+### pentary_assembler.py
+**Purpose**: Assemble pentary assembly code (with labels) into machine instructions.
+
+**Usage**:
+```bash
+python tools/pentary_assembler.py <input_file> [output_file]
+```
+
+**Features**:
+- Label resolution
+- Comment stripping
+- Syntax checking
+- 2-pass assembly process
+
+**Example**:
+```bash
+python tools/pentary_assembler.py my_program.pentasm output.asm
 ```
 
 ## Neural Network Tools

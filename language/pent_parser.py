@@ -301,6 +301,12 @@ class Parser:
     
     def if_statement(self) -> IfStatement:
         """Parse if statement"""
+        # If the condition starts with '(', parse it as expression.
+        # But 'expression' doesn't enforce parentheses around the condition if they are there.
+        # It just consumes expression.
+        # If standard syntax is if (expr) { ... }
+        # And expression() parses (a == b).
+
         condition = self.expression()
         then_block = self.block()
         
@@ -345,6 +351,11 @@ class Parser:
                 stmt = self.statement()
             if stmt:
                 statements.append(stmt)
+
+        # Check if we stopped because of EOF
+        if self.is_at_end():
+             raise self.error(self.peek(), "Expected '}' after block")
+
         self.consume(TokenType.RIGHT_BRACE, "Expected '}' after block")
         return Block(statements)
     

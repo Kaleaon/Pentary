@@ -5,8 +5,15 @@ Simulates the execution of pentary assembly code
 """
 
 from typing import Dict, List, Tuple, Optional
+import os
+import sys
+
+# Add directory to path to allow importing assembler
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 from pentary_converter import PentaryConverter
 from pentary_arithmetic import PentaryArithmetic
+from pentary_assembler import PentaryAssembler
 
 
 class PentaryProcessor:
@@ -50,8 +57,34 @@ class PentaryProcessor:
         self.instructions = []
         
     def load_program(self, instructions: List[str]):
-        """Load a program into instruction memory"""
-        self.instructions = instructions
+        """
+        Load a program into instruction memory.
+        If the program contains labels, it will be automatically assembled.
+        """
+        # Check if program needs assembly (has labels)
+        needs_assembly = False
+        for line in instructions:
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+            if line.endswith(':'):
+                needs_assembly = True
+                break
+            # Check if any instruction uses a label (this is harder to detect robustly without full parsing)
+            # But existence of a label definition is a strong indicator.
+
+        if needs_assembly:
+            print("Detected labels in program. Assembling...")
+            assembler = PentaryAssembler()
+            try:
+                self.instructions = assembler.assemble(instructions)
+            except Exception as e:
+                print(f"Assembly failed: {e}")
+                print("Loading raw instructions (might fail execution)...")
+                self.instructions = instructions
+        else:
+            self.instructions = instructions
+
         self.pc = 0
         
     def reset(self):
