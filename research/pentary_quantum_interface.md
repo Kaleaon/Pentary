@@ -1,5 +1,8 @@
 # Pentary-Quantum Computing Interface: Comprehensive Analysis
 
+![Diagram](../diagrams/pentary_quantum_interface.png)
+
+
 ## Executive Summary
 
 This document analyzes how the Pentary architecture could interface with quantum computing systems, enabling hybrid quantum-classical computing.

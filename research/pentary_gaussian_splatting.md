@@ -1,5 +1,8 @@
 # Pentary Architecture for Gaussian Splatting: Performance Analysis
 
+![Diagram](../diagrams/pentary_gaussian_splatting.png)
+
+
 ## Executive Summary
 
 This document analyzes how the Pentary computing architecture could handle Gaussian Splatting operations for 3D rendering and evaluates potential performance improvements over traditional binary systems.

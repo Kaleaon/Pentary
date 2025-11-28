@@ -1,5 +1,8 @@
 # Pentary Architecture for Real-Time Systems: Comprehensive Analysis
 
+![Diagram](../diagrams/pentary_realtime_systems.png)
+
+
 ## Executive Summary
 
 This document analyzes how the Pentary architecture could handle real-time systems with strict latency and determinism requirements.

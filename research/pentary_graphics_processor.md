@@ -1,5 +1,8 @@
 # Pentary Architecture as a Graphics Processor: Comprehensive Analysis
 
+![Diagram](../diagrams/pentary_graphics_processor.png)
+
+
 ## Executive Summary
 
 This document analyzes how the Pentary computing architecture could function as a dedicated graphics processor (GPU), covering the complete graphics pipeline from vertex processing to pixel output.

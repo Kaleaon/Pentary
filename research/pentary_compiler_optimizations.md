@@ -1,5 +1,8 @@
 # Pentary Compiler Optimizations & Code Generation: Comprehensive Analysis
 
+![Diagram](../diagrams/pentary_compiler_optimizations.png)
+
+
 ## Executive Summary
 
 This document analyzes compiler optimization strategies and code generation techniques specifically for the Pentary architecture, enabling better software performance.
