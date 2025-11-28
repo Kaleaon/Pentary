@@ -1,0 +1,4 @@
+// Hello World in Pent
+fn main() {
+    println("Hello, Pentary World!");
+}

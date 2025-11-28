@@ -171,6 +171,14 @@ Pentary/
 │   ├── pentary_arithmetic.py         ✅ Working
 │   └── pentary_simulator.py          ✅ Working
 │
+├── language/                         # Pent Programming Language
+│   ├── pent_language_spec.md         ✅ Complete
+│   ├── pent_lexer.py                 ✅ Working
+│   ├── pent_parser.py                ✅ Working
+│   ├── pent_compiler.py              ✅ Working
+│   ├── README.md                     ✅ Complete
+│   └── examples/                     ✅ Example programs
+│
 └── docs/                             # Documentation
     └── visual_guide.md               # Diagrams
 ```
@@ -207,6 +215,7 @@ Pentary/
 ## 🚀 Next Steps (Future Work)
 
 ### Phase 1: Software Ecosystem
+- [x] **Pent Programming Language** - High-level language for pentary computing
 - [ ] Pentary assembler with labels
 - [ ] C compiler backend (LLVM)
 - [ ] Neural network quantization tools
