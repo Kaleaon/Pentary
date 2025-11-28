@@ -6,16 +6,40 @@ Breaking the Binary Stranglehold on Artificial IntelligenceVersion 1.0 | Status:
 
 ## 🚀 Quick Start
 
+### New to Pentary?
+
+1. **Start Here**: [GETTING_STARTED.md](GETTING_STARTED.md) - Complete getting started guide
+2. **Beginner Tutorial**: [BEGINNER_TUTORIAL.md](BEGINNER_TUTORIAL.md) - Learn the basics
+3. **Quick Reference**: [QUICK_REFERENCE.md](QUICK_REFERENCE.md) - Command cheat sheet
+
+### Setup
+
 ```bash
+# Run setup script (checks dependencies, installs packages)
+./setup.sh
+
+# Or manually install
+pip install numpy
+```
+
+### Try It Out
+
+```bash
+# Interactive CLI (recommended for beginners)
+python3 tools/pentary_cli.py
+
 # Test basic tools
-python tools/pentary_converter.py
-python tools/pentary_arithmetic.py
-python tools/pentary_simulator.py
+python3 tools/pentary_converter.py
+python3 tools/pentary_arithmetic.py
+python3 tools/pentary_simulator.py
+
+# Generate examples
+python3 tools/example_generator.py
 
 # Neural network tools
-python tools/pentary_nn.py
-python tools/pentary_quantizer.py
-python tools/pentary_iteration.py
+python3 tools/pentary_nn.py
+python3 tools/pentary_quantizer.py
+python3 tools/pentary_iteration.py
 ```
 
 ## 📦 Tools Overview
@@ -37,10 +61,26 @@ python tools/pentary_iteration.py
 
 ## 📚 Documentation
 
-- [Complete Guide](PENTARY_COMPLETE_GUIDE.md)
-- [Neural Network Architecture](architecture/pentary_neural_network_architecture.md)
-- [Processor Architecture](architecture/pentary_processor_architecture.md)
-- [Chip Layout Guidelines](hardware/pentary_chip_layout.md)
+### Getting Started
+- **[GETTING_STARTED.md](GETTING_STARTED.md)** - Start here! Complete guide
+- **[BEGINNER_TUTORIAL.md](BEGINNER_TUTORIAL.md)** - Step-by-step tutorial
+- **[QUICK_START.md](QUICK_START.md)** - 5-minute quick start
+- **[QUICK_REFERENCE.md](QUICK_REFERENCE.md)** - Command cheat sheet
+
+### Complete Guides
+- [Complete Guide](PENTARY_COMPLETE_GUIDE.md) - Comprehensive reference
+- [Project Summary](PROJECT_SUMMARY.md) - Project overview
+
+### Architecture & Design
+- [Processor Architecture](architecture/pentary_processor_architecture.md) - ISA specification
+- [Chip Design Explained](hardware/CHIP_DESIGN_EXPLAINED.md) - **NEW!** Complete chip explanation
+- [Chip Layout Guidelines](hardware/pentary_chip_layout.md) - Physical design
+- [Memristor Implementation](hardware/memristor_implementation.md) - Hardware details
+- [Verilog Design](hardware/pentary_chip_design.v) - RTL implementation
+
+### Tools & Language
+- [Tools README](tools/README.md) - All available tools
+- [Language README](language/README.md) - Pent programming language
 
 1. The Crisis of ComputeWe have hit a wall. The current trajectory of Artificial Intelligence is unsustainable.To build "Intelligence," we are currently relying on Binary Logic (Base-2)—a system designed in the 1940s for vacuum tubes, not for neural networks. We are forcing silicon to perform billions of wasteful floating-point multiplications (FP16) just to approximate what a biological neuron does with a simple pulse of voltage.The result is an Energy Crisis and a Privacy Crisis.Training a single model consumes a city's worth of electricity.Running a "Smart" model requires a $30,000 GPU cluster.True AI is becoming the exclusive domain of trillion-dollar monopolies, locked behind cloud APIs, renting our own intelligence back to us.We believe the future of AI is not bigger data centers. It is smarter physics.
 2.
