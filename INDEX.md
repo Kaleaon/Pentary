@@ -23,6 +23,7 @@ This index provides quick access to all documentation in the Pentary Processor p
 | Document | Description | Words | Topics |
 |----------|-------------|-------|--------|
 | [pentary_foundations.md](research/pentary_foundations.md) | Complete theory | 4,500 | Number system, arithmetic, conversions, applications |
+| [pentary_gaussian_splatting.md](research/pentary_gaussian_splatting.md) | 3D rendering analysis | 8,000 | Gaussian splatting, 3D rendering, performance analysis |
 
 **Key Sections:**
 - Balanced pentary representation {-2, -1, 0, +1, +2}
@@ -30,6 +31,9 @@ This index provides quick access to all documentation in the Pentary Processor p
 - Comparison with binary and ternary
 - Neural network applications
 - Hardware representation
+- **Gaussian splatting performance analysis**
+- **3D rendering speedup evaluation**
+- **Triangle rasterization comparison**
 
 ### Logic Design
 | Document | Description | Words | Topics |
@@ -206,9 +210,11 @@ Pentary/
 ├── RESEARCH_COMPLETE.md              # Milestone summary
 ├── todo.md                           # Project roadmap
 │
-├── research/                         # Theory (8,000 words)
+├── research/                         # Theory (16,000 words)
 │   ├── pentary_foundations.md
-│   └── pentary_logic_gates.md
+│   ├── pentary_logic_gates.md
+│   ├── pentary_gaussian_splatting.md
+│   └── eggroll_pentary_integration.md
 │
 ├── architecture/                     # Design (9,000 words)
 │   ├── pentary_processor_architecture.md
@@ -231,9 +237,9 @@ Pentary/
 ## 📈 Project Statistics
 
 ### Documentation
-- **Total Words**: 16,500+
-- **Total Pages**: ~100 (equivalent)
-- **Documents**: 15
+- **Total Words**: 24,500+
+- **Total Pages**: ~150 (equivalent)
+- **Documents**: 16
 - **Diagrams**: 10+
 
 ### Code
