@@ -1,5 +1,8 @@
 # Pentary Logic Gates and Truth Tables
 
+![Diagram](../diagrams/pentary_logic_gates.png)
+
+
 ## 1. Introduction to Pentary Logic
 
 Pentary logic extends ternary logic to 5 discrete states: {⊖, -, 0, +, ⊕} representing {-2, -1, 0, +1, +2}.

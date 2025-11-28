@@ -1,5 +1,11 @@
 # Pentary Number System: Mathematical Foundations
 
+![Diagram](../diagrams/pentary_architecture.png)
+
+
+![Diagram](../diagrams/pentary_number_system.png)
+
+
 ## 1. Introduction to Pentary (Base-5) Computing
 
 Pentary computing uses base-5 arithmetic with a **balanced signed-digit representation**: {-2, -1, 0, +1, +2}

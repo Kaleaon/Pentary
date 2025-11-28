@@ -1,5 +1,8 @@
 # Pentary Architecture for Cryptography & Security: Comprehensive Analysis
 
+![Diagram](../diagrams/pentary_cryptography.png)
+
+
 ## Executive Summary
 
 This document analyzes how the Pentary computing architecture could enhance cryptographic operations and provide novel security properties, from public key cryptography to side-channel resistance.

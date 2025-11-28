@@ -1,5 +1,8 @@
 # Pentary Architecture for Scientific Computing & HPC: Comprehensive Analysis
 
+![Diagram](../diagrams/pentary_scientific_computing.png)
+
+
 ## Executive Summary
 
 This document analyzes how the Pentary computing architecture could revolutionize High-Performance Computing (HPC) and scientific computing applications, from finite element analysis to climate modeling.

@@ -1,5 +1,8 @@
 # Pentary Error Correction & Reliability: Comprehensive Analysis
 
+![Diagram](../diagrams/pentary_reliability.png)
+
+
 ## Executive Summary
 
 This document analyzes error detection, correction, and reliability strategies for the Pentary architecture, critical for production systems.

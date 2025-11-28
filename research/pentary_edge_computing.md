@@ -1,5 +1,8 @@
 # Pentary Architecture for Edge Computing & IoT: Comprehensive Analysis
 
+![Diagram](../diagrams/pentary_edge_computing.png)
+
+
 ## Executive Summary
 
 This document analyzes how the Pentary computing architecture could revolutionize edge computing and IoT applications, from smartphones to sensors.

@@ -1,5 +1,8 @@
 # Pentary Architecture for Database & Graph Algorithms: Comprehensive Analysis
 
+![Diagram](../diagrams/pentary_database_graphs.png)
+
+
 ## Executive Summary
 
 This document analyzes how the Pentary computing architecture could accelerate database operations and graph algorithms, from sparse matrix operations to graph neural networks.

@@ -1,5 +1,8 @@
 # Pentary Architecture for Signal Processing & DSP: Comprehensive Analysis
 
+![Diagram](../diagrams/pentary_signal_processing.png)
+
+
 ## Executive Summary
 
 This document analyzes how the Pentary computing architecture could accelerate Digital Signal Processing (DSP) applications, from audio processing to communications and biomedical signals.

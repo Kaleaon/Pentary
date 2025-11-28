@@ -1,5 +1,8 @@
 # Pentary Cost Analysis & Economics: Comprehensive Analysis
 
+![Diagram](../diagrams/pentary_economics.png)
+
+
 ## Executive Summary
 
 This document analyzes the economic viability of the Pentary architecture, including manufacturing costs, total cost of ownership, and market positioning.
