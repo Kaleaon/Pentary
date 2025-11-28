@@ -26,6 +26,12 @@ This index provides quick access to all documentation in the Pentary Processor p
 | [pentary_gaussian_splatting.md](research/pentary_gaussian_splatting.md) | 3D rendering analysis | 8,000 | Gaussian splatting, 3D rendering, performance analysis |
 | [pentary_graphics_processor.md](research/pentary_graphics_processor.md) | Graphics processor analysis | 12,000 | Graphics pipeline, vertex processing, fragment shading, GPU comparison |
 
+### Research Planning
+| Document | Description | Words | Topics |
+|----------|-------------|-------|--------|
+| [RESEARCH_ROADMAP.md](research/RESEARCH_ROADMAP.md) | Research priorities and roadmap | 6,000 | Research topics, priorities, academic potential |
+| [IMPRESSIVE_RESEARCH_TOPICS.md](research/IMPRESSIVE_RESEARCH_TOPICS.md) | Top research recommendations | 3,000 | Scientific computing, cryptography, signal processing |
+
 **Key Sections:**
 - Balanced pentary representation {-2, -1, 0, +1, +2}
 - Arithmetic operations (add, subtract, multiply, divide)
@@ -214,13 +220,16 @@ Pentary/
 ├── RESEARCH_COMPLETE.md              # Milestone summary
 ├── todo.md                           # Project roadmap
 │
-├── research/                         # Theory (28,000 words)
+├── research/                         # Theory (37,000 words)
 │   ├── pentary_foundations.md
 │   ├── pentary_logic_gates.md
 │   ├── pentary_gaussian_splatting.md
 │   ├── pentary_graphics_processor.md
 │   ├── GAUSSIAN_SPLATTING_SUMMARY.md
 │   ├── GRAPHICS_PROCESSOR_SUMMARY.md
+│   ├── GRAPHICS_RESEARCH_OVERVIEW.md
+│   ├── RESEARCH_ROADMAP.md
+│   ├── IMPRESSIVE_RESEARCH_TOPICS.md
 │   └── eggroll_pentary_integration.md
 │
 ├── architecture/                     # Design (9,000 words)
@@ -244,9 +253,9 @@ Pentary/
 ## 📈 Project Statistics
 
 ### Documentation
-- **Total Words**: 36,500+
-- **Total Pages**: ~220 (equivalent)
-- **Documents**: 18
+- **Total Words**: 45,500+
+- **Total Pages**: ~270 (equivalent)
+- **Documents**: 20
 - **Diagrams**: 10+
 
 ### Code
