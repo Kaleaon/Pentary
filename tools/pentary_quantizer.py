@@ -1,14 +1,307 @@
 #!/usr/bin/env python3
 """
-Pentary Quantization Tools
-Quantizes neural network models to pentary representation {-2, -1, 0, 1, 2}
+Pentary Model Quantization Utilities
+Converts standard neural network models to pentary format and provides quantization tools
 """
 
 import numpy as np
-from typing import Dict, List, Tuple, Optional, Any, Callable
+from typing import Dict, List, Tuple, Optional, Union, Any, Callable
 import json
+import os
 from collections import defaultdict
 
+
+# ============================================================================
+# Model Quantization (for training framework)
+# ============================================================================
+
+class ModelQuantizer:
+    """Quantizes neural network models to pentary format"""
+    
+    def __init__(self, quantization_method: str = 'per_tensor'):
+        """
+        Initialize quantizer.
+        
+        Args:
+            quantization_method: 'per_tensor' or 'per_channel'
+        """
+        self.quantization_method = quantization_method
+    
+    def quantize_layer_weights(self, weights: np.ndarray) -> Tuple[np.ndarray, float]:
+        """
+        Quantize layer weights to pentary.
+        
+        Args:
+            weights: Weight tensor
+            
+        Returns:
+            (quantized_weights, scale_factor)
+        """
+        if self.quantization_method == 'per_tensor':
+            # Single scale for entire tensor
+            max_abs = np.max(np.abs(weights))
+            scale = max_abs / 2.0 if max_abs > 0 else 1.0
+            
+            quantized = np.round(np.clip(weights / scale, -2, 2)).astype(np.int32)
+            
+            return quantized, scale
+        
+        elif self.quantization_method == 'per_channel':
+            # Per-channel scaling (for conv layers)
+            if len(weights.shape) == 4:  # Conv2D: (out_ch, in_ch, h, w)
+                scales = []
+                quantized = np.zeros_like(weights, dtype=np.int32)
+                
+                for i in range(weights.shape[0]):
+                    channel_weights = weights[i]
+                    max_abs = np.max(np.abs(channel_weights))
+                    scale = max_abs / 2.0 if max_abs > 0 else 1.0
+                    scales.append(scale)
+                    
+                    quantized[i] = np.round(np.clip(channel_weights / scale, -2, 2)).astype(np.int32)
+                
+                return quantized, np.array(scales)
+            
+            elif len(weights.shape) == 2:  # Linear: (out_features, in_features)
+                scales = []
+                quantized = np.zeros_like(weights, dtype=np.int32)
+                
+                for i in range(weights.shape[0]):
+                    row_weights = weights[i]
+                    max_abs = np.max(np.abs(row_weights))
+                    scale = max_abs / 2.0 if max_abs > 0 else 1.0
+                    scales.append(scale)
+                    
+                    quantized[i] = np.round(np.clip(row_weights / scale, -2, 2)).astype(np.int32)
+                
+                return quantized, np.array(scales)
+            
+            else:
+                # Fallback to per-tensor
+                return self.quantize_layer_weights(weights)
+    
+    def quantize_model_from_dict(self, model_dict: Dict) -> Dict:
+        """
+        Quantize a model from dictionary format.
+        
+        Args:
+            model_dict: Model dictionary with weights
+            
+        Returns:
+            Quantized model dictionary
+        """
+        quantized_model = {
+            'architecture': model_dict.get('architecture', {}),
+            'layers': []
+        }
+        
+        for layer in model_dict.get('layers', []):
+            quantized_layer = {'type': layer['type']}
+            
+            if 'weights' in layer:
+                weights = np.array(layer['weights'])
+                quantized_weights, scale = self.quantize_layer_weights(weights)
+                
+                quantized_layer['weights_pentary'] = quantized_weights.tolist()
+                quantized_layer['weight_scale'] = float(scale) if isinstance(scale, (int, float)) else scale.tolist()
+            
+            if 'bias' in layer and layer['bias'] is not None:
+                bias = np.array(layer['bias'])
+                quantized_bias, bias_scale = self.quantize_layer_weights(bias)
+                
+                quantized_layer['bias_pentary'] = quantized_bias.tolist()
+                quantized_layer['bias_scale'] = float(bias_scale) if isinstance(bias_scale, (int, float)) else bias_scale.tolist()
+            
+            # Copy other layer attributes
+            for key in layer:
+                if key not in ['weights', 'bias']:
+                    quantized_layer[key] = layer[key]
+            
+            quantized_model['layers'].append(quantized_layer)
+        
+        return quantized_model
+    
+    def save_quantized_model(self, quantized_model: Dict, filepath: str):
+        """Save quantized model to JSON file"""
+        with open(filepath, 'w') as f:
+            json.dump(quantized_model, f, indent=2)
+    
+    def load_quantized_model(self, filepath: str) -> Dict:
+        """Load quantized model from JSON file"""
+        with open(filepath, 'r') as f:
+            return json.load(f)
+
+
+class ONNXToPentaryConverter:
+    """Converts ONNX models to pentary format"""
+    
+    def __init__(self):
+        """Initialize converter"""
+        self.quantizer = ModelQuantizer()
+    
+    def convert(self, onnx_model_path: str, output_path: str):
+        """
+        Convert ONNX model to pentary format.
+        
+        Args:
+            onnx_model_path: Path to ONNX model file
+            output_path: Output path for pentary model
+        """
+        try:
+            import onnx
+            import onnx.numpy_helper as nph
+        except ImportError:
+            raise ImportError("ONNX package required. Install with: pip install onnx")
+        
+        # Load ONNX model
+        model = onnx.load(onnx_model_path)
+        
+        # Extract weights and architecture
+        model_dict = {
+            'architecture': {
+                'input_shape': None,
+                'output_shape': None
+            },
+            'layers': []
+        }
+        
+        # Process graph
+        for node in model.graph.node:
+            layer_dict = {
+                'type': node.op_type.lower(),
+                'name': node.name
+            }
+            
+            # Extract weights
+            weights = []
+            bias = None
+            
+            for input_name in node.input:
+                for initializer in model.graph.initializer:
+                    if initializer.name == input_name:
+                        weight_array = nph.to_array(initializer)
+                        
+                        if len(weight_array.shape) >= 2:
+                            weights.append(weight_array)
+                        elif len(weight_array.shape) == 1:
+                            bias = weight_array
+            
+            if weights:
+                layer_dict['weights'] = weights[0].tolist()
+                if len(weights) > 1:
+                    layer_dict['weights'] = weights[0].tolist()
+            
+            if bias is not None:
+                layer_dict['bias'] = bias.tolist()
+            
+            # Extract attributes
+            for attr in node.attribute:
+                layer_dict[attr.name] = self._onnx_attr_to_python(attr)
+            
+            model_dict['layers'].append(layer_dict)
+        
+        # Quantize model
+        quantized_model = self.quantizer.quantize_model_from_dict(model_dict)
+        
+        # Save
+        self.quantizer.save_quantized_model(quantized_model, output_path)
+    
+    def _onnx_attr_to_python(self, attr):
+        """Convert ONNX attribute to Python value"""
+        if attr.type == 1:  # FLOAT
+            return attr.f
+        elif attr.type == 2:  # INT
+            return attr.i
+        elif attr.type == 3:  # STRING
+            return attr.s.decode('utf-8')
+        elif attr.type == 4:  # TENSOR
+            # Import here to avoid dependency if ONNX is not used
+            from onnx import numpy_helper as nph
+            return nph.to_array(attr.t).tolist()
+        elif attr.type == 5:  # GRAPH
+            return None  # Skip graph attributes
+        elif attr.type == 6:  # FLOATS
+            return list(attr.floats)
+        elif attr.type == 7:  # INTS
+            return list(attr.ints)
+        elif attr.type == 8:  # STRINGS
+            return [s.decode('utf-8') for s in attr.strings]
+        else:
+            return None
+
+
+class PyTorchToPentaryConverter:
+    """Converts PyTorch models to pentary format"""
+    
+    def __init__(self):
+        """Initialize converter"""
+        self.quantizer = ModelQuantizer()
+    
+    def convert(self, pytorch_model, output_path: str, input_shape: Tuple[int, ...] = None):
+        """
+        Convert PyTorch model to pentary format.
+        
+        Args:
+            pytorch_model: PyTorch model instance
+            output_path: Output path for pentary model
+            input_shape: Input shape (optional)
+        """
+        try:
+            import torch
+        except ImportError:
+            raise ImportError("PyTorch required. Install with: pip install torch")
+        
+        model_dict = {
+            'architecture': {
+                'input_shape': input_shape,
+                'framework': 'pytorch'
+            },
+            'layers': []
+        }
+        
+        # Extract layers
+        for name, module in pytorch_model.named_modules():
+            if isinstance(module, torch.nn.Linear):
+                layer_dict = {
+                    'type': 'linear',
+                    'name': name,
+                    'in_features': module.in_features,
+                    'out_features': module.out_features,
+                    'weights': module.weight.detach().cpu().numpy().tolist()
+                }
+                
+                if module.bias is not None:
+                    layer_dict['bias'] = module.bias.detach().cpu().numpy().tolist()
+                
+                model_dict['layers'].append(layer_dict)
+            
+            elif isinstance(module, torch.nn.Conv2d):
+                layer_dict = {
+                    'type': 'conv2d',
+                    'name': name,
+                    'in_channels': module.in_channels,
+                    'out_channels': module.out_channels,
+                    'kernel_size': module.kernel_size[0] if isinstance(module.kernel_size, tuple) else module.kernel_size,
+                    'stride': module.stride[0] if isinstance(module.stride, tuple) else module.stride,
+                    'padding': module.padding[0] if isinstance(module.padding, tuple) else module.padding,
+                    'weights': module.weight.detach().cpu().numpy().tolist()
+                }
+                
+                if module.bias is not None:
+                    layer_dict['bias'] = module.bias.detach().cpu().numpy().tolist()
+                
+                model_dict['layers'].append(layer_dict)
+        
+        # Quantize model
+        quantized_model = self.quantizer.quantize_model_from_dict(model_dict)
+        
+        # Save
+        self.quantizer.save_quantized_model(quantized_model, output_path)
+
+
+# ============================================================================
+# Advanced Quantization Tools (from main branch)
+# ============================================================================
 
 class PentaryQuantizer:
     """Quantizes floating-point weights to pentary levels"""
@@ -325,73 +618,40 @@ def load_quantized_model(filepath: str) -> Dict[str, Any]:
 
 
 def main():
-    """Demo and testing of pentary quantizer"""
+    """Test quantization utilities"""
     print("=" * 70)
-    print("Pentary Quantization Tools")
+    print("Pentary Model Quantization Test")
     print("=" * 70)
-    print()
     
-    # Create sample model weights
-    print("Creating sample model weights...")
+    # Test ModelQuantizer
+    print("\n1. Testing Model Quantizer:")
+    print("-" * 70)
+    quantizer = ModelQuantizer(quantization_method='per_tensor')
+    
+    # Test linear layer weights
+    linear_weights = np.random.randn(64, 128).astype(np.float32) * 0.1
+    quantized, scale = quantizer.quantize_layer_weights(linear_weights)
+    print(f"Linear weights shape: {linear_weights.shape}")
+    print(f"Quantized shape: {quantized.shape}")
+    print(f"Scale: {scale:.4f}")
+    print(f"Original range: [{linear_weights.min():.4f}, {linear_weights.max():.4f}]")
+    print(f"Quantized range: [{quantized.min()}, {quantized.max()}]")
+    print(f"Unique values: {np.unique(quantized)}")
+    
+    # Test PentaryQuantizer
+    print("\n2. Testing PentaryQuantizer:")
+    print("-" * 70)
+    pentary_quantizer = PentaryQuantizer(calibration_method='minmax')
     model_weights = {
         'layer1.weight': np.random.randn(128, 784) * 0.1,
         'layer1.bias': np.random.randn(128) * 0.01,
-        'layer2.weight': np.random.randn(64, 128) * 0.1,
-        'layer2.bias': np.random.randn(64) * 0.01,
-        'layer3.weight': np.random.randn(10, 64) * 0.1,
-        'layer3.bias': np.random.randn(10) * 0.01
     }
-    
-    # Quantize model
-    print("\nQuantizing model...")
-    quantizer = PentaryQuantizer(calibration_method='minmax')
-    quantized_model = quantizer.quantize_model(model_weights)
-    
-    # Print statistics
-    print("\nQuantization Statistics:")
-    print("-" * 70)
+    quantized_model = pentary_quantizer.quantize_model(model_weights)
     global_stats = quantized_model['metadata']['global']
     print(f"Total parameters: {global_stats['total_parameters']:,}")
-    print(f"Non-zero parameters: {global_stats['non_zero_parameters']:,}")
-    print(f"Zero parameters: {global_stats['zero_parameters']:,}")
     print(f"Global sparsity: {global_stats['global_sparsity']:.1%}")
-    print()
-    
-    print("Per-layer statistics:")
-    for layer_name, stats in quantized_model['metadata'].items():
-        if layer_name == 'global':
-            continue
-        print(f"\n  {layer_name}:")
-        print(f"    Shape: {stats['shape']}")
-        print(f"    Sparsity: {stats['sparsity']:.1%}")
-        print(f"    Value distribution:")
-        for val, count in stats['value_distribution'].items():
-            print(f"      {val}: {count:,} ({count/stats['non_zero_count']*100:.1f}%)" 
-                  if stats['non_zero_count'] > 0 else f"      {val}: {count:,}")
-    
-    # Analyze quantization error
-    print("\n" + "=" * 70)
-    print("Quantization Error Analysis:")
-    print("-" * 70)
-    
-    layer_name = 'layer1.weight'
-    original = model_weights[layer_name]
-    quantized = quantized_model['weights'][layer_name]
-    scale = quantized_model['scales'][layer_name]
-    zero_point = quantized_model['zero_points'][layer_name]
-    
-    error_stats = quantizer.analyze_quantization_error(original, quantized, scale, zero_point)
-    
-    print(f"Layer: {layer_name}")
-    print(f"  MSE: {error_stats['mse']:.6f}")
-    print(f"  MAE: {error_stats['mae']:.6f}")
-    print(f"  Max Error: {error_stats['max_error']:.6f}")
-    print(f"  Relative Error: {error_stats['relative_error']:.2%}")
-    print(f"  SNR: {error_stats['snr_db']:.2f} dB")
     
     print("\n" + "=" * 70)
-    print("All tests completed successfully!")
-    print("=" * 70)
 
 
 if __name__ == "__main__":
