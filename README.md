@@ -4,6 +4,44 @@ THE PENTARY MANIFESTO
 
 Breaking the Binary Stranglehold on Artificial IntelligenceVersion 1.0 | Status: Open Hardware Initiative
 
+## 🚀 Quick Start
+
+```bash
+# Test basic tools
+python tools/pentary_converter.py
+python tools/pentary_arithmetic.py
+python tools/pentary_simulator.py
+
+# Neural network tools
+python tools/pentary_nn.py
+python tools/pentary_quantizer.py
+python tools/pentary_iteration.py
+```
+
+## 📦 Tools Overview
+
+### Core Tools
+- **pentary_converter.py**: Decimal ↔ Pentary conversion, arithmetic operations
+- **pentary_arithmetic.py**: Low-level digit operations, carry handling
+- **pentary_simulator.py**: Full processor simulator with ISA support
+
+### Neural Network Tools
+- **pentary_nn.py**: Neural network layers (Linear, Conv2D, ReLU, Pooling)
+- **pentary_quantizer.py**: Model quantization, calibration, accuracy analysis
+- **pentary_iteration.py**: Profiling, optimization, benchmarking, rapid iteration
+
+### Hardware Design
+- **pentary_chip_design.v**: Verilog implementation of key components
+- **pentary_chip_synthesis.tcl**: Synthesis scripts for ASIC design
+- **pentary_chip_layout.md**: Layout guidelines and floorplan
+
+## 📚 Documentation
+
+- [Complete Guide](PENTARY_COMPLETE_GUIDE.md)
+- [Neural Network Architecture](architecture/pentary_neural_network_architecture.md)
+- [Processor Architecture](architecture/pentary_processor_architecture.md)
+- [Chip Layout Guidelines](hardware/pentary_chip_layout.md)
+
 1. The Crisis of ComputeWe have hit a wall. The current trajectory of Artificial Intelligence is unsustainable.To build "Intelligence," we are currently relying on Binary Logic (Base-2)—a system designed in the 1940s for vacuum tubes, not for neural networks. We are forcing silicon to perform billions of wasteful floating-point multiplications (FP16) just to approximate what a biological neuron does with a simple pulse of voltage.The result is an Energy Crisis and a Privacy Crisis.Training a single model consumes a city's worth of electricity.Running a "Smart" model requires a $30,000 GPU cluster.True AI is becoming the exclusive domain of trillion-dollar monopolies, locked behind cloud APIs, renting our own intelligence back to us.We believe the future of AI is not bigger data centers. It is smarter physics.
 2.
 3. 2. The Solution: Balanced Quinary ArchitectureWe propose a fundamental shift from Binary Logic to Balanced Pentary (Base-5) Logic.Nature does not think in "On/Off." Neurons function via Excitation and Inhibition. Our hardware must reflect this. By adopting a Signed-Digit System {-2, -1, 0, +1, +2}, we align the silicon with the math of the neural network.The Three Laws of Pentary Logic:Zero is Absolute: In our architecture, the "0" state is a physical disconnect. It consumes zero power. This unlocks massive sparsity natively.Symmetry is Efficiency: Positive and Negative weights are symmetric voltages (+V and -V). Subtraction is simply addition.Multiplication is Obsolete: By locking weights to integers {-2...2}, we replace massive Floating Point Units (3,000 transistors) with simple Shift-Add Circuits (150 transistors).Result: A chip that is 20x smaller, 7x more memory-dense, and 10x more energy-efficient than the industry standard.
