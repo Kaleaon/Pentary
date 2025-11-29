@@ -236,6 +236,66 @@ class PentaryConverter:
         return pentary_str[:-positions] if positions > 0 else pentary_str
     
     @staticmethod
+    def multiply_pentary(a: str, b: str) -> str:
+        """
+        Multiply two balanced pentary numbers.
+        
+        Args:
+            a: First pentary number
+            b: Second pentary number
+            
+        Returns:
+            Product in pentary
+        """
+        # Convert to decimal, multiply, convert back
+        dec_a = PentaryConverter.pentary_to_decimal(a)
+        dec_b = PentaryConverter.pentary_to_decimal(b)
+        return PentaryConverter.decimal_to_pentary(dec_a * dec_b)
+    
+    @staticmethod
+    def divide_pentary(a: str, b: str) -> str:
+        """
+        Divide two balanced pentary numbers (integer division).
+        
+        Args:
+            a: Dividend (pentary number)
+            b: Divisor (pentary number)
+            
+        Returns:
+            Quotient in pentary (truncated toward zero)
+        """
+        dec_a = PentaryConverter.pentary_to_decimal(a)
+        dec_b = PentaryConverter.pentary_to_decimal(b)
+        
+        if dec_b == 0:
+            raise ValueError("Division by zero")
+        
+        # Integer division truncated toward zero
+        quotient = int(dec_a / dec_b)
+        return PentaryConverter.decimal_to_pentary(quotient)
+    
+    @staticmethod
+    def modulo_pentary(a: str, b: str) -> str:
+        """
+        Calculate modulo of two balanced pentary numbers.
+        
+        Args:
+            a: Dividend (pentary number)
+            b: Divisor (pentary number)
+            
+        Returns:
+            Remainder in pentary
+        """
+        dec_a = PentaryConverter.pentary_to_decimal(a)
+        dec_b = PentaryConverter.pentary_to_decimal(b)
+        
+        if dec_b == 0:
+            raise ValueError("Division by zero")
+        
+        remainder = dec_a % dec_b
+        return PentaryConverter.decimal_to_pentary(remainder)
+    
+    @staticmethod
     def format_pentary(pentary_str: str, width: int = None, align: str = 'right') -> str:
         """
         Format pentary string with padding.

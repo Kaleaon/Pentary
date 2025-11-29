@@ -42,4 +42,4 @@ Thumbs.db
 # Testing
 .pytest_cache/
 .coverage
-htmlcov/
+htmlcov/pentary_performance_test_results.json

@@ -5,7 +5,16 @@ Parses tokens into an Abstract Syntax Tree (AST)
 """
 
 from typing import List, Optional, Dict, Any
-from language.pent_lexer import Token, TokenType, Lexer
+import sys
+import os
+
+# Ensure consistent imports by always importing from pent_lexer directly
+# when run from the language directory
+_this_dir = os.path.dirname(os.path.abspath(__file__))
+if _this_dir not in sys.path:
+    sys.path.insert(0, _this_dir)
+
+from pent_lexer import Token, TokenType, Lexer
 
 
 class ASTNode:
@@ -333,6 +342,10 @@ class Parser:
     
     def block(self) -> Block:
         """Parse block: { statements }"""
+        # Consume the opening brace if not already consumed
+        if self.check(TokenType.LEFT_BRACE):
+            self.advance()
+        
         statements = []
         while not self.check(TokenType.RIGHT_BRACE) and not self.is_at_end():
             # Try declaration first (function, let)

@@ -63,30 +63,27 @@ class TestPentaryFailures(unittest.TestCase):
             self.assertEqual(calc_sum_pent, expected_sum_pent,
                              f"Mismatch for {a} + {b}: {calc_sum_pent} vs {expected_sum_pent}")
 
-    def test_multiplication_missing_instruction(self):
+    def test_multiplication_instruction_exists(self):
         """
-        Prove that generic multiplication is impossible with a single instruction,
-        forcing O(N) software emulation which kills performance.
+        Verify that generic multiplication instruction now exists.
+        Previously, multiplication was missing - this was a flaw that has been fixed.
         """
         proc = PentaryProcessor()
 
-        # Try to execute a generic MUL instruction
-        program = ["MUL P1, P2, P3", "HALT"]
+        # Test the MUL instruction
+        program = [
+            "MOVI P1, 5",
+            "MOVI P2, 7",
+            "MUL P3, P1, P2",
+            "HALT"
+        ]
         proc.load_program(program)
-
-        # Capture stdout to check for error
-        from io import StringIO
-        import sys
-        captured_output = StringIO()
-        sys.stdout = captured_output
-
         proc.run()
 
-        sys.stdout = sys.__stdout__
-        output = captured_output.getvalue()
-
-        self.assertIn("Unknown instruction: MUL", output, "MUL instruction should not exist")
-        print("\n[Proof 2] 'Multiplication is Obsolete' means generic multiplication is missing.")
+        # Get the result and verify it's correct
+        result = PentaryConverter.pentary_to_decimal(proc.get_register("P3"))
+        self.assertEqual(35, result, "MUL 5 * 7 should equal 35")
+        print("\n[Proof 2] MUL instruction has been implemented and works correctly.")
 
 if __name__ == '__main__':
     unittest.main()
