@@ -12,7 +12,11 @@ This document defines extended precision modes for the Pentary architecture, pro
 | P16 | 16 pents | 48 bits | ~37.2 bits | ±76 billion | ~37-bit |
 | P28 | 28 pents | 84 bits | ~65 bits | ±2.9×10^19 | 64-bit |
 | P32 | 32 pents | 96 bits | ~74.3 bits | ±3.6×10^22 | ~74-bit |
-| P55 | 55 pents | 165 bits | ~127.8 bits | ±2.8×10^38 | 128-bit |
+| P56 | 56 pents | 168 bits | ~130 bits | ±1.4×10^39 | 128-bit+ |
+
+**Note on P56**: P56 uses exactly 2×P28 for symmetric register pairing. It provides ~130 bits
+of information, which fully covers all 128-bit binary values. When converting P56 back to
+binary 128-bit, overflow checking is required for values exceeding 2^127-1.
 
 ### 1.2 Mathematical Foundation
 
@@ -129,32 +133,68 @@ GETACC28_LO  Dd         ; Get low 28 pents of ACC56
 CLRACC                  ; Clear ACC56
 ```
 
-## 4. P55 Mode (128-bit Equivalent)
+## 4. P56 Mode (128-bit Equivalent)
 
 ### 4.1 Specifications
 
-- **Width**: 55 pents = 165 physical bits
-- **Information**: ~127.8 bits (log₂(5^55) ≈ 127.71)
-- **Range**: ±2.78×10^38
-- **Use cases**: Cryptography, high-precision scientific computing
+- **Width**: 56 pents = 168 physical bits
+- **Information**: ~130 bits (log₂(5^56) ≈ 130.03)
+- **Range**: ±1.39×10^39
+- **Use cases**: Cryptography, high-precision scientific computing, 128-bit binary compatibility
+- **Design rationale**: P56 = 2×P28 for symmetric register pairing
 
-### 4.2 P55 Register Quads
+**128-bit Binary Compatibility:**
+- P56 can represent ALL 128-bit binary values (since 130 bits > 128 bits)
+- When converting P56 → binary128, overflow check required for values > 2^127-1
+- This is the recommended mode for binary system interoperability
 
-P55 values use register quads (4 × P14):
+### 4.2 P56 Register Quads
 
-| Quad | Registers | Combined Width |
-|------|-----------|----------------|
-| Q0 | P3:P2:P1:P0 | 55 pents (with 1 pent padding) |
-| Q1 | P7:P6:P5:P4 | 55 pents |
-| ... | ... | ... |
+P56 values use register quads (4 × P14) or register pairs of P28:
 
-### 4.3 P55 Instructions
+| Quad | Registers (P14 view) | Registers (P28 view) | Combined Width |
+|------|---------------------|----------------------|----------------|
+| Q0 | P3:P2:P1:P0 | D1:D0 | 56 pents |
+| Q1 | P7:P6:P5:P4 | D3:D2 | 56 pents |
+| Q2 | P11:P10:P9:P8 | D5:D4 | 56 pents |
+| ... | ... | ... | ... |
+
+### 4.3 P56 Instructions
 
 ```
-; P55 Arithmetic
-ADD55   Qd, Qs1, Qs2    ; 55-pent addition
-SUB55   Qd, Qs1, Qs2    ; 55-pent subtraction
-MUL55   Qd, Qs1, Qs2    ; 55-pent multiplication (partial)
+; P56 Arithmetic
+ADD56   Qd, Qs1, Qs2    ; 56-pent addition
+SUB56   Qd, Qs1, Qs2    ; 56-pent subtraction
+MUL56   Qd, Qs1, Qs2    ; 56-pent multiplication (result in ACC112)
+DIV56   Qd, Qs1, Qs2    ; 56-pent division
+NEG56   Qd, Qs          ; 56-pent negation
+
+; P56 ↔ Binary128 Conversion (with overflow handling)
+B128_TO_P56  Qd, [addr]     ; Load binary128 and convert to P56 (always succeeds)
+P56_TO_B128  [addr], Qs     ; Convert P56 to binary128 and store
+                             ; Sets OVERFLOW flag if |value| > 2^127-1
+P56_TO_B128_SAT [addr], Qs  ; Saturating conversion (clamps to ±2^127-1)
+
+; P56 Comparison
+CMP56   Qs1, Qs2        ; Compare and set flags
+TST56   Qs              ; Test against zero
+
+; P56 Load/Store  
+LOAD56  Qd, [base+offset]   ; Load 56 pents from memory
+STORE56 [base+offset], Qs   ; Store 56 pents to memory
+```
+
+### 4.4 P56 Accumulator
+
+The 112-pent accumulator supports P56 multiply-accumulate operations:
+
+```
+; 112-pent accumulator operations
+MACC56  Qs1, Qs2        ; ACC112 += Qs1 × Qs2
+MSUB56  Qs1, Qs2        ; ACC112 -= Qs1 × Qs2
+GETACC56_HI  Qd         ; Get high 56 pents of ACC112
+GETACC56_LO  Qd         ; Get low 56 pents of ACC112
+CLRACC112               ; Clear ACC112
 ```
 
 ## 5. Mixed Precision Operations
@@ -185,13 +225,18 @@ ADDS28  Dd, Ds1, Ds2    ; Saturating add (P28)
 ```
 ; Sign extension
 SEXT14_28  Dd, Rs       ; Sign-extend P14 to P28
-SEXT14_55  Qd, Rs       ; Sign-extend P14 to P55
-SEXT28_55  Qd, Ds       ; Sign-extend P28 to P55
+SEXT14_56  Qd, Rs       ; Sign-extend P14 to P56
+SEXT28_56  Qd, Ds       ; Sign-extend P28 to P56
 
-; Truncation
-TRUNC28_14 Rd, Ds       ; Truncate P28 to P14 (with overflow check)
-TRUNC55_28 Dd, Qs       ; Truncate P55 to P28 (with overflow check)
-TRUNC55_14 Rd, Qs       ; Truncate P55 to P14 (with overflow check)
+; Truncation (with overflow checking)
+TRUNC28_14 Rd, Ds       ; Truncate P28 to P14 (sets OVERFLOW if out of range)
+TRUNC56_28 Dd, Qs       ; Truncate P56 to P28 (sets OVERFLOW if out of range)
+TRUNC56_14 Rd, Qs       ; Truncate P56 to P14 (sets OVERFLOW if out of range)
+
+; Safe truncation to binary (sets OVERFLOW flag if value exceeds binary range)
+P56_TRUNC_B128 Qd, Qs   ; Truncate P56 to fit in binary 128-bit range
+P28_TRUNC_B64  Dd, Ds   ; Truncate P28 to fit in binary 64-bit range
+P14_TRUNC_B32  Rd, Rs   ; Truncate P14 to fit in binary 32-bit range
 ```
 
 ## 6. Carry and Overflow Handling
@@ -234,13 +279,13 @@ class ExtendedPentaryProcessor:
         # P28 mode register pairs (16 pairs)
         self.d28 = [("0" * 14, "0" * 14) for _ in range(16)]
         
-        # P55 mode register quads (8 quads)
-        self.q55 = [("0" * 14, "0" * 14, "0" * 14, "0" * 14) for _ in range(8)]
+        # P56 mode register quads (8 quads) - 2×P28 for symmetric design
+        self.q56 = [("0" * 14, "0" * 14, "0" * 14, "0" * 14) for _ in range(8)]
         
         # Extended accumulators
         self.acc28 = "0" * 28   # For P14 multiply
         self.acc56 = "0" * 56   # For P28 multiply
-        self.acc110 = "0" * 110 # For P55 multiply
+        self.acc112 = "0" * 112 # For P56 multiply (2×56)
 ```
 
 ## 8. Memory Alignment Requirements
@@ -252,7 +297,7 @@ class ExtendedPentaryProcessor:
 | P14 | 14 pents | 16 pents (for cache efficiency) |
 | P16 | 16 pents | 16 pents |
 | P28 | 28 pents | 32 pents (for cache efficiency) |
-| P55 | 55 pents | 64 pents (for cache efficiency) |
+| P56 | 56 pents | 64 pents (for cache efficiency) |
 
 ### 8.2 Misaligned Access
 
@@ -260,13 +305,15 @@ class ExtendedPentaryProcessor:
 ; Misaligned load/store (slower but supported)
 LOADU28  Dd, [base+offset]   ; Unaligned 28-pent load
 STOREU28 [base+offset], Ds   ; Unaligned 28-pent store
+LOADU56  Qd, [base+offset]   ; Unaligned 56-pent load
+STOREU56 [base+offset], Qs   ; Unaligned 56-pent store
 ```
 
 ## 9. Performance Considerations
 
 ### 9.1 Latency by Precision
 
-| Operation | P14 Cycles | P16 Cycles | P28 Cycles | P55 Cycles |
+| Operation | P14 Cycles | P16 Cycles | P28 Cycles | P56 Cycles |
 |-----------|------------|------------|------------|------------|
 | ADD | 1 | 1 | 2 | 4 |
 | SUB | 1 | 1 | 2 | 4 |
@@ -280,9 +327,35 @@ STOREU28 [base+offset], Ds   ; Unaligned 28-pent store
 - Use P14 for loop counters and array indices
 - Use P16 for neural network weights
 - Use P28 for addresses and large counters
-- Use P55 only when cryptographic precision is required
+- Use P56 for cryptographic precision or 128-bit binary interop
+
+## 10. Binary Overflow Handling
+
+### 10.1 P56 to Binary128 Conversion
+
+Since P56 has ~130 bits of information but binary128 only has 128 bits, overflow checking is essential:
+
+```
+; Safe conversion with overflow detection
+P56_TO_B128  [addr], Qs     ; Convert and store
+                             ; Sets OVERFLOW flag if |value| > 2^127-1
+                             
+; Check overflow after conversion
+BVS  overflow_handler        ; Branch if overflow set
+
+; Saturating conversion (clamps to binary128 range)
+P56_TO_B128_SAT [addr], Qs  ; Clamps value to ±(2^127-1)
+                             ; Sets SATURATION flag if clamping occurred
+```
+
+### 10.2 Safe Ranges
+
+| Direction | Safe? | Notes |
+|-----------|-------|-------|
+| Binary128 → P56 | Always | P56 can hold any 128-bit value |
+| P56 → Binary128 | Check | ~1.5% of P56 values exceed binary128 |
 
 ---
 
-**Document Version**: 1.0
-**Status**: Specification Complete
+**Document Version**: 1.1
+**Status**: Updated to P56 for 128-bit binary compatibility

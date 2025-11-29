@@ -25,7 +25,7 @@ This document defines SIMD (Single Instruction, Multiple Data) and vector extens
 │   - 16 × P16 elements (16-pent integers)                                        │
 │   - 18 × P14 elements (14-pent integers, with padding)                          │
 │   - 9 × P28 elements (28-pent integers)                                         │
-│   - 4 × P55 elements (55-pent integers, with padding)                           │
+│   - 4 × P56 elements (56-pent integers, 2×P28 symmetric)                        │
 │   - 16 × PentFloat16 elements                                                   │
 │   - 9 × PentFloat28 elements                                                    │
 └─────────────────────────────────────────────────────────────────────────────────┘
@@ -47,7 +47,7 @@ SETVLI  Rd, imm         ; Rd = min(imm, VLEN); VL set
 ```
 ; Vector type configuration
 VSETTYPE  type          ; Set element type
-                        ; type: P14, P16, P28, P55, F16, F28, F55
+                        ; type: P14, P16, P28, P56, F16, F28, F56
 
 ; Get current configuration
 VGETCFG  Rd             ; Rd = current vector configuration
@@ -378,7 +378,7 @@ Total: 8 pents (same as scalar instruction width)
 | 00 | P14 | 18 |
 | 01 | P16 | 16 |
 | 10 | P28 | 9 |
-| 11 | P55 | 4 |
+| 11 | P56 | 4 |
 
 ## 11. Implementation Notes
 

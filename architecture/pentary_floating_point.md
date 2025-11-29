@@ -48,22 +48,23 @@ Total: 28 pents = 84 physical bits
 - Mantissa: 21 pents = ~48.8 bits precision
 - Equivalent to: ~FP64 precision
 
-### 2.3 PentFloat55 (Double Precision)
+### 2.3 PentFloat56 (Double Precision - Binary128 Compatible)
 
 ```
 ┌──────┬────────────┬─────────────────────────────────────────────────────────┐
 │ Sign │  Exponent  │                      Mantissa                           │
-│1 pent│  8 pents   │                    46 pents                             │
+│1 pent│  8 pents   │                    47 pents                             │
 │ ±    │(±195312)   │              Fractional precision                       │
 └──────┴────────────┴─────────────────────────────────────────────────────────┘
-Total: 55 pents = 165 physical bits
+Total: 56 pents = 168 physical bits (~130 bits information)
 ```
 
 **Specifications**:
 - Sign: 1 pent
 - Exponent: 8 pents = range ±195,312 (biased by 195,312)
-- Mantissa: 46 pents = ~106.8 bits precision
-- Equivalent to: ~FP128 precision
+- Mantissa: 47 pents = ~109.1 bits precision
+- Equivalent to: ~FP128 precision (exceeds IEEE binary128)
+- **Binary128 Compatibility**: Can represent all IEEE binary128 values; overflow check needed on conversion back
 
 ## 3. Special Values
 
@@ -235,8 +236,8 @@ FTOIM16 Rd, Rs          ; Round toward -∞
 ```
 F16TOF28 Dd, Rs         ; Extend PentFloat16 to PentFloat28
 F28TOF16 Rd, Ds         ; Convert PentFloat28 to PentFloat16
-F28TOF55 Qd, Ds         ; Extend PentFloat28 to PentFloat55
-F55TOF28 Dd, Qs         ; Convert PentFloat55 to PentFloat28
+F28TOF56 Qd, Ds         ; Extend PentFloat28 to PentFloat56
+F56TOF28 Dd, Qs         ; Convert PentFloat56 to PentFloat28
 ```
 
 ## 8. Special Function Instructions
@@ -318,7 +319,7 @@ FEXCCLR mask            ; Clear specified exception flags
 ```
 F0-F31:  32 × PentFloat16 registers
 FD0-FD15: 16 × PentFloat28 register pairs
-FQ0-FQ7:  8 × PentFloat55 register quads
+FQ0-FQ7:  8 × PentFloat56 register quads
 ```
 
 ### 11.2 Shared GP/FP Register Model
@@ -326,7 +327,7 @@ FQ0-FQ7:  8 × PentFloat55 register quads
 Alternatively, floating-point values can use the general-purpose registers:
 - P-registers for PentFloat16
 - D-register pairs for PentFloat28
-- Q-register quads for PentFloat55
+- Q-register quads for PentFloat56
 
 ## 12. Hardware Implementation
 
@@ -353,7 +354,7 @@ Alternatively, floating-point values can use the general-purpose registers:
 
 ### 12.2 Latency Estimates
 
-| Operation | PentFloat16 | PentFloat28 | PentFloat55 |
+| Operation | PentFloat16 | PentFloat28 | PentFloat56 |
 |-----------|-------------|-------------|-------------|
 | FADD | 4 cycles | 6 cycles | 10 cycles |
 | FMUL | 5 cycles | 8 cycles | 15 cycles |
@@ -368,7 +369,7 @@ Alternatively, floating-point values can use the general-purpose registers:
 PentFloat supports efficient mixed-precision:
 - Forward pass: PentFloat16 or quantized integers
 - Backward pass: PentFloat28 for gradients
-- Master weights: PentFloat28 or PentFloat55
+- Master weights: PentFloat28 or PentFloat56
 
 ### 13.2 Quantization Instructions
 
