@@ -8,30 +8,20 @@ from typing import List, Dict, Optional
 import sys
 import os
 
-# Support both direct execution and import from parent directory
-script_dir = os.path.dirname(os.path.abspath(__file__))
-parent_dir = os.path.dirname(script_dir)
-if parent_dir not in sys.path:
-    sys.path.insert(0, parent_dir)
-if script_dir not in sys.path:
-    sys.path.insert(0, script_dir)
+# Ensure consistent imports by always importing from the language directory
+_this_dir = os.path.dirname(os.path.abspath(__file__))
+_parent_dir = os.path.dirname(_this_dir)
+if _this_dir not in sys.path:
+    sys.path.insert(0, _this_dir)
+if _parent_dir not in sys.path:
+    sys.path.insert(0, _parent_dir)
 
-try:
-    from language.pent_lexer import Lexer
-    from language.pent_parser import Parser, ASTNode, Function, LetStatement, ReturnStatement, \
-        IfStatement, WhileStatement, ForStatement, BinaryExpression, UnaryExpression, \
-        CallExpression, Literal, Identifier, Block, Program
-except ImportError:
-    from pent_lexer import Lexer
-    from pent_parser import Parser, ASTNode, Function, LetStatement, ReturnStatement, \
-        IfStatement, WhileStatement, ForStatement, BinaryExpression, UnaryExpression, \
-        CallExpression, Literal, Identifier, Block, Program
+from pent_lexer import Lexer
+from pent_parser import Parser, ASTNode, Function, LetStatement, ReturnStatement, \
+    IfStatement, WhileStatement, ForStatement, BinaryExpression, UnaryExpression, \
+    CallExpression, Literal, Identifier, Block, Program
 
-try:
-    from tools.pentary_converter import PentaryConverter
-except ImportError:
-    sys.path.insert(0, os.path.join(parent_dir, 'tools'))
-    from pentary_converter import PentaryConverter
+from tools.pentary_converter import PentaryConverter
 
 
 class CodeGenerator:
@@ -210,15 +200,19 @@ class CodeGenerator:
         elif expr.operator == "-":
             self.emit(f"SUB P{result_reg}, P{left_reg}, P{right_reg}")
         elif expr.operator == "*":
-            # For now, assume multiplication by constant
-            # TODO: Implement general multiplication
-            if isinstance(expr.right, Literal) and expr.right.type == "int":
-                if expr.right.value == 2:
-                    self.emit(f"MUL2 P{result_reg}, P{left_reg}")
-                else:
-                    raise Exception(f"Unsupported multiplication by {expr.right.value}")
+            # General multiplication now supported
+            if isinstance(expr.right, Literal) and expr.right.type == "int" and expr.right.value == 2:
+                # Optimize multiplication by 2
+                self.emit(f"MUL2 P{result_reg}, P{left_reg}")
             else:
-                raise Exception("General multiplication not yet implemented")
+                # General multiplication
+                self.emit(f"MUL P{result_reg}, P{left_reg}, P{right_reg}")
+        elif expr.operator == "/":
+            # Integer division
+            self.emit(f"DIV P{result_reg}, P{left_reg}, P{right_reg}")
+        elif expr.operator == "%":
+            # Modulo
+            self.emit(f"MOD P{result_reg}, P{left_reg}, P{right_reg}")
         elif expr.operator == "<<":
             if isinstance(expr.right, Literal) and expr.right.type == "int":
                 self.emit(f"SHL P{result_reg}, P{left_reg}, {expr.right.value}")
@@ -232,13 +226,75 @@ class CodeGenerator:
         elif expr.operator == "==":
             # Compare and set result to 0 or 1
             temp_reg = self.allocate_register()
+            eq_label = self.new_label('eq')
+            done_label = self.new_label('eq_done')
             self.emit(f"SUB P{temp_reg}, P{left_reg}, P{right_reg}")
-            self.emit(f"BEQ P{temp_reg}, {self.new_label('eq')}")
+            self.emit(f"BEQ P{temp_reg}, {eq_label}")
             self.emit(f"MOVI P{result_reg}, 0")
-            self.emit(f"JUMP {self.new_label('eq_done')}")
-            self.emit(f"{self.new_label('eq')}:")
+            self.emit(f"JUMP {done_label}")
+            self.emit(f"{eq_label}:")
             self.emit(f"MOVI P{result_reg}, 1")
-            self.emit(f"{self.new_label('eq_done')}:")
+            self.emit(f"{done_label}:")
+        elif expr.operator == "!=":
+            # Not equal comparison
+            temp_reg = self.allocate_register()
+            ne_label = self.new_label('ne')
+            done_label = self.new_label('ne_done')
+            self.emit(f"SUB P{temp_reg}, P{left_reg}, P{right_reg}")
+            self.emit(f"BNE P{temp_reg}, {ne_label}")
+            self.emit(f"MOVI P{result_reg}, 0")
+            self.emit(f"JUMP {done_label}")
+            self.emit(f"{ne_label}:")
+            self.emit(f"MOVI P{result_reg}, 1")
+            self.emit(f"{done_label}:")
+        elif expr.operator == "<":
+            # Less than comparison
+            temp_reg = self.allocate_register()
+            lt_label = self.new_label('lt')
+            done_label = self.new_label('lt_done')
+            self.emit(f"SUB P{temp_reg}, P{left_reg}, P{right_reg}")
+            self.emit(f"BLT P{temp_reg}, {lt_label}")
+            self.emit(f"MOVI P{result_reg}, 0")
+            self.emit(f"JUMP {done_label}")
+            self.emit(f"{lt_label}:")
+            self.emit(f"MOVI P{result_reg}, 1")
+            self.emit(f"{done_label}:")
+        elif expr.operator == ">":
+            # Greater than comparison
+            temp_reg = self.allocate_register()
+            gt_label = self.new_label('gt')
+            done_label = self.new_label('gt_done')
+            self.emit(f"SUB P{temp_reg}, P{left_reg}, P{right_reg}")
+            self.emit(f"BGT P{temp_reg}, {gt_label}")
+            self.emit(f"MOVI P{result_reg}, 0")
+            self.emit(f"JUMP {done_label}")
+            self.emit(f"{gt_label}:")
+            self.emit(f"MOVI P{result_reg}, 1")
+            self.emit(f"{done_label}:")
+        elif expr.operator == "<=":
+            # Less than or equal - swap and use > then negate
+            temp_reg = self.allocate_register()
+            le_label = self.new_label('le')
+            done_label = self.new_label('le_done')
+            self.emit(f"SUB P{temp_reg}, P{left_reg}, P{right_reg}")
+            self.emit(f"BGT P{temp_reg}, {le_label}")
+            self.emit(f"MOVI P{result_reg}, 1")
+            self.emit(f"JUMP {done_label}")
+            self.emit(f"{le_label}:")
+            self.emit(f"MOVI P{result_reg}, 0")
+            self.emit(f"{done_label}:")
+        elif expr.operator == ">=":
+            # Greater than or equal
+            temp_reg = self.allocate_register()
+            ge_label = self.new_label('ge')
+            done_label = self.new_label('ge_done')
+            self.emit(f"SUB P{temp_reg}, P{left_reg}, P{right_reg}")
+            self.emit(f"BLT P{temp_reg}, {ge_label}")
+            self.emit(f"MOVI P{result_reg}, 1")
+            self.emit(f"JUMP {done_label}")
+            self.emit(f"{ge_label}:")
+            self.emit(f"MOVI P{result_reg}, 0")
+            self.emit(f"{done_label}:")
         else:
             raise Exception(f"Unsupported binary operator: {expr.operator}")
         
@@ -253,13 +309,14 @@ class CodeGenerator:
             self.emit(f"NEG P{result_reg}, P{operand_reg}")
         elif expr.operator == "!":
             # Logical NOT
-            temp_reg = self.allocate_register()
-            self.emit(f"BEQ P{operand_reg}, {self.new_label('not')}")
+            not_label = self.new_label('not')
+            done_label = self.new_label('not_done')
+            self.emit(f"BEQ P{operand_reg}, {not_label}")
             self.emit(f"MOVI P{result_reg}, 0")
-            self.emit(f"JUMP {self.new_label('not_done')}")
-            self.emit(f"{self.new_label('not')}:")
+            self.emit(f"JUMP {done_label}")
+            self.emit(f"{not_label}:")
             self.emit(f"MOVI P{result_reg}, 1")
-            self.emit(f"{self.new_label('not_done')}:")
+            self.emit(f"{done_label}:")
         else:
             raise Exception(f"Unsupported unary operator: {expr.operator}")
         
