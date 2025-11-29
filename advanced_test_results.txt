@@ -1,0 +1,197 @@
+
+######################################################################
+PENTARY SYSTEM ADVANCED STRESS TEST SUITE
+######################################################################
+
+This suite will test:
+  1. Extreme value handling
+  2. Precision limits and boundaries
+  3. Cascading carry propagation
+  4. Sign transition behavior
+  5. Performance scaling
+  6. Arithmetic properties (commutativity, associativity)
+  7. Negation properties
+  8. Shift operation consistency
+  9. Zero handling
+
+======================================================================
+[*] TEST 1: Extreme Value Handling
+======================================================================
+
+Value                Conversion Time      Status
+----------------------------------------------------------------------
+2^32                 0.01ms              ✓ PASS
+2^40                 0.01ms              ✓ PASS
+2^50                 0.01ms              ✓ PASS
+2^60                 0.01ms              ✓ PASS
+-2^32                0.01ms              ✓ PASS
+-2^40                0.01ms              ✓ PASS
+10^10                0.00ms              ✓ PASS
+10^15                0.01ms              ✓ PASS
+-10^10               0.01ms              ✓ PASS
+
+======================================================================
+[*] TEST 2: Precision Limits and Boundary Conditions
+======================================================================
+
+Powers of 5 (base boundaries):
+Power           Decimal              Pentary                   Status
+----------------------------------------------------------------------
+5^0             1                    +                         ✓ PASS
+5^1             5                    +0                        ✓ PASS
+5^2             25                   +00                       ✓ PASS
+5^3             125                  +000                      ✓ PASS
+5^4             625                  +0000                     ✓ PASS
+5^5             3125                 +00000                    ✓ PASS
+5^6             15625                +000000                   ✓ PASS
+5^7             78125                +0000000                  ✓ PASS
+5^8             390625               +00000000                 ✓ PASS
+5^9             1953125              +000000000                ✓ PASS
+5^10            9765625              +0000000000               ✓ PASS
+5^11            48828125             +00000000000              ✓ PASS
+5^12            244140625            +000000000000             ✓ PASS
+5^13            1220703125           +0000000000000            ✓ PASS
+5^14            6103515625           +00000000000000           ✓ PASS
+
+Homogeneous digit patterns:
+Pattern         Decimal              Pentary                   Status
+----------------------------------------------------------------------
+All max positive 1562                 ⊕⊕⊕⊕⊕                     ✓ PASS
+All weak positive 781                  +++++                     ✓ PASS
+All zeros       0                    00000                     ✓ PASS
+All weak negative -781                 -----                     ✓ PASS
+All max negative -1562                ⊖⊖⊖⊖⊖                     ✓ PASS
+
+======================================================================
+[*] TEST 3: Cascading Carry Propagation
+======================================================================
+
+Maximum carry propagation scenarios:
+Scenario                       Carries         Status
+----------------------------------------------------------------------
+10 digits all ⊕ + 1            1               ✓ PASS
+10 digits all ⊖ - 1            1               ✓ PASS
+Alternating pattern            10              ✓ PASS
+20 digits all ⊕ + 1            1               ✓ PASS
+
+======================================================================
+[*] TEST 4: Sign Transition Behavior
+======================================================================
+
+Operations crossing zero:
+Operation                                Result          Status
+----------------------------------------------------------------------
+1 + (-1) = 0                             0               ✓ PASS
+100 + (-100) = 0                         0               ✓ PASS
+1000 + (-1000) = 0                       0               ✓ PASS
+-1 + 2 = 1                               +               ✓ PASS
+-100 + 101 = 1                           +               ✓ PASS
+50 + (-51) = -1                          -               ✓ PASS
+0 + 0 = 0                                0               ✓ PASS
+1 + (-2) = -1                            -               ✓ PASS
+-1 + 2 = 1                               +               ✓ PASS
+
+======================================================================
+[*] TEST 5: Performance Scaling Analysis
+======================================================================
+
+Conversion performance vs number size:
+Magnitude            Avg Time (ms)        Ops/sec        
+----------------------------------------------------------------------
+±10                  0.0011                907073
+±100                 0.0015                651593
+±1000                0.0025                397942
+±10000               0.0032                315361
+±100000              0.0044                227951
+±1000000             0.0050                200684
+±10000000            0.0068                147687
+
+======================================================================
+[*] TEST 6: Arithmetic Properties Verification
+======================================================================
+
+Commutativity (a + b = b + a):
+  ✓ PASS: All 100 tests passed
+
+Associativity ((a + b) + c = a + (b + c)):
+  ✓ PASS: All 100 tests passed
+
+======================================================================
+[*] TEST 7: Negation Properties
+======================================================================
+
+Double negation (-(-a) = a):
+  ✓ PASS: All 100 tests passed
+
+Additive inverse (a + (-a) = 0):
+  ✓ PASS: All 100 tests passed
+
+======================================================================
+[*] TEST 8: Shift Operation Consistency
+======================================================================
+
+Left shift = multiply by 5:
+  ✓ PASS: All 100 tests passed
+
+Multiple shifts:
+  ✓ PASS: All 50 tests passed
+
+======================================================================
+[*] TEST 9: Zero Handling
+======================================================================
+
+Zero in various operations:
+Operation                                Result          Status
+----------------------------------------------------------------------
+0 + 0                                    0               ✓ PASS
+0 + 1                                    +               ✓ PASS
+1 + 0                                    +               ✓ PASS
+0 + (-1)                                 -               ✓ PASS
+(-1) + 0                                 -               ✓ PASS
+0 + 1000                                 ⊕⊖000           ✓ PASS
+1000 + 0                                 ⊕⊖000           ✓ PASS
+
+======================================================================
+ADVANCED TEST REPORT
+======================================================================
+
+Total Tests Run: 599
+Passed: 599 (100.00%)
+Failed: 0 (0.00%)
+
+======================================================================
+PERFORMANCE SUMMARY
+======================================================================
+
+Magnitude ±10:
+  Average time: 0.0011 ms
+  Operations/sec: 907073
+
+Magnitude ±100:
+  Average time: 0.0015 ms
+  Operations/sec: 651593
+
+Magnitude ±1000:
+  Average time: 0.0025 ms
+  Operations/sec: 397942
+
+Magnitude ±10000:
+  Average time: 0.0032 ms
+  Operations/sec: 315361
+
+Magnitude ±100000:
+  Average time: 0.0044 ms
+  Operations/sec: 227951
+
+Magnitude ±1000000:
+  Average time: 0.0050 ms
+  Operations/sec: 200684
+
+Magnitude ±10000000:
+  Average time: 0.0068 ms
+  Operations/sec: 147687
+
+======================================================================
+Total execution time: 0.01 seconds
+======================================================================
+
