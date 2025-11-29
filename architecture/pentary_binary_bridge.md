@@ -2,50 +2,121 @@
 
 ## 1. Overview
 
-This document defines a hybrid architecture that aligns Pentary operations with standard binary 16/32/64-bit boundaries for maximum compatibility with existing systems while preserving Pentary's computational advantages.
+This document defines a hybrid architecture that bridges Pentary's native P14/P28/P56 word sizes with binary systems for cross-platform compatibility.
 
 ### 1.1 Design Philosophy
 
-**Key Insight**: Use binary-aligned physical storage with pentary computation.
+**Primary Architecture: Native Pentary (P14/P28/P56)**
+
+The recommended architecture uses even-numbered pent widths that double cleanly:
+- P14 (42 bits) → P28 (84 bits) → P56 (168 bits)
+
+This provides:
+- **Clean bit alignment**: All sizes are even multiples of 3 (the bits per pent)
+- **Symmetric register pairing**: P28 = 2×P14, P56 = 2×P28
+- **No fractional pents**: Overflow handling is straightforward with integer math
+- **Full binary coverage**: P14 ≥ 32-bit, P28 ≥ 64-bit, P56 ≥ 128-bit
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────┐
-│                     HYBRID ARCHITECTURE PRINCIPLE                               │
+│                     PRIMARY PENTARY ARCHITECTURE                                │
 ├─────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                  │
-│   Storage Layer:    Binary-aligned (16/32/64-bit boundaries)                    │
-│   Compute Layer:    Pentary arithmetic (5-level)                                │
-│   Bridge Layer:     Hardware encode/decode between representations              │
+│   P14  (42 bits)  ───┬───  32-bit equivalent   (info: ~32.5 bits)              │
+│                      │                                                          │
+│   P28  (84 bits)  ───┼───  64-bit equivalent   (info: ~65 bits)                │
+│        = 2×P14       │                                                          │
+│                      │                                                          │
+│   P56  (168 bits) ───┴───  128-bit equivalent  (info: ~130 bits)               │
+│        = 2×P28                                                                  │
+│        = 4×P14                                                                  │
 │                                                                                  │
 │   Benefits:                                                                      │
-│   ✓ Compatible with existing memory systems, buses, and peripherals            │
-│   ✓ Pentary computation efficiency for neural networks                         │
-│   ✓ Standard binary interfaces for I/O and communication                       │
-│   ✓ Leverage existing toolchains and operating systems                         │
+│   ✓ Clean 2× scaling at each level                                             │
+│   ✓ Integer bit widths for simple overflow handling                            │
+│   ✓ Full coverage of binary integer ranges                                     │
+│   ✓ Symmetric register pairing (pairs → quads → octets)                        │
 │                                                                                  │
 └─────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-## 2. Binary-Aligned Pentary Word Sizes
+### 1.2 Bridge Layer for Binary Compatibility
 
-### 2.1 Pent-in-Binary Packing
+For interfacing with existing binary systems, a hardware bridge layer converts between:
+- Native P14/P28/P56 values ↔ Binary 32/64/128-bit values
+- Standard binary interfaces (PCIe, DDR, Ethernet) remain unchanged
 
-Each pentary digit {-2, -1, 0, +1, +2} requires 3 bits for encoding.
+## 2. Primary Word Sizes: P14/P28/P56
 
-**Optimal Binary Alignment:**
+### 2.1 Native Pentary Architecture
 
-| Pentary Width | Physical Bits | Binary Container | Packing Efficiency |
-|---------------|---------------|------------------|-------------------|
-| 5 pents | 15 bits | 16-bit | 93.75% |
-| 10 pents | 30 bits | 32-bit | 93.75% |
-| 21 pents | 63 bits | 64-bit | 98.44% |
-| 42 pents | 126 bits | 128-bit | 98.44% |
+| Mode | Pents | Physical Bits | Info Bits | Range | Binary Equivalent |
+|------|-------|---------------|-----------|-------|-------------------|
+| **P14** | 14 | 42 bits | ~32.5 bits | ±1.5 billion | **32-bit** |
+| **P28** | 28 | 84 bits | ~65 bits | ±2.9×10^19 | **64-bit** |
+| **P56** | 56 | 168 bits | ~130 bits | ±1.4×10^39 | **128-bit** |
 
-### 2.2 Recommended Standard Sizes
+### 2.2 Primary Standard Sizes (RECOMMENDED)
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────┐
-│                      STANDARD PENTARY WORD SIZES                                │
+│                   RECOMMENDED PENTARY WORD SIZES                                │
+├─────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│  P14: 14 pents = 42 bits (32-bit equivalent)                                   │
+│  ┌─────────────────────────────────────────────────────────────────┐           │
+│  │ p13│ p12│ p11│ p10│ p9 │ p8 │ p7 │ p6 │ p5 │ p4 │ p3 │ p2 │ p1 │ p0 │      │
+│  │ MSP│    │    │    │    │    │    │    │    │    │    │    │    │LSP │      │
+│  └─────────────────────────────────────────────────────────────────┘           │
+│  Range: ±1,525,878,906 (exceeds ±2^31 = ±2.1 billion)                          │
+│  Info bits: ~32.5 bits → covers ALL 32-bit signed integers                     │
+│                                                                                  │
+│  P28: 28 pents = 84 bits (64-bit equivalent) = 2×P14                           │
+│  ┌─────────────────────────────────────────────────────────────────┐           │
+│  │ p27│ p26│ ... │ p14│ p13│ ... │ p1 │ p0 │                       │           │
+│  │ MSP│    │  HIGH WORD (P14)  │  LOW WORD (P14)    │              │           │
+│  └─────────────────────────────────────────────────────────────────┘           │
+│  Range: ±2.91×10^19 (exceeds ±2^63 = ±9.2×10^18)                               │
+│  Info bits: ~65 bits → covers ALL 64-bit signed integers                       │
+│                                                                                  │
+│  P56: 56 pents = 168 bits (128-bit equivalent) = 2×P28 = 4×P14                 │
+│  ┌─────────────────────────────────────────────────────────────────┐           │
+│  │ p55│ ... │ p42│ p41│ ... │ p28│ p27│ ... │ p14│ p13│ ... │ p0 │ │           │
+│  │ MSP│   Q3(P14)  │   Q2(P14)  │   Q1(P14)  │   Q0(P14)   │      │           │
+│  │    │      HIGH P28           │      LOW P28             │      │           │
+│  └─────────────────────────────────────────────────────────────────┘           │
+│  Range: ±1.39×10^39 (exceeds ±2^127 = ±1.7×10^38)                              │
+│  Info bits: ~130 bits → covers ALL 128-bit signed integers                     │
+│                                                                                  │
+│  OVERFLOW HANDLING:                                                             │
+│  • P14 → Binary32: Check if |value| > 2^31-1                                   │
+│  • P28 → Binary64: Check if |value| > 2^63-1                                   │
+│  • P56 → Binary128: Check if |value| > 2^127-1                                 │
+│  All checks are simple integer comparisons (no fractional math)                │
+│                                                                                  │
+└─────────────────────────────────────────────────────────────────────────────────┘
+```
+
+## 3. Binary-Aligned Containers (Alternative for Compatibility)
+
+### 3.1 Pent-in-Binary Packing
+
+For applications requiring exact binary container sizes, partial pent packing is available:
+
+| Container | Pents | Used Bits | Unused | Packing Efficiency |
+|-----------|-------|-----------|--------|-------------------|
+| 16-bit | 5 pents | 15 bits | 1 bit | 93.75% |
+| 32-bit | 10 pents | 30 bits | 2 bits | 93.75% |
+| 64-bit | 21 pents | 63 bits | 1 bit | 98.44% |
+| 128-bit | 42 pents | 126 bits | 2 bits | 98.44% |
+
+**Note**: These formats have partial pent slots (unused bits), making overflow handling more complex than the native P14/P28/P56 architecture. Use only when exact binary container sizes are required for legacy compatibility.
+
+### 3.2 Legacy Binary Container Formats
+
+```
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│              BINARY-ALIGNED CONTAINERS (Legacy Compatibility)                   │
 ├─────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                  │
 │  PENT16: 5 pents in 16-bit container                                           │
@@ -54,7 +125,7 @@ Each pentary digit {-2, -1, 0, +1, +2} requires 3 bits for encoding.
 │  │  1 bit │ 3 bit │ 3 bit │ 3 bit │ 3 bit │ 3 bit │                │           │
 │  └─────────────────────────────────────────────────────────────────┘           │
 │  Range: ±1562 (5^5-1)/2 ≈ ±1.5K                                                │
-│  Info bits: ~11.6 bits                                                          │
+│  Info bits: ~11.6 bits (NOT 32-bit equivalent - use P14 instead)              │
 │                                                                                  │
 │  PENT32: 10 pents in 32-bit container                                          │
 │  ┌─────────────────────────────────────────────────────────────────┐           │
@@ -62,7 +133,7 @@ Each pentary digit {-2, -1, 0, +1, +2} requires 3 bits for encoding.
 │  │  2 bit │ 3bit │ 3bit │     │ 3bit │ 3bit │                      │           │
 │  └─────────────────────────────────────────────────────────────────┘           │
 │  Range: ±4,882,812 ≈ ±4.9M                                                     │
-│  Info bits: ~23.2 bits                                                          │
+│  Info bits: ~23.2 bits (NOT 32-bit equivalent - use P14 instead)              │
 │                                                                                  │
 │  PENT64: 21 pents in 64-bit container                                          │
 │  ┌─────────────────────────────────────────────────────────────────┐           │
@@ -70,7 +141,7 @@ Each pentary digit {-2, -1, 0, +1, +2} requires 3 bits for encoding.
 │  │  1 bit │ 3bit │ 3bit │     │ 3bit │ 3bit │                      │           │
 │  └─────────────────────────────────────────────────────────────────┘           │
 │  Range: ±2.38×10^14 ≈ ±238 trillion                                            │
-│  Info bits: ~48.8 bits                                                          │
+│  Info bits: ~48.8 bits (NOT 64-bit equivalent - use P28 instead)              │
 │                                                                                  │
 │  PENT128: 42 pents in 128-bit container                                        │
 │  ┌─────────────────────────────────────────────────────────────────┐           │
@@ -78,46 +149,55 @@ Each pentary digit {-2, -1, 0, +1, +2} requires 3 bits for encoding.
 │  │  2 bit │ 3bit │ 3bit │     │ 3bit │ 3bit │                      │           │
 │  └─────────────────────────────────────────────────────────────────┘           │
 │  Range: ±2.27×10^29                                                            │
-│  Info bits: ~97.5 bits                                                          │
+│  Info bits: ~97.5 bits (NOT 128-bit equivalent - use P56 instead)             │
 │                                                                                  │
 └─────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 2.3 Alternative: Native Pentary Sizes (Non-aligned)
+### 3.3 Comparison: Native vs Binary-Aligned
 
-For pure pentary compute units that don't need binary compatibility:
+| Criterion | Native (P14/P28/P56) | Binary-Aligned |
+|-----------|---------------------|----------------|
+| Overflow handling | Simple integer compare | Complex (unused bits) |
+| Binary coverage | Full (exceeds) | Partial |
+| Register pairing | Clean 2× multiples | Irregular |
+| Memory efficiency | 100% pent utilization | 93-98% |
+| Recommended for | All new code | Legacy interop only |
 
-| Mode | Pents | Physical Bits | Info Bits | Use Case |
-|------|-------|---------------|-----------|----------|
-| P8 | 8 | 24 bits | ~18.6 bits | Weights, activations |
-| P16 | 16 | 48 bits | ~37.2 bits | General compute |
-| P32 | 32 | 96 bits | ~74.3 bits | Extended precision |
+## 4. Processor Architecture: P14/P28/P56 Native Mode
 
-## 3. Processor Architecture: Binary-Compatible Mode
-
-### 3.1 Dual-Mode Register File
+### 4.1 Native Pentary Register File
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────┐
-│                     DUAL-MODE REGISTER FILE                                     │
+│                     NATIVE P14/P28/P56 REGISTER FILE                            │
 ├─────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                  │
-│  64-bit View (Binary Compatible):                                               │
+│  P14 View (Base Registers):                                                      │
 │  ┌────────────────────────────────────────────────────────────────┐            │
-│  │ R0-R31: 32 × 64-bit general purpose registers                  │            │
-│  │ Each register holds one PENT64 (21 pents) value               │            │
+│  │ P0-P31: 32 × 14-pent registers (42 bits each)                  │            │
+│  │ P0 hardwired to zero                                           │            │
 │  └────────────────────────────────────────────────────────────────┘            │
 │                                                                                  │
-│  32-bit View (Half-Register Access):                                           │
+│  P28 View (Register Pairs):                                                      │
 │  ┌────────────────────────────────────────────────────────────────┐            │
-│  │ R0L/R0H - R31L/R31H: 64 × 32-bit half-registers               │            │
-│  │ Each half holds one PENT32 (10 pents) value                   │            │
+│  │ D0-D15: 16 × 28-pent pairs (84 bits each)                      │            │
+│  │ D0 = P1:P0, D1 = P3:P2, ..., D15 = P31:P30                    │            │
+│  └────────────────────────────────────────────────────────────────┘            │
+│                                                                                  │
+│  P56 View (Register Quads):                                                      │
+│  ┌────────────────────────────────────────────────────────────────┐            │
+│  │ Q0-Q7: 8 × 56-pent quads (168 bits each)                       │            │
+│  │ Q0 = D1:D0 = P3:P2:P1:P0                                       │            │
+│  │ Q1 = D3:D2 = P7:P6:P5:P4                                       │            │
+│  │ ...                                                             │            │
+│  │ Q7 = D15:D14 = P31:P30:P29:P28                                 │            │
 │  └────────────────────────────────────────────────────────────────┘            │
 │                                                                                  │
 │  SIMD View (Packed Pentary):                                                    │
 │  ┌────────────────────────────────────────────────────────────────┐            │
-│  │ V0-V31: 32 × 256-bit vector registers                         │            │
-│  │ Each holds 4 × PENT64 or 8 × PENT32 or 16 × PENT16           │            │
+│  │ V0-V31: 32 × 224-bit vector registers                          │            │
+│  │ Each holds 4×P56 or 8×P28 or 16×P14                           │            │
 │  └────────────────────────────────────────────────────────────────┘            │
 │                                                                                  │
 └─────────────────────────────────────────────────────────────────────────────────┘
