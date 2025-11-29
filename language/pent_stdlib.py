@@ -204,14 +204,27 @@ def _leaky_relu(x, alpha=0.01):
     return x if x > 0 else alpha * x
 
 def _sigmoid_approx(x):
-    """Approximate sigmoid for integer arithmetic"""
-    # Piecewise linear approximation
-    if x < -4:
-        return 0
-    elif x > 4:
-        return 1
+    """
+    Approximate sigmoid for integer arithmetic.
+    Piecewise linear approximation mapping [-4, 4] to [0, 250].
+    
+    Constants:
+    - INPUT_RANGE: 8 (from -4 to 4)
+    - OUTPUT_RANGE: 250 (scaled output)
+    - SCALE_FACTOR: 250 / 8 = 31.25
+    """
+    INPUT_MIN = -4
+    INPUT_MAX = 4
+    OUTPUT_MIN = 0
+    OUTPUT_MAX = 250
+    
+    if x < INPUT_MIN:
+        return OUTPUT_MIN
+    elif x > INPUT_MAX:
+        return OUTPUT_MAX
     else:
-        return int((x + 4) * 31.25)  # Maps [-4, 4] to [0, 250]
+        # Linear interpolation: maps [INPUT_MIN, INPUT_MAX] to [OUTPUT_MIN, OUTPUT_MAX]
+        return int((x - INPUT_MIN) * OUTPUT_MAX / (INPUT_MAX - INPUT_MIN))
 
 def _tanh_approx(x):
     """Approximate tanh for integer arithmetic"""
@@ -443,10 +456,12 @@ def _pent_and(a, b):
     a_pent = PentaryConverter.decimal_to_pentary(a)
     b_pent = PentaryConverter.decimal_to_pentary(b)
     
-    # Pad to same length
+    # Pad to same length using proper pentary zero padding
     max_len = max(len(a_pent), len(b_pent))
-    a_pent = a_pent.zfill(max_len)
-    b_pent = b_pent.zfill(max_len)
+    while len(a_pent) < max_len:
+        a_pent = '0' + a_pent  # Prepend pentary zero (not ASCII '0' padding)
+    while len(b_pent) < max_len:
+        b_pent = '0' + b_pent
     
     result = ''
     for i in range(max_len):
@@ -462,10 +477,12 @@ def _pent_or(a, b):
     a_pent = PentaryConverter.decimal_to_pentary(a)
     b_pent = PentaryConverter.decimal_to_pentary(b)
     
-    # Pad to same length
+    # Pad to same length using proper pentary zero padding
     max_len = max(len(a_pent), len(b_pent))
-    a_pent = a_pent.zfill(max_len)
-    b_pent = b_pent.zfill(max_len)
+    while len(a_pent) < max_len:
+        a_pent = '0' + a_pent
+    while len(b_pent) < max_len:
+        b_pent = '0' + b_pent
     
     result = ''
     for i in range(max_len):

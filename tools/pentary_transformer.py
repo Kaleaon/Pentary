@@ -334,7 +334,8 @@ class PentaryTransformer:
     
     def _init_embedding(self, vocab_size: int, d_model: int) -> np.ndarray:
         """Initialize and quantize embeddings"""
-        embeddings = np.random.randn(vocab_size, d_model) * 0.02
+        INIT_SCALE = 0.02  # Standard embedding initialization scale
+        embeddings = np.random.randn(vocab_size, d_model) * INIT_SCALE
         return self._quantize_to_pentary(embeddings)
     
     def _quantize_to_pentary(self, x: np.ndarray) -> np.ndarray:
@@ -426,12 +427,10 @@ class PentaryTransformer:
             
             # Sample next token
             if top_k is not None:
-                # Top-k sampling
-                top_k_indices = np.argsort(logits, axis=-1)[:, -top_k:]
-                mask = np.zeros_like(logits)
-                for i in range(logits.shape[0]):
-                    mask[i, top_k_indices[i]] = 1
-                logits = np.where(mask > 0, logits, -np.inf)
+                # Top-k sampling using vectorized operations
+                top_k_values = np.partition(logits, -top_k, axis=-1)[:, -top_k:]
+                threshold = np.min(top_k_values, axis=-1, keepdims=True)
+                logits = np.where(logits >= threshold, logits, -np.inf)
             
             # Softmax
             probs = np.exp(logits - np.max(logits, axis=-1, keepdims=True))

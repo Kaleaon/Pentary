@@ -215,22 +215,8 @@ class TestCarryPropagation(unittest.TestCase):
     def test_carry_chain_all_max_digits(self):
         """
         Test adding 1 to maximum value causes proper carry propagation.
-        All ⊕⊕⊕... + 1 should propagate carries through entire number.
+        Example: 12 (⊕⊕) + 1 = 13
         """
-        # Start with a smaller example: ⊕⊕ (12) + 1 = 13
-        # 12 + 1 = 13 = +⊖- in pentary (1*5^1 + (-2)*5^0 + (-1)) wait...
-        # Let's verify: 13 = +⊖- means 1*25 + (-2)*5 + (-1) = 25 - 10 - 1 = 14, wrong
-        # Actually 13 = ⊕⊖ = 2*5 + (-2) = 10 - 2 = 8, also wrong
-        # Let me recalculate: 13 / 5 = 2 remainder 3
-        # 3 in balanced pentary: 3 = +⊖ (1*5 + (-2) = 3)... no that's wrong too
-        # 3 = -⊕ wait no...
-        # Actually in balanced pentary: digits are {-2, -1, 0, 1, 2}
-        # 13: We need to find representation
-        # 13 = 2*5 + 3, but 3 isn't a valid digit
-        # So 13 = 3*5 + (-2) = 15 - 2 = 13 ✓
-        # 3 in pentary is +⊖ (1*5 + (-2) = 3)
-        # So 13 = +⊖⊖ = 1*25 + (-2)*5 + (-2) = 25 - 10 - 2 = 13 ✓
-        
         a = 12  # ⊕⊕ = 2*5 + 2 = 12
         b = 1
         expected = 13
