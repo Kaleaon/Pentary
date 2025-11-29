@@ -85,6 +85,7 @@ python3 tools/pentary_iteration.py
 ### Research (Expanded)
 - [Foundations - Expanded](research/pentary_foundations_expanded.md) - 📖 **NEW!** Deep dive with proofs
 - [Logic Gates - Expanded](research/pentary_logic_gates_expanded.md) - 📖 **NEW!** Complete gate library
+- [Memristor Drift Analysis](research/memristor_drift_analysis.md) - 🔬 **NEW!** Feature vs. flaw analysis
 
 ### Tools & Language
 - [Tools README](tools/README.md) - All available tools
