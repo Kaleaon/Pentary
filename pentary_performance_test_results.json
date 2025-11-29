@@ -1,16 +1,16 @@
 {
   "matrix_multiply": {
-    "binary_time": 0.00021722093224525453,
-    "pentary_time": 0.01830346928909421,
-    "speedup": 0.01186774642633906,
+    "binary_time": 0.00012655259999974077,
+    "pentary_time": 0.03259633559999884,
+    "speedup": 0.00388241799792199,
     "memory_reduction": 10.666666666666666,
     "sparsity": 0.7
   },
   "gemma_quantization": {
     "total_parameters": 27017216,
-    "sparsity": 0.9392612473468769,
+    "sparsity": 0.9402902948993709,
     "size_reduction": 10.666666666666666,
-    "quantization_time": 0.34810400009155273,
-    "inference_time": 0.9127565314993262
+    "quantization_time": 0.3222842216491699,
+    "inference_time": 1.3504617765000035
   }
 }

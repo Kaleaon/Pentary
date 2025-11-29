@@ -7,13 +7,31 @@ Compiles Pent source code to Pentary Assembly
 from typing import List, Dict, Optional
 import sys
 import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-from language.pent_lexer import Lexer
-from language.pent_parser import Parser, ASTNode, Function, LetStatement, ReturnStatement, \
-    IfStatement, WhileStatement, ForStatement, BinaryExpression, UnaryExpression, \
-    CallExpression, Literal, Identifier, Block
-from tools.pentary_converter import PentaryConverter
+# Support both direct execution and import from parent directory
+script_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(script_dir)
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
+if script_dir not in sys.path:
+    sys.path.insert(0, script_dir)
+
+try:
+    from language.pent_lexer import Lexer
+    from language.pent_parser import Parser, ASTNode, Function, LetStatement, ReturnStatement, \
+        IfStatement, WhileStatement, ForStatement, BinaryExpression, UnaryExpression, \
+        CallExpression, Literal, Identifier, Block, Program
+except ImportError:
+    from pent_lexer import Lexer
+    from pent_parser import Parser, ASTNode, Function, LetStatement, ReturnStatement, \
+        IfStatement, WhileStatement, ForStatement, BinaryExpression, UnaryExpression, \
+        CallExpression, Literal, Identifier, Block, Program
+
+try:
+    from tools.pentary_converter import PentaryConverter
+except ImportError:
+    sys.path.insert(0, os.path.join(parent_dir, 'tools'))
+    from pentary_converter import PentaryConverter
 
 
 class CodeGenerator:
