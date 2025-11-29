@@ -23,6 +23,28 @@ This index provides quick access to all documentation in the Pentary Processor p
 | Document | Description | Words | Topics |
 |----------|-------------|-------|--------|
 | [pentary_foundations.md](research/pentary_foundations.md) | Complete theory | 4,500 | Number system, arithmetic, conversions, applications |
+| [pentary_gaussian_splatting.md](research/pentary_gaussian_splatting.md) | 3D rendering analysis | 8,000 | Gaussian splatting, 3D rendering, performance analysis |
+| [pentary_graphics_processor.md](research/pentary_graphics_processor.md) | Graphics processor analysis | 12,000 | Graphics pipeline, vertex processing, fragment shading, GPU comparison |
+
+### Research Planning
+| Document | Description | Words | Topics |
+|----------|-------------|-------|--------|
+| [RESEARCH_ROADMAP.md](research/RESEARCH_ROADMAP.md) | Research priorities and roadmap | 6,000 | Research topics, priorities, academic potential |
+| [IMPRESSIVE_RESEARCH_TOPICS.md](research/IMPRESSIVE_RESEARCH_TOPICS.md) | Top research recommendations | 3,000 | Scientific computing, cryptography, signal processing |
+
+### Comprehensive Research Studies
+| Document | Description | Words | Topics |
+|----------|-------------|-------|--------|
+| [pentary_scientific_computing.md](research/pentary_scientific_computing.md) | HPC and scientific computing | 10,000 | FEA, CFD, molecular dynamics, exascale computing |
+| [pentary_cryptography.md](research/pentary_cryptography.md) | Cryptography and security | 8,000 | Post-quantum crypto, side-channel resistance, homomorphic encryption |
+| [pentary_signal_processing.md](research/pentary_signal_processing.md) | Signal processing and DSP | 7,000 | FFT, filtering, audio/video, communications, biomedical |
+| [pentary_database_graphs.md](research/pentary_database_graphs.md) | Database and graph algorithms | 6,000 | Sparse matrices, graph traversal, PageRank, GNNs |
+| [pentary_compiler_optimizations.md](research/pentary_compiler_optimizations.md) | Compiler optimizations | 5,000 | Code generation, quantization, sparsity, pipeline scheduling |
+| [pentary_reliability.md](research/pentary_reliability.md) | Error correction and reliability | 4,000 | ECC codes, fault tolerance, MTBF, production readiness |
+| [pentary_edge_computing.md](research/pentary_edge_computing.md) | Edge computing and IoT | 5,000 | Mobile devices, wearables, sensors, battery life |
+| [pentary_economics.md](research/pentary_economics.md) | Cost analysis and economics | 4,000 | Manufacturing costs, TCO, ROI, market analysis |
+| [pentary_realtime_systems.md](research/pentary_realtime_systems.md) | Real-time systems | 4,000 | Deterministic execution, WCET, latency, control systems |
+| [pentary_quantum_interface.md](research/pentary_quantum_interface.md) | Quantum computing interface | 3,000 | Hybrid computing, quantum error correction, encoding schemes |
 
 **Key Sections:**
 - Balanced pentary representation {-2, -1, 0, +1, +2}
@@ -30,6 +52,12 @@ This index provides quick access to all documentation in the Pentary Processor p
 - Comparison with binary and ternary
 - Neural network applications
 - Hardware representation
+- **Gaussian splatting performance analysis**
+- **3D rendering speedup evaluation**
+- **Triangle rasterization comparison**
+- **Complete graphics pipeline analysis**
+- **Vertex and fragment shader performance**
+- **Graphics processor architecture design**
 
 ### Logic Design
 | Document | Description | Words | Topics |
@@ -206,9 +234,27 @@ Pentary/
 ├── RESEARCH_COMPLETE.md              # Milestone summary
 ├── todo.md                           # Project roadmap
 │
-├── research/                         # Theory (8,000 words)
+├── research/                         # Theory (100,000+ words)
 │   ├── pentary_foundations.md
-│   └── pentary_logic_gates.md
+│   ├── pentary_logic_gates.md
+│   ├── pentary_gaussian_splatting.md
+│   ├── pentary_graphics_processor.md
+│   ├── pentary_scientific_computing.md
+│   ├── pentary_cryptography.md
+│   ├── pentary_signal_processing.md
+│   ├── pentary_database_graphs.md
+│   ├── pentary_compiler_optimizations.md
+│   ├── pentary_reliability.md
+│   ├── pentary_edge_computing.md
+│   ├── pentary_economics.md
+│   ├── pentary_realtime_systems.md
+│   ├── pentary_quantum_interface.md
+│   ├── GAUSSIAN_SPLATTING_SUMMARY.md
+│   ├── GRAPHICS_PROCESSOR_SUMMARY.md
+│   ├── GRAPHICS_RESEARCH_OVERVIEW.md
+│   ├── RESEARCH_ROADMAP.md
+│   ├── IMPRESSIVE_RESEARCH_TOPICS.md
+│   └── eggroll_pentary_integration.md
 │
 ├── architecture/                     # Design (9,000 words)
 │   ├── pentary_processor_architecture.md
@@ -231,9 +277,9 @@ Pentary/
 ## 📈 Project Statistics
 
 ### Documentation
-- **Total Words**: 16,500+
-- **Total Pages**: ~100 (equivalent)
-- **Documents**: 15
+- **Total Words**: 100,000+
+- **Total Pages**: ~600 (equivalent)
+- **Documents**: 30
 - **Diagrams**: 10+
 
 ### Code

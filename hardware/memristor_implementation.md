@@ -280,15 +280,20 @@ Where:
 
 ### 7.3 Drift Compensation
 
+> **📚 For comprehensive drift analysis, see: [Memristor Drift Analysis](../research/memristor_drift_analysis.md)**
+
 **Resistance Drift**:
 - Typical drift: 1-5% per decade of time
 - Temperature coefficient: ~0.1%/°C
+- **Note**: Drift can be a feature (neuromorphic learning) or flaw (memory retention) depending on application
 
 **Compensation Strategies**:
 1. **Periodic Refresh**: Re-program every N operations
 2. **Reference Cells**: Use reference memristors for calibration
 3. **Digital Correction**: Post-ADC digital compensation
 4. **Adaptive Thresholds**: Adjust ADC thresholds based on drift
+5. **Adaptive Inference (AIDX)**: Layer-by-layer voltage adaptation for neural networks
+6. **Neural Network Calibration**: Trained networks to correct drift-induced errors
 
 ## 8. Variability and Reliability
 

@@ -67,16 +67,25 @@ python3 tools/pentary_iteration.py
 - **[QUICK_START.md](QUICK_START.md)** - 5-minute quick start
 - **[QUICK_REFERENCE.md](QUICK_REFERENCE.md)** - Command cheat sheet
 
+### Visual Documentation
+- **[VISUAL_INDEX.md](VISUAL_INDEX.md)** - 🎨 **NEW!** Complete diagram gallery with 16 high-quality visualizations
+- **[ENHANCEMENT_SUMMARY.md](ENHANCEMENT_SUMMARY.md)** - 📊 **NEW!** Summary of all enhancements
+
 ### Complete Guides
 - [Complete Guide](PENTARY_COMPLETE_GUIDE.md) - Comprehensive reference
 - [Project Summary](PROJECT_SUMMARY.md) - Project overview
 
 ### Architecture & Design
 - [Processor Architecture](architecture/pentary_processor_architecture.md) - ISA specification
-- [Chip Design Explained](hardware/CHIP_DESIGN_EXPLAINED.md) - **NEW!** Complete chip explanation
+- [Chip Design Explained](hardware/CHIP_DESIGN_EXPLAINED.md) - Complete chip explanation
 - [Chip Layout Guidelines](hardware/pentary_chip_layout.md) - Physical design
 - [Memristor Implementation](hardware/memristor_implementation.md) - Hardware details
 - [Verilog Design](hardware/pentary_chip_design.v) - RTL implementation
+
+### Research (Expanded)
+- [Foundations - Expanded](research/pentary_foundations_expanded.md) - 📖 **NEW!** Deep dive with proofs
+- [Logic Gates - Expanded](research/pentary_logic_gates_expanded.md) - 📖 **NEW!** Complete gate library
+- [Memristor Drift Analysis](research/memristor_drift_analysis.md) - 🔬 **NEW!** Feature vs. flaw analysis
 
 ### Tools & Language
 - [Tools README](tools/README.md) - All available tools

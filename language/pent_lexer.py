@@ -181,10 +181,17 @@ class Lexer:
         
         # Operators
         elif c == '+':
-            self.add_token(TokenType.PLUS)
+            # Check if this is the start of a pentary literal (+ followed by pentary digits)
+            if self.peek() in self.PENTARY_DIGITS:
+                self.scan_pentary_literal()
+            else:
+                self.add_token(TokenType.PLUS)
         elif c == '-':
             if self.match('>'):
                 self.add_token(TokenType.ARROW)
+            # Check if this is the start of a pentary literal (- followed by pentary digits)
+            elif self.peek() in self.PENTARY_DIGITS:
+                self.scan_pentary_literal()
             else:
                 self.add_token(TokenType.MINUS)
         elif c == '*':
@@ -327,6 +334,15 @@ class Lexer:
             self.add_token(TokenType.FLOAT, value)
         else:
             self.add_token(TokenType.INTEGER, value)
+    
+    def scan_pentary_literal(self):
+        """Scan pentary literal starting with + or -"""
+        # The + or - is already consumed, collect remaining pentary digits
+        while self.peek() in self.PENTARY_DIGITS:
+            self.advance()
+        
+        value = self.source[self.start:self.current]
+        self.add_token(TokenType.PENTARY, value)
     
     def scan_identifier_or_pentary(self):
         """Scan identifier or pentary literal"""
