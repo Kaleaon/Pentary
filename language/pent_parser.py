@@ -358,6 +358,11 @@ class Parser:
                 stmt = self.statement()
             if stmt:
                 statements.append(stmt)
+
+        # Check if we stopped because of EOF
+        if self.is_at_end():
+             raise self.error(self.peek(), "Expected '}' after block")
+
         self.consume(TokenType.RIGHT_BRACE, "Expected '}' after block")
         return Block(statements)
     
