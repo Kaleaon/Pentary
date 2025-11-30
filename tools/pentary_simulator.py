@@ -159,10 +159,13 @@ class PentaryProcessor:
                 rd, rs1, imm = parts[1].rstrip(','), parts[2].rstrip(','), parts[3]
                 a = self.get_register(rs1)
                 # Convert immediate to pentary if it's decimal
-                if imm.startswith(('⊖', '-', '0', '+', '⊕')):
+                # Check if it's a decimal number (may start with - for negative)
+                try:
+                    imm_val = int(imm)
+                    b = PentaryConverter.decimal_to_pentary(imm_val)
+                except ValueError:
+                    # Must be a pentary literal
                     b = imm
-                else:
-                    b = PentaryConverter.decimal_to_pentary(int(imm))
                 result = PentaryConverter.add_pentary(a, b)
                 self.set_register(rd, result)
                 self.update_flags(result)
@@ -182,6 +185,72 @@ class PentaryProcessor:
                 result = PentaryConverter.multiply_pentary_by_constant(a, 2)
                 self.set_register(rd, result)
                 self.update_flags(result)
+            
+            elif opcode == "MUL":
+                # MUL Rd, Rs1, Rs2 (general multiplication)
+                rd, rs1, rs2 = parts[1].rstrip(','), parts[2].rstrip(','), parts[3]
+                a = self.get_register(rs1)
+                b = self.get_register(rs2)
+                result = PentaryConverter.multiply_pentary(a, b)
+                self.set_register(rd, result)
+                self.update_flags(result)
+            
+            elif opcode == "MULI":
+                # MULI Rd, Rs1, Imm (multiply by immediate)
+                rd, rs1, imm = parts[1].rstrip(','), parts[2].rstrip(','), parts[3]
+                a = self.get_register(rs1)
+                try:
+                    imm_val = int(imm)
+                    b = PentaryConverter.decimal_to_pentary(imm_val)
+                except ValueError:
+                    b = imm
+                result = PentaryConverter.multiply_pentary(a, b)
+                self.set_register(rd, result)
+                self.update_flags(result)
+            
+            elif opcode == "DIV":
+                # DIV Rd, Rs1, Rs2 (integer division)
+                rd, rs1, rs2 = parts[1].rstrip(','), parts[2].rstrip(','), parts[3]
+                a = self.get_register(rs1)
+                b = self.get_register(rs2)
+                try:
+                    result = PentaryConverter.divide_pentary(a, b)
+                    self.set_register(rd, result)
+                    self.update_flags(result)
+                except ValueError:
+                    # Division by zero - set overflow flag
+                    self.sr['V'] = True
+                    self.set_register(rd, "0")
+            
+            elif opcode == "DIVI":
+                # DIVI Rd, Rs1, Imm (divide by immediate)
+                rd, rs1, imm = parts[1].rstrip(','), parts[2].rstrip(','), parts[3]
+                a = self.get_register(rs1)
+                try:
+                    imm_val = int(imm)
+                    b = PentaryConverter.decimal_to_pentary(imm_val)
+                except ValueError:
+                    b = imm
+                try:
+                    result = PentaryConverter.divide_pentary(a, b)
+                    self.set_register(rd, result)
+                    self.update_flags(result)
+                except ValueError:
+                    self.sr['V'] = True
+                    self.set_register(rd, "0")
+            
+            elif opcode == "MOD":
+                # MOD Rd, Rs1, Rs2 (modulo)
+                rd, rs1, rs2 = parts[1].rstrip(','), parts[2].rstrip(','), parts[3]
+                a = self.get_register(rs1)
+                b = self.get_register(rs2)
+                try:
+                    result = PentaryConverter.modulo_pentary(a, b)
+                    self.set_register(rd, result)
+                    self.update_flags(result)
+                except ValueError:
+                    self.sr['V'] = True
+                    self.set_register(rd, "0")
             
             elif opcode == "SHL":
                 # SHL Rd, Rs1, n (shift left by n positions)
@@ -310,10 +379,13 @@ class PentaryProcessor:
             elif opcode == "MOVI":
                 # MOVI Rd, Imm (pseudo-instruction: move immediate)
                 rd, imm = parts[1].rstrip(','), parts[2]
-                if imm.startswith(('⊖', '-', '0', '+', '⊕')):
+                # Try to parse as decimal first, then as pentary literal
+                try:
+                    imm_val = int(imm)
+                    value = PentaryConverter.decimal_to_pentary(imm_val)
+                except ValueError:
+                    # Must be a pentary literal
                     value = imm
-                else:
-                    value = PentaryConverter.decimal_to_pentary(int(imm))
                 self.set_register(rd, value)
                 self.update_flags(value)
             

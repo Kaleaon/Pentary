@@ -43,3 +43,4 @@ Thumbs.db
 .pytest_cache/
 .coverage
 htmlcov/
+pentary_performance_test_results.json
