@@ -35,6 +35,7 @@ This index provides quick access to all documentation in the Pentary Processor p
 ### Emerging Technologies & Applications (NEW - January 2025)
 | Document | Description | Words | Topics |
 |----------|-------------|-------|--------|
+| [pentary_quantum_computing_integration.md](research/pentary_quantum_computing_integration.md) | **Quantum Computing Integration** | **40,000** | **Hybrid quantum-classical systems, qutrit encoding, error correction, Google Willow, IBM Quantum** |
 | [pentary_neuromorphic_computing.md](research/pentary_neuromorphic_computing.md) | **Neuromorphic Computing** | **32,000** | **Spiking neural networks, brain-inspired AI, event-driven processing, Intel Loihi, IBM TrueNorth** |
 | [pentary_blockchain_distributed_systems.md](research/pentary_blockchain_distributed_systems.md) | **Blockchain & Distributed Systems** | **35,000** | **Energy-efficient consensus, PoW/PoS, smart contracts, 99.9% energy reduction** |
 | [pentary_robotics_autonomous_systems.md](research/pentary_robotics_autonomous_systems.md) | **Robotics & Autonomous Systems** | **35,000** | **Real-time control, sensor fusion, path planning, autonomous vehicles, drones** |

@@ -4,11 +4,12 @@
 
 Complete index of all research, design, and implementation documentation for the pentary processor project.
 
-**Total Documentation**: ~900KB (800+ pages)  
+**Total Documentation**: ~950KB (850+ pages)  
 **Status**: Production-ready design with comprehensive research expansion  
 **Completeness**: 99%
 
 ### Latest Research Additions (January 2025)
+- **Quantum Computing Integration** (40,000 words) - Hybrid quantum-classical systems, qutrit encoding, error correction
 - **Microcontroller AI Acceleration** (35,000 words) - Practical implementation guide for pentary on affordable microcontrollers
 - **Titans + MIRAS Long-Term Memory** (30,000 words) - Google's breakthrough AI long-term memory systems on pentary
 - **Neuromorphic Computing** (32,000 words) - Brain-inspired computing with spiking neural networks
@@ -230,6 +231,7 @@ Project overview and status
 #### Research (32 documents, ~500KB)
 
 **Emerging Technologies &amp; Applications (NEW - January 2025):**
+- `research/pentary_quantum_computing_integration.md` - **Quantum computing integration** (40,000 words) - Hybrid quantum-classical systems, error correction, quantum algorithms
 - `research/pentary_neuromorphic_computing.md` - Brain-inspired computing with spiking neural networks (32,000 words)
 - `research/pentary_blockchain_distributed_systems.md` - Energy-efficient blockchain and distributed ledgers (35,000 words)
 - `research/pentary_robotics_autonomous_systems.md` - Real-time edge computing for robotics (35,000 words)
