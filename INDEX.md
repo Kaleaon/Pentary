@@ -35,6 +35,7 @@ This index provides quick access to all documentation in the Pentary Processor p
 ### Comprehensive Research Studies
 | Document | Description | Words | Topics |
 |----------|-------------|-------|--------|
+| [pentary_ai_architectures_analysis.md](research/pentary_ai_architectures_analysis.md) | **AI Architectures Analysis** | **15,000** | **MoE, World Models, Transformers, CNNs, RNNs, chip design** |
 | [pentary_scientific_computing.md](research/pentary_scientific_computing.md) | HPC and scientific computing | 10,000 | FEA, CFD, molecular dynamics, exascale computing |
 | [pentary_cryptography.md](research/pentary_cryptography.md) | Cryptography and security | 8,000 | Post-quantum crypto, side-channel resistance, homomorphic encryption |
 | [pentary_signal_processing.md](research/pentary_signal_processing.md) | Signal processing and DSP | 7,000 | FFT, filtering, audio/video, communications, biomedical |
