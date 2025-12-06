@@ -1,0 +1,102 @@
+{
+  "addition": [
+    {
+      "operation": "addition",
+      "num_operations": 1000,
+      "bit_width": 8,
+      "pentary_width": 4,
+      "pentary_cycles": 4000,
+      "binary_cycles": 1000,
+      "pentary_time_ms": 2.4547576904296875,
+      "binary_time_ms": 0.1239776611328125,
+      "cycle_ratio": 0.25,
+      "time_ratio": 0.050505050505050504
+    },
+    {
+      "operation": "addition",
+      "num_operations": 1000,
+      "bit_width": 16,
+      "pentary_width": 7,
+      "pentary_cycles": 7000,
+      "binary_cycles": 1000,
+      "pentary_time_ms": 3.362894058227539,
+      "binary_time_ms": 0.11587142944335938,
+      "cycle_ratio": 0.14285714285714285,
+      "time_ratio": 0.03445586671393123
+    },
+    {
+      "operation": "addition",
+      "num_operations": 1000,
+      "bit_width": 32,
+      "pentary_width": 14,
+      "pentary_cycles": 14000,
+      "binary_cycles": 1000,
+      "pentary_time_ms": 5.3691864013671875,
+      "binary_time_ms": 0.13709068298339844,
+      "cycle_ratio": 0.07142857142857142,
+      "time_ratio": 0.02553285968028419
+    },
+    {
+      "operation": "addition",
+      "num_operations": 1000,
+      "bit_width": 64,
+      "pentary_width": 28,
+      "pentary_cycles": 28000,
+      "binary_cycles": 1000,
+      "pentary_time_ms": 9.71531867980957,
+      "binary_time_ms": 0.1220703125,
+      "cycle_ratio": 0.03571428571428571,
+      "time_ratio": 0.012564725514736558
+    }
+  ],
+  "multiplication": [
+    {
+      "operation": "multiplication",
+      "num_operations": 1000,
+      "bit_width": 8,
+      "pentary_width": 4,
+      "pentary_cycles": 16000,
+      "binary_cycles": 8000,
+      "pentary_time_ms": 2.8171539306640625,
+      "binary_time_ms": 0.1087188720703125,
+      "cycle_ratio": 0.5,
+      "time_ratio": 0.03859174001354096
+    },
+    {
+      "operation": "multiplication",
+      "num_operations": 1000,
+      "bit_width": 16,
+      "pentary_width": 7,
+      "pentary_cycles": 49000,
+      "binary_cycles": 16000,
+      "pentary_time_ms": 3.6153793334960938,
+      "binary_time_ms": 0.11897087097167969,
+      "cycle_ratio": 0.32653061224489793,
+      "time_ratio": 0.03290688472698496
+    },
+    {
+      "operation": "multiplication",
+      "num_operations": 1000,
+      "bit_width": 32,
+      "pentary_width": 14,
+      "pentary_cycles": 196000,
+      "binary_cycles": 32000,
+      "pentary_time_ms": 6.397724151611328,
+      "binary_time_ms": 0.1347064971923828,
+      "cycle_ratio": 0.16326530612244897,
+      "time_ratio": 0.021055377506148915
+    },
+    {
+      "operation": "multiplication",
+      "num_operations": 1000,
+      "bit_width": 64,
+      "pentary_width": 28,
+      "pentary_cycles": 784000,
+      "binary_cycles": 64000,
+      "pentary_time_ms": 12.73965835571289,
+      "binary_time_ms": 0.16069412231445312,
+      "cycle_ratio": 0.08163265306122448,
+      "time_ratio": 0.012613691656997418
+    }
+  ]
+}

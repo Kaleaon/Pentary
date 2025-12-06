@@ -11,6 +11,8 @@ This index provides quick access to all documentation in the Pentary Processor p
 | Document | Description | Words | Status |
 |----------|-------------|-------|--------|
 | [QUICK_START.md](QUICK_START.md) | Get started in 5 minutes | 1,500 | ✅ Ready |
+| [VALIDATION_SUMMARY.md](VALIDATION_SUMMARY.md) | **NEW: Validation results** | 2,000 | ✅ Complete |
+| [VALIDATION_MASTER_REPORT.md](VALIDATION_MASTER_REPORT.md) | **NEW: Complete validation (50+ pages)** | 15,000 | ✅ Complete |
 | [PENTARY_COMPLETE_GUIDE.md](PENTARY_COMPLETE_GUIDE.md) | Master document (100+ pages) | 6,000 | ✅ Complete |
 | [RESEARCH_COMPLETE.md](Pentary/RESEARCH_COMPLETE.md) | Milestone summary | 2,500 | ✅ Complete |
 | [PROJECT_SUMMARY.md](PROJECT_SUMMARY.md) | Executive summary | 2,000 | ✅ Complete |
@@ -18,6 +20,14 @@ This index provides quick access to all documentation in the Pentary Processor p
 ---
 
 ## 📖 Research Documentation
+
+### 🔬 Validation &amp; Testing (NEW - December 2024)
+| Document | Description | Words | Topics |
+|----------|-------------|-------|--------|
+| [VALIDATION_SUMMARY.md](VALIDATION_SUMMARY.md) | **Validation overview** | **2,000** | **12,084 claims validated, test results, confidence levels** |
+| [VALIDATION_MASTER_REPORT.md](VALIDATION_MASTER_REPORT.md) | **Complete validation report** | **15,000** | **Mathematical proofs, hardware simulations, benchmarks, evidence** |
+| [validation/README.md](validation/README.md) | **Test framework documentation** | **1,500** | **Test code, results, methodology** |
+| [validation/comprehensive_test_suite.md](validation/comprehensive_test_suite.md) | **Complete test suite** | **12,000** | **All tests, proofs, benchmarks, validation methods** |
 
 ### Mathematical Foundations
 | Document | Description | Words | Topics |
