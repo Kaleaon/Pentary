@@ -32,21 +32,11 @@ This index provides quick access to all documentation in the Pentary Processor p
 | [RESEARCH_ROADMAP.md](research/RESEARCH_ROADMAP.md) | Research priorities and roadmap | 6,000 | Research topics, priorities, academic potential |
 | [IMPRESSIVE_RESEARCH_TOPICS.md](research/IMPRESSIVE_RESEARCH_TOPICS.md) | Top research recommendations | 3,000 | Scientific computing, cryptography, signal processing |
 
-### Emerging Technologies & Applications (NEW - January 2025)
-| Document | Description | Words | Topics |
-|----------|-------------|-------|--------|
-| [pentary_neuromorphic_computing.md](research/pentary_neuromorphic_computing.md) | **Neuromorphic Computing** | **32,000** | **Spiking neural networks, brain-inspired AI, event-driven processing, Intel Loihi, IBM TrueNorth** |
-| [pentary_blockchain_distributed_systems.md](research/pentary_blockchain_distributed_systems.md) | **Blockchain & Distributed Systems** | **35,000** | **Energy-efficient consensus, PoW/PoS, smart contracts, 99.9% energy reduction** |
-| [pentary_robotics_autonomous_systems.md](research/pentary_robotics_autonomous_systems.md) | **Robotics & Autonomous Systems** | **35,000** | **Real-time control, sensor fusion, path planning, autonomous vehicles, drones** |
-| [pentary_ai_acceleration_comprehensive_guide.md](research/pentary_ai_acceleration_comprehensive_guide.md) | **Microcontroller AI Acceleration** | **35,000** | **Raspberry Pi, ESP32, Arduino, TinyML, edge AI, practical implementation** |
-| [pentary_titans_miras_implementation.md](research/pentary_titans_miras_implementation.md) | **Titans + MIRAS Implementation** | **30,000** | **Long-term memory AI, 10M+ token contexts, Google research, FPGA/PCIe designs** |
-| [pentary_titans_tech_specs.md](research/pentary_titans_tech_specs.md) | **Titans Technical Specs** | **5,000** | **Hardware specifications, performance projections, implementation details** |
-| [pentary_quickstart_guide.md](research/pentary_quickstart_guide.md) | **Quick Start Guide** | **5,000** | **30-minute tutorials, code examples, Raspberry Pi, ESP32** |
-| [pentary_research_summary.md](research/pentary_research_summary.md) | **Research Summary** | **3,000** | **Executive overview, feasibility assessment, recommendations** |
-
 ### Comprehensive Research Studies
 | Document | Description | Words | Topics |
 |----------|-------------|-------|--------|
+| [pentary_sota_comparison.md](research/pentary_sota_comparison.md) | **SOTA AI Systems Comparison** | **12,000** | **Gemini 3, GPT-5.1, H200/B200, TPU v6, performance projections** |
+| [pentary_ai_architectures_analysis.md](research/pentary_ai_architectures_analysis.md) | **AI Architectures Analysis** | **15,000** | **MoE, World Models, Transformers, CNNs, RNNs, chip design** |
 | [pentary_scientific_computing.md](research/pentary_scientific_computing.md) | HPC and scientific computing | 10,000 | FEA, CFD, molecular dynamics, exascale computing |
 | [pentary_cryptography.md](research/pentary_cryptography.md) | Cryptography and security | 8,000 | Post-quantum crypto, side-channel resistance, homomorphic encryption |
 | [pentary_signal_processing.md](research/pentary_signal_processing.md) | Signal processing and DSP | 7,000 | FFT, filtering, audio/video, communications, biomedical |
