@@ -35,6 +35,7 @@ This index provides quick access to all documentation in the Pentary Processor p
 ### Comprehensive Research Studies
 | Document | Description | Words | Topics |
 |----------|-------------|-------|--------|
+| [pentary_sota_comparison.md](research/pentary_sota_comparison.md) | **SOTA AI Systems Comparison** | **12,000** | **Gemini 3, GPT-5.1, H200/B200, TPU v6, performance projections** |
 | [pentary_ai_architectures_analysis.md](research/pentary_ai_architectures_analysis.md) | **AI Architectures Analysis** | **15,000** | **MoE, World Models, Transformers, CNNs, RNNs, chip design** |
 | [pentary_scientific_computing.md](research/pentary_scientific_computing.md) | HPC and scientific computing | 10,000 | FEA, CFD, molecular dynamics, exascale computing |
 | [pentary_cryptography.md](research/pentary_cryptography.md) | Cryptography and security | 8,000 | Post-quantum crypto, side-channel resistance, homomorphic encryption |
