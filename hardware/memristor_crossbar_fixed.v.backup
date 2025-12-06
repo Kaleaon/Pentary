@@ -230,12 +230,12 @@ module MemristorCrossbarController (
     
     always @(posedge clk) begin
         if (state == ERROR_CORR) begin
-            error_detected <= 1'b0;
+            error_detected = 1'b0;
             
             // Check ECC for each row
             for (row = 0; row < 256; row = row + 1) begin
                 if (ecc_data[row] != compute_ecc(row)) begin
-                    error_detected <= 1'b1;
+                    error_detected = 1'b1;
                     error_counter <= error_counter + 1;
                     
                     // Attempt to correct error
