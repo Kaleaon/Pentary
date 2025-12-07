@@ -83,6 +83,10 @@ python3 tools/pentary_iteration.py
 - [Verilog Design](hardware/pentary_chip_design.v) - RTL implementation
 
 ### Research (Expanded)
+- [SOTA AI Systems Comparison](research/pentary_sota_comparison.md) - 🚀 **NEW!** Pentary vs Gemini 3, GPT-5.1, H200/B200 (12,000 words)
+- [SOTA Comparison Summary](research/SOTA_COMPARISON_SUMMARY.md) - 📊 **NEW!** Executive summary with benchmarks
+- [AI Architectures Analysis](research/pentary_ai_architectures_analysis.md) - 🤖 Comprehensive AI implementation guide (15,000 words)
+- [AI Architectures Summary](research/AI_ARCHITECTURES_SUMMARY.md) - 📊 Executive summary of AI findings
 - [Foundations - Expanded](research/pentary_foundations_expanded.md) - 📖 **NEW!** Deep dive with proofs
 - [Logic Gates - Expanded](research/pentary_logic_gates_expanded.md) - 📖 **NEW!** Complete gate library
 - [Memristor Drift Analysis](research/memristor_drift_analysis.md) - 🔬 **NEW!** Feature vs. flaw analysis

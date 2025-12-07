@@ -161,19 +161,19 @@ module MemristorCrossbarController (
     always @(posedge clk) begin
         if (state == COMPUTE) begin
             if (compute_counter < 256) begin
-                row <= compute_counter;
+                row = compute_counter;
                 
                 // Initialize accumulator for this row
-                accumulator[row] <= 0;
+                accumulator[row] = 0;
                 
                 // Multiply row by input vector
                 for (col = 0; col < 256; col = col + 1) begin
                     // Decode pentary to signed integer
-                    weight_val <= decode_pentary(crossbar[row][col]);
-                    input_val <= decode_pentary(input_vector[col*3 +: 3]);
+                    weight_val = decode_pentary(crossbar[row][col]);
+                    input_val = decode_pentary(input_vector[col*3 +: 3]);
                     
                     // Accumulate: output[row] += weight[row][col] * input[col]
-                    accumulator[row] <= accumulator[row] + (weight_val * input_val);
+                    accumulator[row] = accumulator[row] + (weight_val * input_val);
                 end
             end
         end
@@ -230,12 +230,12 @@ module MemristorCrossbarController (
     
     always @(posedge clk) begin
         if (state == ERROR_CORR) begin
-            error_detected <= 1'b0;
+            error_detected = 1'b0;
             
             // Check ECC for each row
             for (row = 0; row < 256; row = row + 1) begin
                 if (ecc_data[row] != compute_ecc(row)) begin
-                    error_detected <= 1'b1;
+                    error_detected = 1'b1;
                     error_counter <= error_counter + 1;
                     
                     // Attempt to correct error
