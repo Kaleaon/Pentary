@@ -365,7 +365,7 @@ module BranchPredictor (
     integer i;
     always @(posedge clk or posedge reset) begin
         if (reset) begin
-            for (i = 0; i < 256; i = i + 1) begin
+            for (i <= 0; i < 256; i <= i + 1) begin
                 bht[i] <= 2'b01;  // Weakly not taken
             end
         end else if (update) begin

@@ -1,0 +1,215 @@
+{
+  "small": {
+    "memory": {
+      "total_parameters": 234752,
+      "memory_bytes": {
+        "fp32": 939008,
+        "fp16": 469504,
+        "int8": 234752,
+        "pentary": 88032,
+        "pentary_optimal": 68080
+      },
+      "memory_mb": {
+        "fp32": 0.8955078125,
+        "fp16": 0.44775390625,
+        "int8": 0.223876953125,
+        "pentary": 0.083953857421875,
+        "pentary_optimal": 0.0649261474609375
+      },
+      "reduction_vs_fp32": {
+        "fp32": 1.0,
+        "fp16": 2.0,
+        "int8": 4.0,
+        "pentary": 10.666666666666666,
+        "pentary_optimal": 13.792714453584018
+      }
+    },
+    "speed": {
+      "num_inferences": 100,
+      "time_seconds": {
+        "fp32": 0.0049479007720947266,
+        "int8": 0.025640010833740234,
+        "pentary": 0.004778861999511719
+      },
+      "time_ms_per_inference": {
+        "fp32": 0.049479007720947266,
+        "int8": 0.25640010833740234,
+        "pentary": 0.04778861999511719
+      },
+      "speedup_vs_fp32": {
+        "fp32": 1.0,
+        "int8": 0.19297576760707444,
+        "pentary": 1.035372181201357
+      }
+    },
+    "accuracy": {
+      "per_layer": {
+        "layer1": {
+          "mse": 0.43522575760768667,
+          "relative_error": 0.8103565415619048,
+          "max_error": 2.933485736253542
+        },
+        "layer2": {
+          "mse": 0.4072400958872347,
+          "relative_error": 0.8287541513042151,
+          "max_error": 2.522624471519072
+        },
+        "layer3": {
+          "mse": 0.2810263350517775,
+          "relative_error": 0.7039225480641025,
+          "max_error": 1.6687445196292998
+        }
+      },
+      "average_mse": 0.37449739618223293,
+      "average_relative_error": 0.7810110803100742,
+      "estimated_accuracy_loss_percent": 78.10110803100741
+    }
+  },
+  "medium": {
+    "memory": {
+      "total_parameters": 9412608,
+      "memory_bytes": {
+        "fp32": 37650432,
+        "fp16": 18825216,
+        "int8": 9412608,
+        "pentary": 3529728,
+        "pentary_optimal": 2729659
+      },
+      "memory_mb": {
+        "fp32": 35.90625,
+        "fp16": 17.953125,
+        "int8": 8.9765625,
+        "pentary": 3.3662109375,
+        "pentary_optimal": 2.603205680847168
+      },
+      "reduction_vs_fp32": {
+        "fp32": 1.0,
+        "fp16": 2.0,
+        "int8": 4.0,
+        "pentary": 10.666666666666666,
+        "pentary_optimal": 13.793089906101825
+      }
+    },
+    "speed": {
+      "num_inferences": 100,
+      "time_seconds": {
+        "fp32": 0.20729541778564453,
+        "int8": 2.043405532836914,
+        "pentary": 0.141402006149292
+      },
+      "time_ms_per_inference": {
+        "fp32": 2.0729541778564453,
+        "int8": 20.43405532836914,
+        "pentary": 1.41402006149292
+      },
+      "speedup_vs_fp32": {
+        "fp32": 1.0,
+        "int8": 0.10144604898756969,
+        "pentary": 1.466000542925695
+      }
+    },
+    "accuracy": {
+      "per_layer": {
+        "layer1": {
+          "mse": 0.4944920483288564,
+          "relative_error": 0.8711463882001681,
+          "max_error": 3.269097683651384
+        },
+        "layer2": {
+          "mse": 0.5039603648870008,
+          "relative_error": 0.8741699828861532,
+          "max_error": 3.366301275893429
+        },
+        "layer3": {
+          "mse": 0.48986578261936164,
+          "relative_error": 0.8749752970797393,
+          "max_error": 3.1671120794793097
+        },
+        "layer4": {
+          "mse": 0.42956005616258813,
+          "relative_error": 0.8421593603252072,
+          "max_error": 2.6699300568302693
+        }
+      },
+      "average_mse": 0.4794695629994517,
+      "average_relative_error": 0.8656127571228169,
+      "estimated_accuracy_loss_percent": 86.5612757122817
+    }
+  },
+  "large": {
+    "memory": {
+      "total_parameters": 52379648,
+      "memory_bytes": {
+        "fp32": 209518592,
+        "fp16": 104759296,
+        "int8": 52379648,
+        "pentary": 19642368,
+        "pentary_optimal": 15190100
+      },
+      "memory_mb": {
+        "fp32": 199.8125,
+        "fp16": 99.90625,
+        "int8": 49.953125,
+        "pentary": 18.732421875,
+        "pentary_optimal": 14.486408233642578
+      },
+      "reduction_vs_fp32": {
+        "fp32": 1.0,
+        "fp16": 2.0,
+        "int8": 4.0,
+        "pentary": 10.666666666666666,
+        "pentary_optimal": 13.793101559568402
+      }
+    },
+    "speed": {
+      "num_inferences": 100,
+      "time_seconds": {
+        "fp32": 1.4942553043365479,
+        "int8": 16.41464376449585,
+        "pentary": 1.4603312015533447
+      },
+      "time_ms_per_inference": {
+        "fp32": 14.942553043365479,
+        "int8": 164.1464376449585,
+        "pentary": 14.603312015533447
+      },
+      "speedup_vs_fp32": {
+        "fp32": 1.0,
+        "int8": 0.09103184484384341,
+        "pentary": 1.0232304170089075
+      }
+    },
+    "accuracy": {
+      "per_layer": {
+        "layer1": {
+          "mse": 0.4742590327275781,
+          "relative_error": 0.8681993430472885,
+          "max_error": 2.9914040147808585
+        },
+        "layer2": {
+          "mse": 0.5494283603518013,
+          "relative_error": 0.8492683339893324,
+          "max_error": 4.121533646746447
+        },
+        "layer3": {
+          "mse": 0.5184431818619157,
+          "relative_error": 0.8901081875760806,
+          "max_error": 3.329307902247228
+        },
+        "layer4": {
+          "mse": 0.5060858815326561,
+          "relative_error": 0.8848210433698499,
+          "max_error": 3.189781273915547
+        },
+        "layer5": {
+          "mse": 0.4331780251051887,
+          "relative_error": 0.8427105849452042,
+          "max_error": 2.7495044290836086
+        }
+      },
+      "average_mse": 0.496278896315828,
+      "average_relative_error": 0.8670214985855512,
+      "estimated_accuracy_loss_percent": 86.70214985855512
+    }
+  }
+}

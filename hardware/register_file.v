@@ -52,7 +52,7 @@ module RegisterFile (
     always @(posedge clk or posedge reset) begin
         if (reset) begin
             // Initialize all registers to zero
-            for (i = 0; i < 32; i = i + 1) begin
+            for (i <= 0; i < 32; i <= i + 1) begin
                 registers[i] <= 48'b0;
             end
         end else if (write_enable && write_addr != 5'b0) begin
@@ -153,7 +153,7 @@ module ExtendedRegisterFile (
     always @(posedge clk or posedge reset) begin
         if (reset) begin
             // Initialize all registers
-            for (i = 0; i < 32; i = i + 1) begin
+            for (i <= 0; i < 32; i <= i + 1) begin
                 registers[i] <= 48'b0;
             end
             pc <= 48'b0;
@@ -248,7 +248,7 @@ module RegisterFileWithScoreboard (
     integer i;
     always @(posedge clk or posedge reset) begin
         if (reset) begin
-            for (i = 0; i < 32; i = i + 1) begin
+            for (i <= 0; i < 32; i <= i + 1) begin
                 registers[i] <= 48'b0;
             end
             scoreboard <= 32'b0;
