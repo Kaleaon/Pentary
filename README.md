@@ -87,9 +87,9 @@ python3 tools/pentary_iteration.py
 - [SOTA Comparison Summary](research/SOTA_COMPARISON_SUMMARY.md) - 📊 **NEW!** Executive summary with benchmarks
 - [AI Architectures Analysis](research/pentary_ai_architectures_analysis.md) - 🤖 Comprehensive AI implementation guide (15,000 words)
 - [AI Architectures Summary](research/AI_ARCHITECTURES_SUMMARY.md) - 📊 Executive summary of AI findings
-- [Foundations - Expanded](research/pentary_foundations_expanded.md) - 📖 Deep dive with proofs
-- [Logic Gates - Expanded](research/pentary_logic_gates_expanded.md) - 📖 Complete gate library
-- [Memristor Drift Analysis](research/memristor_drift_analysis.md) - 🔬 Feature vs. flaw analysis
+- [Foundations - Expanded](research/pentary_foundations_expanded.md) - 📖 **NEW!** Deep dive with proofs
+- [Logic Gates - Expanded](research/pentary_logic_gates_expanded.md) - 📖 **NEW!** Complete gate library
+- [Memristor Drift Analysis](research/memristor_drift_analysis.md) - 🔬 **NEW!** Feature vs. flaw analysis
 
 ### Tools & Language
 - [Tools README](tools/README.md) - All available tools
