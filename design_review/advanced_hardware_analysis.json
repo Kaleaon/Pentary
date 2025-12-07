@@ -1,0 +1,413 @@
+{
+  "files": [
+    {
+      "file": "pentary-repo/hardware/cache_hierarchy.v",
+      "critical_issues": [],
+      "design_flaws": [
+        {
+          "severity": "WARNING",
+          "type": "long_combinational_path",
+          "message": "Long combinational path detected (6 operations) in assign statement",
+          "line": 405,
+          "fix": "Consider pipelining this operation"
+        },
+        {
+          "severity": "WARNING",
+          "type": "long_combinational_path",
+          "message": "Long combinational path detected (8 operations) in assign statement",
+          "line": 406,
+          "fix": "Consider pipelining this operation"
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_clock_domains",
+          "message": "Multiple clock domains detected: clk, reset",
+          "line": 0,
+          "fix": "Ensure proper clock domain crossing synchronization"
+        }
+      ],
+      "optimizations": [
+        {
+          "severity": "INFO",
+          "type": "optimization",
+          "message": "Multiplication by 32 can be replaced with left shift by 5",
+          "line": 66,
+          "fix": "Replace * 32 with << 5"
+        }
+      ],
+      "analysis": {
+        "modules": [
+          "L1_InstructionCache",
+          "module",
+          "module",
+          "module"
+        ],
+        "always_blocks": 8,
+        "assign_statements": 43,
+        "registers": 28,
+        "wires": 18,
+        "parameters": 12,
+        "instantiations": 0,
+        "complexity_score": 194
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/instruction_decoder.v",
+      "critical_issues": [],
+      "design_flaws": [
+        {
+          "severity": "WARNING",
+          "type": "multiple_clock_domains",
+          "message": "Multiple clock domains detected: clk, reset",
+          "line": 0,
+          "fix": "Ensure proper clock domain crossing synchronization"
+        }
+      ],
+      "optimizations": [],
+      "analysis": {
+        "modules": [
+          "InstructionDecoder",
+          "module",
+          "module"
+        ],
+        "always_blocks": 4,
+        "assign_statements": 27,
+        "registers": 16,
+        "wires": 7,
+        "parameters": 0,
+        "instantiations": 3,
+        "complexity_score": 125
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/memristor_crossbar_fixed.v",
+      "critical_issues": [
+        {
+          "severity": "CRITICAL",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment in sequential always block at line 143",
+          "line": 143,
+          "fix": "Use non-blocking assignment (<=) in sequential always blocks"
+        },
+        {
+          "severity": "CRITICAL",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment in sequential always block at line 149",
+          "line": 149,
+          "fix": "Use non-blocking assignment (<=) in sequential always blocks"
+        },
+        {
+          "severity": "CRITICAL",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment in sequential always block at line 151",
+          "line": 151,
+          "fix": "Use non-blocking assignment (<=) in sequential always blocks"
+        },
+        {
+          "severity": "CRITICAL",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment in sequential always block at line 152",
+          "line": 152,
+          "fix": "Use non-blocking assignment (<=) in sequential always blocks"
+        },
+        {
+          "severity": "CRITICAL",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment in sequential always block at line 212",
+          "line": 212,
+          "fix": "Use non-blocking assignment (<=) in sequential always blocks"
+        },
+        {
+          "severity": "CRITICAL",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment in sequential always block at line 215",
+          "line": 215,
+          "fix": "Use non-blocking assignment (<=) in sequential always blocks"
+        },
+        {
+          "severity": "CRITICAL",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment in sequential always block at line 217",
+          "line": 217,
+          "fix": "Use non-blocking assignment (<=) in sequential always blocks"
+        }
+      ],
+      "design_flaws": [
+        {
+          "severity": "WARNING",
+          "type": "multiple_clock_domains",
+          "message": "Multiple clock domains detected: clk, reset",
+          "line": 0,
+          "fix": "Ensure proper clock domain crossing synchronization"
+        }
+      ],
+      "optimizations": [],
+      "analysis": {
+        "modules": [
+          "MemristorCrossbarController",
+          "module",
+          "module"
+        ],
+        "always_blocks": 8,
+        "assign_statements": 10,
+        "registers": 16,
+        "wires": 2,
+        "parameters": 0,
+        "instantiations": 5,
+        "complexity_score": 141
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/mmu_interrupt.v",
+      "critical_issues": [],
+      "design_flaws": [
+        {
+          "severity": "WARNING",
+          "type": "long_combinational_path",
+          "message": "Long combinational path detected (8 operations) in assign statement",
+          "line": 177,
+          "fix": "Consider pipelining this operation"
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_clock_domains",
+          "message": "Multiple clock domains detected: clk, reset",
+          "line": 0,
+          "fix": "Ensure proper clock domain crossing synchronization"
+        }
+      ],
+      "optimizations": [],
+      "analysis": {
+        "modules": [
+          "MMU",
+          "module",
+          "module",
+          "module"
+        ],
+        "always_blocks": 6,
+        "assign_statements": 21,
+        "registers": 24,
+        "wires": 5,
+        "parameters": 1,
+        "instantiations": 0,
+        "complexity_score": 126
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/pentary_adder_fixed.v",
+      "critical_issues": [],
+      "design_flaws": [],
+      "optimizations": [],
+      "analysis": {
+        "modules": [
+          "PentaryAdder",
+          "module"
+        ],
+        "always_blocks": 2,
+        "assign_statements": 4,
+        "registers": 3,
+        "wires": 1,
+        "parameters": 0,
+        "instantiations": 1,
+        "complexity_score": 36
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/pentary_alu_fixed.v",
+      "critical_issues": [],
+      "design_flaws": [],
+      "optimizations": [],
+      "analysis": {
+        "modules": [
+          "PentaryALU",
+          "module",
+          "module",
+          "module",
+          "module",
+          "module",
+          "module",
+          "module"
+        ],
+        "always_blocks": 4,
+        "assign_statements": 15,
+        "registers": 4,
+        "wires": 20,
+        "parameters": 0,
+        "instantiations": 17,
+        "complexity_score": 159
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/pentary_chip_design.v",
+      "critical_issues": [],
+      "design_flaws": [],
+      "optimizations": [],
+      "analysis": {
+        "modules": [
+          "PentaryALU",
+          "module",
+          "module",
+          "module",
+          "module",
+          "module",
+          "module",
+          "function"
+        ],
+        "always_blocks": 3,
+        "assign_statements": 21,
+        "registers": 7,
+        "wires": 12,
+        "parameters": 3,
+        "instantiations": 5,
+        "complexity_score": 104
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/pentary_core_integrated.v",
+      "critical_issues": [],
+      "design_flaws": [],
+      "optimizations": [],
+      "analysis": {
+        "modules": [
+          "PentaryCoreIntegrated"
+        ],
+        "always_blocks": 0,
+        "assign_statements": 13,
+        "registers": 0,
+        "wires": 80,
+        "parameters": 0,
+        "instantiations": 13,
+        "complexity_score": 91
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/pentary_quantizer_fixed.v",
+      "critical_issues": [],
+      "design_flaws": [],
+      "optimizations": [
+        {
+          "severity": "INFO",
+          "type": "optimization",
+          "message": "Multiplication by 32 can be replaced with left shift by 5",
+          "line": 64,
+          "fix": "Replace * 32 with << 5"
+        }
+      ],
+      "analysis": {
+        "modules": [
+          "PentaryQuantizer",
+          "module",
+          "module",
+          "module",
+          "module",
+          "module",
+          "module",
+          "module"
+        ],
+        "always_blocks": 4,
+        "assign_statements": 24,
+        "registers": 4,
+        "wires": 16,
+        "parameters": 0,
+        "instantiations": 1,
+        "complexity_score": 97
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/pipeline_control.v",
+      "critical_issues": [
+        {
+          "severity": "CRITICAL",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment in sequential always block at line 333",
+          "line": 333,
+          "fix": "Use non-blocking assignment (<=) in sequential always blocks"
+        }
+      ],
+      "design_flaws": [
+        {
+          "severity": "WARNING",
+          "type": "multiple_clock_domains",
+          "message": "Multiple clock domains detected: clk, reset",
+          "line": 0,
+          "fix": "Ensure proper clock domain crossing synchronization"
+        }
+      ],
+      "optimizations": [],
+      "analysis": {
+        "modules": [
+          "PipelineControl",
+          "module",
+          "module",
+          "module",
+          "module",
+          "module"
+        ],
+        "always_blocks": 5,
+        "assign_statements": 22,
+        "registers": 27,
+        "wires": 5,
+        "parameters": 0,
+        "instantiations": 0,
+        "complexity_score": 121
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/register_file.v",
+      "critical_issues": [
+        {
+          "severity": "CRITICAL",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment in sequential always block at line 34",
+          "line": 34,
+          "fix": "Use non-blocking assignment (<=) in sequential always blocks"
+        },
+        {
+          "severity": "CRITICAL",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment in sequential always block at line 114",
+          "line": 114,
+          "fix": "Use non-blocking assignment (<=) in sequential always blocks"
+        },
+        {
+          "severity": "CRITICAL",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment in sequential always block at line 200",
+          "line": 200,
+          "fix": "Use non-blocking assignment (<=) in sequential always blocks"
+        }
+      ],
+      "design_flaws": [
+        {
+          "severity": "WARNING",
+          "type": "multiple_clock_domains",
+          "message": "Multiple clock domains detected: clk, reset",
+          "line": 0,
+          "fix": "Ensure proper clock domain crossing synchronization"
+        }
+      ],
+      "optimizations": [],
+      "analysis": {
+        "modules": [
+          "RegisterFile",
+          "module",
+          "module",
+          "module"
+        ],
+        "always_blocks": 3,
+        "assign_statements": 11,
+        "registers": 8,
+        "wires": 0,
+        "parameters": 1,
+        "instantiations": 1,
+        "complexity_score": 65
+      }
+    }
+  ],
+  "summary": {
+    "total_files": 11,
+    "total_critical": 11,
+    "total_design_flaws": 9,
+    "total_optimizations": 2
+  }
+}

@@ -1,0 +1,4812 @@
+{
+  "files": [
+    {
+      "file": "pentary-repo/hardware/pentary_core_integrated.v",
+      "issues": [
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Unmatched begin/end: 0 begin, 1 end",
+          "line": 0
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 17,
+          "code": "*   - 32 general-purpose registers"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 45,
+          "code": "output        debug_halted"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 184,
+          "code": ".write_enable(wb_reg_write)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 237,
+          "code": "assign forwarded_a = (ex_forward_a == 2'b01) ? mem_alu_result :"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 241,
+          "code": "assign forwarded_b = (ex_forward_b == 2'b01) ? mem_alu_result :"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 342,
+          "code": ".wb_mem_to_reg(wb_mem_to_reg)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 467,
+          "code": "assign debug_reg_data = (debug_reg_addr == 5'b0) ? 48'b0 :"
+        }
+      ],
+      "warnings": [],
+      "info": [],
+      "metrics": {
+        "total_lines": 472,
+        "code_lines": 365,
+        "comment_lines": 56,
+        "blank_lines": 51,
+        "modules": 1,
+        "always_blocks": 0,
+        "assign_statements": 13,
+        "registers": 0,
+        "wires": 80
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/testbench_pentary_quantizer.v",
+      "issues": [
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Unmatched begin/end: 19 begin, 32 end",
+          "line": 0
+        }
+      ],
+      "warnings": [
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"scale\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"input_value\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"zero_point\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"input_values\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"to_fixed\" has multiple drivers at lines: [39, 285]",
+          "line": 39
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"decode_pent\" has multiple drivers at lines: [48, 49, 50, 51, 52, 53]",
+          "line": 48
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"test_count\" has multiple drivers at lines: [64, 245, 294, 333]",
+          "line": 64
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"pass_count\" has multiple drivers at lines: [65, 248, 295, 334]",
+          "line": 65
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"fail_count\" has multiple drivers at lines: [66, 91, 251, 296, 309]",
+          "line": 66
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"n\" has multiple drivers at lines: [84, 302]",
+          "line": 84
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"scale\" has multiple drivers at lines: [105, 143, 149, 155, 167, 188, 213, 323]",
+          "line": 105
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"zero_point\" has multiple drivers at lines: [106, 140, 170, 176, 189, 214, 324]",
+          "line": 106
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"input_value\" has multiple drivers at lines: [109, 114, 119, 124, 129, 144, 150, 156, 171, 177, 192, 197, 202, 217, 222, 227, 232]",
+          "line": 109
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"Scale\" has multiple drivers at lines: [142, 148, 154]",
+          "line": 142
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"point\" has multiple drivers at lines: [169, 175]",
+          "line": 169
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"actual\" has multiple drivers at lines: [244, 247]",
+          "line": 244
+        },
+        {
+          "severity": "WARNING",
+          "type": "reset",
+          "message": "No reset signal detected in module",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"test_count\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"pass_count\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"i\" depends on itself",
+          "line": 0
+        }
+      ],
+      "info": [],
+      "metrics": {
+        "total_lines": 339,
+        "code_lines": 235,
+        "comment_lines": 38,
+        "blank_lines": 66,
+        "modules": 2,
+        "always_blocks": 0,
+        "assign_statements": 0,
+        "registers": 6,
+        "wires": 2
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/mmu_interrupt.v",
+      "issues": [
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Unmatched begin/end: 41 begin, 55 end",
+          "line": 0
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 42,
+          "code": "input         mem_ready"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 58,
+          "code": "reg [35:0] tlb_vpn [0:TLB_ENTRIES-1];      // Virtual page number"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 59,
+          "code": "reg [35:0] tlb_ppn [0:TLB_ENTRIES-1];      // Physical page number"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 60,
+          "code": "reg        tlb_valid [0:TLB_ENTRIES-1];    // Valid bit"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 61,
+          "code": "reg        tlb_dirty [0:TLB_ENTRIES-1];    // Dirty bit"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 62,
+          "code": "reg        tlb_read [0:TLB_ENTRIES-1];     // Read permission"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 63,
+          "code": "reg        tlb_write [0:TLB_ENTRIES-1];    // Write permission"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 64,
+          "code": "reg        tlb_execute [0:TLB_ENTRIES-1];  // Execute permission"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 65,
+          "code": "reg [5:0]  tlb_lru [0:TLB_ENTRIES-1];      // LRU counter"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 229,
+          "code": "input  [31:0] interrupt_enable,    // Interrupt enable mask"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 230,
+          "code": "input  [31:0] interrupt_priority,  // Priority configuration"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 231,
+          "code": "input         global_enable,       // Global interrupt enable"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 368,
+          "code": "input  [47:0] faulting_addr"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 438,
+          "code": "input         count_miss"
+        }
+      ],
+      "warnings": [
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: pte_addr is 48-bit but assigned 3-bit literal",
+          "line": 135,
+          "code": "pte_addr <= page_table_base + {virtual_page_number[35:27], 3'b0};"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: pte_addr is 48-bit but assigned 3-bit literal",
+          "line": 143,
+          "code": "pte_addr <= mem_data + {virtual_page_number[26:18], 3'b0};"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: pte_addr is 48-bit but assigned 3-bit literal",
+          "line": 151,
+          "code": "pte_addr <= mem_data + {virtual_page_number[17:9], 3'b0};"
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"tlb_lru\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"walked_ppn\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"tlb_read\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"tlb_write\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"pte_addr\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"tlb_vpn\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"pte_data\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"tlb_dirty\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"tlb_valid\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"tlb_execute\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"tlb_ppn\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"walked_read\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"i\" has multiple drivers at lines: [71, 259]",
+          "line": 71
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"matched_ppn\" has multiple drivers at lines: [83, 89]",
+          "line": 83
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"matched_read\" has multiple drivers at lines: [84, 90]",
+          "line": 84
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"matched_write\" has multiple drivers at lines: [85, 91]",
+          "line": 85
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"matched_execute\" has multiple drivers at lines: [86, 92]",
+          "line": 86
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"IDLE\" has multiple drivers at lines: [113, 282]",
+          "line": 113
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"walker_state\" has multiple drivers at lines: [127, 134, 142, 150, 163, 179]",
+          "line": 127
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"replace_entry\" has multiple drivers at lines: [128, 177]",
+          "line": 128
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"pte_addr\" has multiple drivers at lines: [135, 143, 151]",
+          "line": 135
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"pte_data\" has multiple drivers at lines: [141, 149, 157]",
+          "line": 141
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"highest_priority_int\" has multiple drivers at lines: [255, 261]",
+          "line": 255
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"interrupt_found\" has multiple drivers at lines: [256, 262]",
+          "line": 256
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"state\" has multiple drivers at lines: [290, 296, 299, 306, 313]",
+          "line": 290
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"current_vector\" has multiple drivers at lines: [291, 297, 300]",
+          "line": 291
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"request\" has multiple drivers at lines: [376, 380, 383, 386, 389, 392, 395, 398, 401, 404]",
+          "line": 376
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"vector\" has multiple drivers at lines: [377, 381, 384, 387, 390, 393, 396, 399, 402, 405]",
+          "line": 377
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"hit_counter\" has multiple drivers at lines: [446, 450]",
+          "line": 446
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"miss_counter\" has multiple drivers at lines: [447, 452]",
+          "line": 447
+        },
+        {
+          "severity": "WARNING",
+          "type": "state_machine",
+          "message": "State machine found but no next_state logic detected",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"i\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"j\" depends on itself",
+          "line": 0
+        }
+      ],
+      "info": [],
+      "metrics": {
+        "total_lines": 459,
+        "code_lines": 339,
+        "comment_lines": 48,
+        "blank_lines": 72,
+        "modules": 4,
+        "always_blocks": 6,
+        "assign_statements": 21,
+        "registers": 24,
+        "wires": 5
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/testbench_pentary_alu.v",
+      "issues": [
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Unmatched begin/end: 48 begin, 60 end",
+          "line": 0
+        }
+      ],
+      "warnings": [
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_a is 48-bit but assigned 3-bit literal",
+          "line": 117,
+          "code": "operand_a = {16{3'b011}};  // All +1"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_b is 48-bit but assigned 3-bit literal",
+          "line": 118,
+          "code": "operand_b = {16{3'b011}};  // All +1"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_a is 48-bit but assigned 3-bit literal",
+          "line": 130,
+          "code": "operand_a = {16{3'b010}};"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_b is 48-bit but assigned 3-bit literal",
+          "line": 131,
+          "code": "operand_b = {16{3'b010}};"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_a is 48-bit but assigned 3-bit literal",
+          "line": 143,
+          "code": "operand_a = {16{3'b100}};  // All +2"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_b is 48-bit but assigned 3-bit literal",
+          "line": 144,
+          "code": "operand_b = {16{3'b000}};  // All -2"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_a is 48-bit but assigned 3-bit literal",
+          "line": 164,
+          "code": "operand_a = {16{3'b100}};  // All +2"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_b is 48-bit but assigned 3-bit literal",
+          "line": 165,
+          "code": "operand_b = {16{3'b011}};  // All +1"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_a is 48-bit but assigned 3-bit literal",
+          "line": 177,
+          "code": "operand_a = {16{3'b010}};"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_b is 48-bit but assigned 3-bit literal",
+          "line": 178,
+          "code": "operand_b = {16{3'b010}};"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_a is 48-bit but assigned 3-bit literal",
+          "line": 198,
+          "code": "operand_a = {16{3'b011}};  // All +1"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_a is 48-bit but assigned 3-bit literal",
+          "line": 215,
+          "code": "operand_a = {16{3'b100}};  // All +2"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_a is 48-bit but assigned 3-bit literal",
+          "line": 232,
+          "code": "operand_a = {16{3'b000}};  // All -2"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_a is 48-bit but assigned 3-bit literal",
+          "line": 245,
+          "code": "operand_a = {16{3'b011}};  // All +1"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_a is 48-bit but assigned 3-bit literal",
+          "line": 258,
+          "code": "operand_a = {16{3'b010}};  // All 0"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_a is 48-bit but assigned 3-bit literal",
+          "line": 279,
+          "code": "operand_a = {16{3'b000}};  // All -2"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_a is 48-bit but assigned 3-bit literal",
+          "line": 292,
+          "code": "operand_a = {16{3'b011}};  // All +1"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_a is 48-bit but assigned 3-bit literal",
+          "line": 313,
+          "code": "operand_a = {16{3'b011}};"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_b is 48-bit but assigned 3-bit literal",
+          "line": 314,
+          "code": "operand_b = {16{3'b011}};"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_a is 48-bit but assigned 3-bit literal",
+          "line": 326,
+          "code": "operand_a = {16{3'b100}};  // +2"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_b is 48-bit but assigned 3-bit literal",
+          "line": 327,
+          "code": "operand_b = {16{3'b011}};  // +1"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_a is 48-bit but assigned 3-bit literal",
+          "line": 347,
+          "code": "operand_a = {16{3'b100}};  // +2"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_b is 48-bit but assigned 3-bit literal",
+          "line": 348,
+          "code": "operand_b = {16{3'b011}};  // +1"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_a is 48-bit but assigned 3-bit literal",
+          "line": 360,
+          "code": "operand_a = {16{3'b001}};  // -1"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_b is 48-bit but assigned 3-bit literal",
+          "line": 361,
+          "code": "operand_b = {16{3'b000}};  // -2"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_a is 48-bit but assigned 3-bit literal",
+          "line": 381,
+          "code": "operand_a = {16{3'b010}};  // 0"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_b is 48-bit but assigned 3-bit literal",
+          "line": 382,
+          "code": "operand_b = {16{3'b010}};  // 0"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: operand_a is 48-bit but assigned 3-bit literal",
+          "line": 395,
+          "code": "operand_a = {16{3'b011}};  // +1"
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"opcode\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"digit\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"operand_a\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"operand_b\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"val\" has multiple drivers at lines: [53, 64]",
+          "line": 53
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"digit\" has multiple drivers at lines: [54, 57, 58, 59, 60, 61]",
+          "line": 54
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"test_count\" has multiple drivers at lines: [76, 120, 133, 146, 167, 180, 201, 218, 235, 248, 261, 282, 295, 316, 329, 350, 363, 384, 397]",
+          "line": 76
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"pass_count\" has multiple drivers at lines: [77, 122, 135, 148, 169, 182, 203, 220, 237, 250, 263, 284, 297, 318, 331, 352, 365, 386, 399]",
+          "line": 77
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"fail_count\" has multiple drivers at lines: [78, 101, 125, 138, 151, 172, 185, 240, 253, 266, 287, 300, 321, 334, 355, 368, 389, 402]",
+          "line": 78
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"opcode\" has multiple drivers at lines: [114, 161, 195, 212, 229, 276, 310, 344, 380, 394]",
+          "line": 114
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"1\" has multiple drivers at lines: [116, 123, 163, 170]",
+          "line": 116
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"operand_a\" has multiple drivers at lines: [117, 130, 143, 164, 177, 198, 215, 232, 245, 258, 279, 292, 313, 326, 347, 360, 381, 395]",
+          "line": 117
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"operand_b\" has multiple drivers at lines: [118, 131, 144, 165, 178, 199, 216, 233, 246, 259, 280, 293, 314, 327, 348, 361, 382]",
+          "line": 118
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"result\" has multiple drivers at lines: [121, 134, 147, 168, 181, 236, 249, 262, 283, 296, 351, 364]",
+          "line": 121
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"0\" has multiple drivers at lines: [129, 136, 176, 183]",
+          "line": 129
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"2\" has multiple drivers at lines: [197, 214]",
+          "line": 197
+        },
+        {
+          "severity": "WARNING",
+          "type": "reset",
+          "message": "No reset signal detected in module",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"i\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"val\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"test_count\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"pass_count\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"fail_count\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"1\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"0\" depends on itself",
+          "line": 0
+        }
+      ],
+      "info": [],
+      "metrics": {
+        "total_lines": 408,
+        "code_lines": 330,
+        "comment_lines": 37,
+        "blank_lines": 41,
+        "modules": 1,
+        "always_blocks": 0,
+        "assign_statements": 0,
+        "registers": 4,
+        "wires": 6
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/cache_hierarchy.v",
+      "issues": [
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Unmatched begin/end: 56 begin, 66 end",
+          "line": 0
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 32,
+          "code": "input         l2_ready"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 41,
+          "code": "wire [5:0]  offset;     // Byte offset within line (6 bits for 64 bytes)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 42,
+          "code": "wire [6:0]  index;      // Set index (7 bits for 128 sets)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 43,
+          "code": "wire [34:0] tag;        // Tag (remaining bits)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 50,
+          "code": "reg [511:0] data [0:NUM_SETS-1][0:WAYS-1];     // Data array"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 51,
+          "code": "reg [34:0]  tags [0:NUM_SETS-1][0:WAYS-1];     // Tag array"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 52,
+          "code": "reg         valid [0:NUM_SETS-1][0:WAYS-1];    // Valid bits"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 53,
+          "code": "reg [1:0]   lru [0:NUM_SETS-1][0:WAYS-1];      // LRU bits"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 79,
+          "code": "assign word_offset = offset[5:2];  // Word offset within line"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 153,
+          "code": "input         l2_ready"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 310,
+          "code": "input         mem_ready"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 462,
+          "code": "output [47:0] snoop_addr"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 513,
+          "code": "assign snoop_invalidate = (core0_write && core1_cache_state != INVALID) ||"
+        }
+      ],
+      "warnings": [
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"data\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"dirty\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"lru\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"valid\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"tags\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"CACHE_SIZE\" has multiple drivers at lines: [35, 156, 313]",
+          "line": 35
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"LINE_SIZE\" has multiple drivers at lines: [36, 157, 314]",
+          "line": 36
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"WAYS\" has multiple drivers at lines: [37, 158, 315]",
+          "line": 37
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"NUM_SETS\" has multiple drivers at lines: [38, 159, 316]",
+          "line": 38
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"offset\" has multiple drivers at lines: [45, 166, 334]",
+          "line": 45
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"index\" has multiple drivers at lines: [46, 167, 335]",
+          "line": 46
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"tag\" has multiple drivers at lines: [47, 168, 336]",
+          "line": 47
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"i\" has multiple drivers at lines: [59, 181, 349]",
+          "line": 59
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"hit\" has multiple drivers at lines: [64, 186, 355]",
+          "line": 64
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"selected_line\" has multiple drivers at lines: [70, 73, 193, 197, 361, 364]",
+          "line": 70
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"j\" has multiple drivers at lines: [71, 195, 362]",
+          "line": 71
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"word_offset\" has multiple drivers at lines: [79, 205]",
+          "line": 79
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"IDLE\" has multiple drivers at lines: [84, 219, 373]",
+          "line": 84
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"FETCH\" has multiple drivers at lines: [85, 221, 375]",
+          "line": 85
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"FILL\" has multiple drivers at lines: [86, 222, 376]",
+          "line": 86
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"state\" has multiple drivers at lines: [92, 98, 106, 115, 228, 241, 243, 250, 256, 265, 382, 397, 399, 406, 412, 421]",
+          "line": 92
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"replace_way\" has multiple drivers at lines: [93, 100, 229, 239, 395]",
+          "line": 93
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"ready\" has multiple drivers at lines: [121, 271]",
+          "line": 121
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"l2_addr\" has multiple drivers at lines: [122, 272]",
+          "line": 122
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"l2_read\" has multiple drivers at lines: [123, 273]",
+          "line": 123
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"hit_way\" has multiple drivers at lines: [194, 198]",
+          "line": 194
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"WRITEBACK\" has multiple drivers at lines: [220, 374]",
+          "line": 220
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"l1d_priority\" has multiple drivers at lines: [383, 389, 391]",
+          "line": 383
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"core0_cache_state\" has multiple drivers at lines: [480, 485, 489, 491, 493, 501, 504]",
+          "line": 480
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"core1_cache_state\" has multiple drivers at lines: [481, 487, 490, 499, 503, 505, 507]",
+          "line": 481
+        },
+        {
+          "severity": "WARNING",
+          "type": "state_machine",
+          "message": "State machine found but no next_state logic detected",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"i\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"j\" depends on itself",
+          "line": 0
+        }
+      ],
+      "info": [],
+      "metrics": {
+        "total_lines": 517,
+        "code_lines": 400,
+        "comment_lines": 42,
+        "blank_lines": 75,
+        "modules": 4,
+        "always_blocks": 8,
+        "assign_statements": 43,
+        "registers": 28,
+        "wires": 18
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/instruction_decoder.v",
+      "issues": [
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Unmatched begin/end: 37 begin, 49 end",
+          "line": 0
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 10,
+          "code": "*   [27:23] - Destination register (5 bits)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 11,
+          "code": "*   [22:18] - Source register 1 (5 bits)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 12,
+          "code": "*   [17:13] - Source register 2 (5 bits)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 16,
+          "code": "*   - R-type: Register-register operations"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 30,
+          "code": "output [4:0]  rs1,              // Source register 1"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 31,
+          "code": "output [4:0]  rs2,              // Source register 2"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 32,
+          "code": "output [4:0]  rd,               // Destination register"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 38,
+          "code": "output [2:0]  alu_op,           // ALU operation"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 39,
+          "code": "output        alu_src,          // ALU source (0=reg, 1=imm)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 40,
+          "code": "output        reg_write,        // Write to register file"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 41,
+          "code": "output        mem_read,         // Read from memory"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 42,
+          "code": "output        mem_write,        // Write to memory"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 43,
+          "code": "output        mem_to_reg,       // Write memory data to register"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 44,
+          "code": "output        branch,           // Branch instruction"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 45,
+          "code": "output        jump,             // Jump instruction"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 46,
+          "code": "output        memristor_op,     // Memristor operation"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 52,
+          "code": "output        illegal_instruction"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 197,
+          "code": "alu_op_reg = 3'b001;  // Subtract for comparison"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 204,
+          "code": "alu_op_reg = 3'b001;  // Subtract for comparison"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 250,
+          "code": "case (inst_type_reg)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 314,
+          "code": "output [47:0] branch_target"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 404,
+          "code": "output        valid"
+        }
+      ],
+      "warnings": [
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: immediate_reg is 48-bit but assigned 1-bit literal",
+          "line": 263,
+          "code": "immediate_reg = {{34{imm_field[12]}}, imm_field, 1'b0};"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: immediate_reg is 48-bit but assigned 1-bit literal",
+          "line": 268,
+          "code": "immediate_reg = {{34{imm_field[12]}}, imm_field, 1'b0};"
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"immediate_reg\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"alu_op_reg\" has multiple drivers at lines: [114, 129, 136, 143, 150, 157, 164, 171, 179, 189, 197, 204, 224, 231]",
+          "line": 114
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"alu_src_reg\" has multiple drivers at lines: [115, 172, 180, 190]",
+          "line": 115
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"reg_write_reg\" has multiple drivers at lines: [116, 130, 137, 144, 151, 158, 165, 173, 183, 218, 225, 232]",
+          "line": 116
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"mem_read_reg\" has multiple drivers at lines: [117, 181]",
+          "line": 117
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"mem_write_reg\" has multiple drivers at lines: [118, 191]",
+          "line": 118
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"mem_to_reg_reg\" has multiple drivers at lines: [119, 182]",
+          "line": 119
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"branch_reg\" has multiple drivers at lines: [120, 198, 205]",
+          "line": 120
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"jump_reg\" has multiple drivers at lines: [121, 211]",
+          "line": 121
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"memristor_op_reg\" has multiple drivers at lines: [122, 217]",
+          "line": 122
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"inst_type_reg\" has multiple drivers at lines: [123, 131, 138, 145, 152, 159, 166, 174, 184, 192, 199, 206, 212, 219, 226, 233, 238]",
+          "line": 123
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"illegal_reg\" has multiple drivers at lines: [124, 242]",
+          "line": 124
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"immediate_reg\" has multiple drivers at lines: [253, 258, 263, 268, 272]",
+          "line": 253
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"taken\" has multiple drivers at lines: [343, 345, 348, 349, 350]",
+          "line": 343
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"pc_reg\" has multiple drivers at lines: [413, 420, 422]",
+          "line": 413
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"instruction_reg\" has multiple drivers at lines: [414, 426]",
+          "line": 414
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"valid_reg\" has multiple drivers at lines: [415, 417, 427, 429]",
+          "line": 415
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"i\" depends on itself",
+          "line": 0
+        }
+      ],
+      "info": [],
+      "metrics": {
+        "total_lines": 440,
+        "code_lines": 340,
+        "comment_lines": 40,
+        "blank_lines": 60,
+        "modules": 3,
+        "always_blocks": 4,
+        "assign_statements": 28,
+        "registers": 17,
+        "wires": 7
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/pentary_quantizer_fixed.v",
+      "issues": [
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Unmatched begin/end: 5 begin, 22 end",
+          "line": 0
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 15,
+          "code": "*   1. Subtract zero_point from input"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 25,
+          "code": "input  [31:0] input_value,   // Q16.16 fixed-point input"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 26,
+          "code": "input  [31:0] scale,         // Q16.16 scale factor"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 27,
+          "code": "input  [31:0] zero_point,    // Q16.16 zero point"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 28,
+          "code": "output [2:0]  quantized      // Single pentary digit output"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 38,
+          "code": "assign numerator = {centered, 16'b0};  // Shift left by 16 bits"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 46,
+          "code": "assign rounded = (scaled + 32'h00008000) >>> 16;  // Arithmetic right shift"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 50,
+          "code": "assign clipped = (rounded < -2) ? -2 :"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 58,
+          "code": "-2: quantized_reg = 3'b000;  // -2 (\u2296)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 59,
+          "code": "-1: quantized_reg = 3'b001;  // -1 (-)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 60,
+          "code": "0:  quantized_reg = 3'b010;  //  0 (0)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 61,
+          "code": "1:  quantized_reg = 3'b011;  // +1 (+)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 62,
+          "code": "2:  quantized_reg = 3'b100;  // +2 (\u2295)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 63,
+          "code": "default: quantized_reg = 3'b010;  // Default to 0"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 84,
+          "code": "input  [511:0] input_values,  // 16 \u00d7 32-bit Q16.16 values"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 85,
+          "code": "input  [31:0]  scale,         // Shared scale factor"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 86,
+          "code": "input  [31:0]  zero_point,    // Shared zero point"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 87,
+          "code": "output [47:0]  quantized      // 16 pentary digits (48 bits)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 122,
+          "code": "input  [2:0]  quantized,     // Single pentary digit"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 123,
+          "code": "input  [31:0] scale,         // Q16.16 scale factor"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 124,
+          "code": "input  [31:0] zero_point,    // Q16.16 zero point"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 125,
+          "code": "output [31:0] output_value   // Q16.16 fixed-point output"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 150,
+          "code": "assign scaled = product[47:16];  // Extract Q16.16 result"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 170,
+          "code": "input  [31:0] input_value,      // Q16.16 fixed-point input"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 171,
+          "code": "input  [31:0] scale,            // Q16.16 scale factor"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 172,
+          "code": "input  [31:0] zero_point,       // Q16.16 zero point"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 173,
+          "code": "input  [1:0]  rounding_mode,    // 00=nearest, 01=floor, 10=ceil, 11=truncate"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 174,
+          "code": "input         symmetric,        // 1=symmetric quantization (no zero_point)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 175,
+          "code": "output [2:0]  quantized,        // Pentary digit output"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 176,
+          "code": "output        clipped           // 1 if value was clipped"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 207,
+          "code": "assign clipped_val = (rounded < -2) ? -2 :"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 240,
+          "code": "output [31:0] fixed_val"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 248,
+          "code": "output signed [15:0] int_val"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 251,
+          "code": "assign rounded = fixed_val + 32'h00008000;  // Add 0.5"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 252,
+          "code": "assign int_val = rounded[31:16];            // Extract integer part"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 259,
+          "code": "output [31:0] result"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 263,
+          "code": "assign result = product[47:16];  // Extract Q16.16 result"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 270,
+          "code": "output [31:0] result"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 273,
+          "code": "assign numerator = {$signed(a), 16'b0};  // Shift left by 16"
+        }
+      ],
+      "warnings": [
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"signed\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"centered\" has multiple drivers at lines: [33, 181]",
+          "line": 33
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"numerator\" has multiple drivers at lines: [38, 185, 273]",
+          "line": 38
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"scaled\" has multiple drivers at lines: [41, 150, 188]",
+          "line": 41
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"rounded\" has multiple drivers at lines: [46, 194, 195, 196, 197, 198, 251]",
+          "line": 46
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"clipped\" has multiple drivers at lines: [50, 211]",
+          "line": 50
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"quantized_reg\" has multiple drivers at lines: [58, 59, 60, 61, 62, 63, 217, 218, 219, 220, 221, 222]",
+          "line": 58
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"quantized\" has multiple drivers at lines: [67, 226]",
+          "line": 67
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"decoded\" has multiple drivers at lines: [132, 133, 134, 135, 136, 137]",
+          "line": 132
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"product\" has multiple drivers at lines: [147, 262]",
+          "line": 147
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"16\" has multiple drivers at lines: [255, 266]",
+          "line": 255
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"result\" has multiple drivers at lines: [263, 274]",
+          "line": 263
+        },
+        {
+          "severity": "WARNING",
+          "type": "reset",
+          "message": "No reset signal detected in module",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"i\" depends on itself",
+          "line": 0
+        }
+      ],
+      "info": [],
+      "metrics": {
+        "total_lines": 275,
+        "code_lines": 213,
+        "comment_lines": 20,
+        "blank_lines": 42,
+        "modules": 8,
+        "always_blocks": 4,
+        "assign_statements": 24,
+        "registers": 4,
+        "wires": 16
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/testbench_memristor_crossbar.v",
+      "issues": [
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Unmatched begin/end: 23 begin, 31 end",
+          "line": 0
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 167,
+          "code": "input_vector[i*3 +: 3] = 3'b011;  // +1"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 217,
+          "code": "input_vector[i*3 +: 3] = 3'b011;  // All +1"
+        }
+      ],
+      "warnings": [
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: input_vector is 768-bit but assigned 3-bit literal",
+          "line": 167,
+          "code": "input_vector[i*3 +: 3] = 3'b011;  // +1"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: input_vector is 768-bit but assigned 3-bit literal",
+          "line": 217,
+          "code": "input_vector[i*3 +: 3] = 3'b011;  // All +1"
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"program_value\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"write_data\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"write_row\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"calibrate_enable\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"read_voltage\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"write_col\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"calibrate_row\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"clk\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"input_vector\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"reset\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"write_enable\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"compute_enable\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"states\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"program_enable\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"clk\" has multiple drivers at lines: [67, 68, 291, 292]",
+          "line": 67
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"test_count\" has multiple drivers at lines: [77, 141, 153, 180, 231, 253, 300, 353]",
+          "line": 77
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"pass_count\" has multiple drivers at lines: [78, 142, 154, 181, 232, 254, 301, 355]",
+          "line": 78
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"fail_count\" has multiple drivers at lines: [79, 112, 302, 325, 358]",
+          "line": 79
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"reset\" has multiple drivers at lines: [82, 93, 193, 195, 304, 310]",
+          "line": 82
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"write_enable\" has multiple drivers at lines: [83, 131, 136, 202, 210]",
+          "line": 83
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"compute_enable\" has multiple drivers at lines: [84, 172, 174, 222, 224]",
+          "line": 84
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"calibrate_enable\" has multiple drivers at lines: [85, 244, 247]",
+          "line": 85
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"write_row\" has multiple drivers at lines: [86, 132, 203]",
+          "line": 86
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"write_col\" has multiple drivers at lines: [87, 133, 204]",
+          "line": 87
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"write_data\" has multiple drivers at lines: [88, 134, 206, 208]",
+          "line": 88
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"calibrate_row\" has multiple drivers at lines: [90, 245]",
+          "line": 90
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"n\" has multiple drivers at lines: [105, 318]",
+          "line": 105
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"i\" has multiple drivers at lines: [128, 166, 199, 205, 216, 346]",
+          "line": 128
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"j\" has multiple drivers at lines: [129, 200]",
+          "line": 129
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"program_enable\" has multiple drivers at lines: [305, 347, 350]",
+          "line": 305
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"program_value\" has multiple drivers at lines: [306, 348]",
+          "line": 306
+        },
+        {
+          "severity": "WARNING",
+          "type": "state_machine",
+          "message": "State machine found but no next_state logic detected",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "state_machine",
+          "message": "State machine found but no state transitions detected",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"clk\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"test_count\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"pass_count\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"fail_count\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"i\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"j\" depends on itself",
+          "line": 0
+        }
+      ],
+      "info": [],
+      "metrics": {
+        "total_lines": 365,
+        "code_lines": 273,
+        "comment_lines": 32,
+        "blank_lines": 60,
+        "modules": 2,
+        "always_blocks": 0,
+        "assign_statements": 0,
+        "registers": 16,
+        "wires": 7
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/pentary_chip_design.v",
+      "issues": [
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Unmatched begin/end: 28 begin, 44 end",
+          "line": 0
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 18,
+          "code": "* - 8 cores, each with 32 registers and 16-pent word size"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 63,
+          "code": "input  [15:0] operand_a,  // 16 pents (48 bits: 16 \u00d7 3 bits)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 64,
+          "code": "input  [15:0] operand_b,  // 16 pents (48 bits: 16 \u00d7 3 bits)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 65,
+          "code": "input  [2:0]  opcode,     // Operation code (3 bits)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 66,
+          "code": "output [15:0] result,     // 16 pents (48 bits: 16 \u00d7 3 bits)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 67,
+          "code": "output        zero_flag,  // Set if result == 0"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 68,
+          "code": "output        negative_flag,  // Set if result < 0"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 69,
+          "code": "output        overflow_flag   // Set if overflow occurred"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 106,
+          "code": "assign result = (opcode == 3'b000) ? sum_result :"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 114,
+          "code": "assign negative_flag = (result[47] == 1'b1);  // MSB indicates sign"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 115,
+          "code": "assign overflow_flag = 1'b0;  // Simplified"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 145,
+          "code": "input  [2:0] a,         // Single pentary digit (3-bit encoded)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 146,
+          "code": "input  [2:0] b,         // Single pentary digit (3-bit encoded)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 147,
+          "code": "input  [2:0] carry_in,  // Carry from previous position (-1, 0, or +1)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 148,
+          "code": "output [2:0] sum,       // Sum digit (result)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 149,
+          "code": "output [2:0] carry_out  // Carry to next position (-1, 0, or +1)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 193,
+          "code": "input  [2:0]  constant,  // -2, -1, 0, 1, or 2"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 194,
+          "code": "output [15:0] result"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 209,
+          "code": "assign result = (constant == 3'b010) ? 16'b0 :           // \u00d70"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 224,
+          "code": "output [15:0] output_value"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 238,
+          "code": "input  [31:0] input_value,  // 32-bit float input"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 239,
+          "code": "input  [31:0] scale,        // Scale factor"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 240,
+          "code": "input  [31:0] zero_point,   // Zero point"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 241,
+          "code": "output [2:0]  quantized     // Single pentary digit output"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 253,
+          "code": "assign rounded = scaled + 32'h8000;  // Add 0.5 for rounding"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 254,
+          "code": "assign rounded = rounded & 32'hFFFF0000;  // Truncate"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 257,
+          "code": "assign quantized = (rounded < -2) ? 3'b000 :  // -2"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 270,
+          "code": "input  [7:0]  row_select,      // 256 rows"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 271,
+          "code": "input  [7:0]  col_select,      // 256 columns"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 272,
+          "code": "input  [2:0]  write_value,      // Pentary value to write"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 274,
+          "code": "input         compute_enable,   // Enable matrix-vector multiply"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 275,
+          "code": "input  [255:0] input_vector,    // Input vector (256 pents)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 276,
+          "code": "output [255:0] output_vector,   // Output vector (256 pents)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 277,
+          "code": "output        ready"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 282,
+          "code": "reg [2:0] crossbar [0:255][0:255];  // 256\u00d7256 array of 3-bit values"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 331,
+          "code": "assign accumulator = 0;  // Simplified"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 338,
+          "code": "assign output_vector[i*3 +: 3] = accumulator[2:0];  // Quantize to pentary"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 353,
+          "code": "input  [31:0] instruction,      // Instruction word"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 354,
+          "code": "input  [15:0] data_in,         // Data input"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 355,
+          "code": "output [15:0] data_out,         // Data output"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 357,
+          "code": "output        stall"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 362,
+          "code": "reg [15:0] registers [0:31];   // 32 registers"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 382,
+          "code": ".output_value(relu_result)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 420,
+          "code": "assign stall = 1'b0;  // Simplified"
+        }
+      ],
+      "warnings": [
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"registers\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"crossbar\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"state\" has multiple drivers at lines: [13, 292, 298, 301, 307, 315, 400]",
+          "line": 13
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"000\" has multiple drivers at lines: [25, 72]",
+          "line": 25
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"001\" has multiple drivers at lines: [26, 73]",
+          "line": 26
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"010\" has multiple drivers at lines: [27, 74]",
+          "line": 27
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"011\" has multiple drivers at lines: [28, 75]",
+          "line": 28
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"100\" has multiple drivers at lines: [29, 76]",
+          "line": 29
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"opcode\" has multiple drivers at lines: [50, 51, 52, 53, 107, 108, 109]",
+          "line": 50
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"result\" has multiple drivers at lines: [67, 106, 209]",
+          "line": 67
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"a\" has multiple drivers at lines: [134, 162]",
+          "line": 134
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"sum\" has multiple drivers at lines: [136, 182]",
+          "line": 136
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"3\" has multiple drivers at lines: [140, 160]",
+          "line": 140
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"sum_reg\" has multiple drivers at lines: [163, 168, 170, 173]",
+          "line": 163
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"carry_reg\" has multiple drivers at lines: [171, 174, 176]",
+          "line": 171
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"constant\" has multiple drivers at lines: [210, 211, 212, 213]",
+          "line": 210
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"rounded\" has multiple drivers at lines: [253, 254]",
+          "line": 253
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"compute_counter\" has multiple drivers at lines: [293, 302, 314, 316, 318]",
+          "line": 293
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"i\" has multiple drivers at lines: [329, 432, 451]",
+          "line": 329
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"accumulator\" has multiple drivers at lines: [331, 401, 409]",
+          "line": 331
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"ready\" has multiple drivers at lines: [342, 419]",
+          "line": 342
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"shift_left_pentary\" has multiple drivers at lines: [450, 454]",
+          "line": 450
+        },
+        {
+          "severity": "WARNING",
+          "type": "state_machine",
+          "message": "State machine found but no next_state logic detected",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"sum_reg\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"rounded\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"i\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"j\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"shift_left_pentary\" depends on itself",
+          "line": 0
+        }
+      ],
+      "info": [],
+      "metrics": {
+        "total_lines": 460,
+        "code_lines": 288,
+        "comment_lines": 110,
+        "blank_lines": 62,
+        "modules": 7,
+        "always_blocks": 3,
+        "assign_statements": 21,
+        "registers": 7,
+        "wires": 12
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/testbench_pentary_adder.v",
+      "issues": [
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Unmatched begin/end: 32 begin, 44 end",
+          "line": 0
+        }
+      ],
+      "warnings": [
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: a is 48-bit but assigned 3-bit literal",
+          "line": 298,
+          "code": "a = {16{3'b010}};"
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"a\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"carry_in\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"decode_pent\" has multiple drivers at lines: [39, 40, 41, 42, 43, 44]",
+          "line": 39
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"encode_pent\" has multiple drivers at lines: [54, 55, 56, 57, 58, 59]",
+          "line": 54
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"test_count\" has multiple drivers at lines: [70, 136, 205, 249, 288, 302, 322, 340]",
+          "line": 70
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"pass_count\" has multiple drivers at lines: [71, 139, 208, 250, 290, 304, 324, 341]",
+          "line": 71
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"fail_count\" has multiple drivers at lines: [72, 88, 141, 211, 251, 270, 293, 307]",
+          "line": 72
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"n\" has multiple drivers at lines: [81, 263]",
+          "line": 81
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"a\" has multiple drivers at lines: [111, 183, 284, 298, 318, 336]",
+          "line": 111
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"b\" has multiple drivers at lines: [112, 184, 285, 299, 319, 337]",
+          "line": 112
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"carry_in\" has multiple drivers at lines: [113, 185, 286, 300, 320, 338]",
+          "line": 113
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"temp_result\" has multiple drivers at lines: [118, 189]",
+          "line": 118
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"expected_sum\" has multiple drivers at lines: [121, 124, 127, 192, 195, 198]",
+          "line": 121
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"expected_carry\" has multiple drivers at lines: [122, 125, 128, 193, 196, 199]",
+          "line": 122
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"actual_sum\" has multiple drivers at lines: [132, 138, 202, 207]",
+          "line": 132
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"actual_carry\" has multiple drivers at lines: [133, 203]",
+          "line": 133
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"1\" has multiple drivers at lines: [283, 291]",
+          "line": 283
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"sum\" has multiple drivers at lines: [289, 303]",
+          "line": 289
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"0\" has multiple drivers at lines: [297, 305]",
+          "line": 297
+        },
+        {
+          "severity": "WARNING",
+          "type": "reset",
+          "message": "No reset signal detected in module",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"test_count\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"pass_count\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"fail_count\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"a_val\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"b_val\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"c_val\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"0\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"i\" depends on itself",
+          "line": 0
+        }
+      ],
+      "info": [],
+      "metrics": {
+        "total_lines": 348,
+        "code_lines": 258,
+        "comment_lines": 28,
+        "blank_lines": 62,
+        "modules": 2,
+        "always_blocks": 0,
+        "assign_statements": 0,
+        "registers": 3,
+        "wires": 3
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/pentary_adder_fixed.v",
+      "issues": [
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Unmatched begin/end: 6 begin, 13 end",
+          "line": 0
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 31,
+          "code": "input  [2:0] a,         // Single pentary digit (3-bit encoded)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 32,
+          "code": "input  [2:0] b,         // Single pentary digit (3-bit encoded)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 33,
+          "code": "input  [2:0] carry_in,  // Carry from previous position (-1, 0, or +1)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 34,
+          "code": "output [2:0] sum,       // Sum digit (result)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 35,
+          "code": "output [2:0] carry_out  // Carry to next position (-1, 0, or +1)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 80,
+          "code": "carry_reg = 3'b011;  // carry = +1"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 83,
+          "code": "carry_reg = 3'b001;  // carry = -1"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 85,
+          "code": "carry_reg = 3'b010;  // carry = 0"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 113,
+          "code": "*   - Each input is 48 bits (16 digits \u00d7 3 bits)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 121,
+          "code": "input  [47:0] a,         // 16 pentary digits"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 122,
+          "code": "input  [47:0] b,         // 16 pentary digits"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 123,
+          "code": "input  [2:0]  carry_in,  // Initial carry (usually 0)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 124,
+          "code": "output [47:0] sum,       // 16 pentary digits result"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 125,
+          "code": "output [2:0]  carry_out  // Final carry out"
+        }
+      ],
+      "warnings": [
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"signed\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"sum_reg\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"sum\" has multiple drivers at lines: [25, 99]",
+          "line": 25
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"a_val\" has multiple drivers at lines: [46, 47, 48, 49, 50, 51]",
+          "line": 46
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"b_val\" has multiple drivers at lines: [55, 56, 57, 58, 59, 60]",
+          "line": 55
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"carry_val\" has multiple drivers at lines: [64, 65, 66, 67, 68, 69]",
+          "line": 64
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"temp_sum\" has multiple drivers at lines: [75, 79, 82]",
+          "line": 75
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"carry_reg\" has multiple drivers at lines: [80, 83, 85]",
+          "line": 80
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"sum_reg\" has multiple drivers at lines: [90, 91, 92, 93, 94, 95]",
+          "line": 90
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"carry_out\" has multiple drivers at lines: [100, 149]",
+          "line": 100
+        },
+        {
+          "severity": "WARNING",
+          "type": "reset",
+          "message": "No reset signal detected in module",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"temp_sum\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"i\" depends on itself",
+          "line": 0
+        }
+      ],
+      "info": [],
+      "metrics": {
+        "total_lines": 151,
+        "code_lines": 124,
+        "comment_lines": 9,
+        "blank_lines": 18,
+        "modules": 2,
+        "always_blocks": 2,
+        "assign_statements": 4,
+        "registers": 3,
+        "wires": 1
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/testbench_register_file.v",
+      "issues": [
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Unmatched begin/end: 28 begin, 35 end",
+          "line": 0
+        }
+      ],
+      "warnings": [
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"read_addr1\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"write_data\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"expected\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"clk\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"reset\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"write_addr\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"write_enable\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"read_addr2\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"clk\" has multiple drivers at lines: [49, 50]",
+          "line": 49
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"test_count\" has multiple drivers at lines: [59, 127, 157, 178, 206, 239, 263, 300]",
+          "line": 59
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"pass_count\" has multiple drivers at lines: [60, 129, 159, 180, 208, 241, 265, 302]",
+          "line": 60
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"fail_count\" has multiple drivers at lines: [61, 92, 131, 162, 183, 211, 244, 268, 304]",
+          "line": 61
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"reset\" has multiple drivers at lines: [64, 72, 117, 120]",
+          "line": 64
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"write_enable\" has multiple drivers at lines: [65, 108, 114, 146, 150, 167, 171, 195, 199, 223, 231, 256, 272, 285, 291]",
+          "line": 65
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"read_addr1\" has multiple drivers at lines: [66, 125, 154, 175, 203, 235, 259, 296]",
+          "line": 66
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"read_addr2\" has multiple drivers at lines: [67, 236]",
+          "line": 67
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"write_addr\" has multiple drivers at lines: [68, 110, 147, 168, 196, 224, 228, 257, 287]",
+          "line": 68
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"write_data\" has multiple drivers at lines: [69, 111, 148, 169, 197, 225, 229, 258, 288]",
+          "line": 69
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"i\" has multiple drivers at lines: [109, 124, 286, 295]",
+          "line": 109
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"read_data1\" has multiple drivers at lines: [128, 158, 179, 207, 240, 264, 301]",
+          "line": 128
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"clk\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"test_count\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"pass_count\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"fail_count\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"i\" depends on itself",
+          "line": 0
+        }
+      ],
+      "info": [],
+      "metrics": {
+        "total_lines": 313,
+        "code_lines": 238,
+        "comment_lines": 29,
+        "blank_lines": 46,
+        "modules": 1,
+        "always_blocks": 0,
+        "assign_statements": 0,
+        "registers": 8,
+        "wires": 2
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/memristor_crossbar_fixed.v",
+      "issues": [
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Unmatched begin/end: 40 begin, 52 end",
+          "line": 0
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 29,
+          "code": "input  [7:0]  write_row,        // Row address (0-255)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 30,
+          "code": "input  [7:0]  write_col,        // Column address (0-255)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 31,
+          "code": "input  [2:0]  write_data,       // Pentary value to write"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 35,
+          "code": "input         compute_enable,   // Start matrix-vector multiply"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 36,
+          "code": "input  [767:0] input_vector,    // 256 pentary digits (256 \u00d7 3 bits)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 37,
+          "code": "output [767:0] output_vector,   // 256 pentary digits (256 \u00d7 3 bits)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 47,
+          "code": "output [7:0]  error_count"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 72,
+          "code": "reg [2:0] reference_cells [0:255][0:4];  // 5 reference cells per row"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 195,
+          "code": "assign clipped = (acc_val < -2) ? -2 :"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 321,
+          "code": "input  [2:0]  program_value,    // Pentary value to program"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 323,
+          "code": "input  [7:0]  read_voltage,     // Applied voltage for reading"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 324,
+          "code": "output [7:0]  read_current,     // Measured current"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 325,
+          "code": "output [2:0]  stored_value      // Current pentary value"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 375,
+          "code": "input  [7:0]  threshold_1,      // Threshold between -2 and -1"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 376,
+          "code": "input  [7:0]  threshold_2,      // Threshold between -1 and 0"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 377,
+          "code": "input  [7:0]  threshold_3,      // Threshold between 0 and +1"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 378,
+          "code": "input  [7:0]  threshold_4,      // Threshold between +1 and +2"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 379,
+          "code": "output [2:0]  digital_value"
+        },
+        {
+          "severity": "ERROR",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment (=) in sequential always block, should use non-blocking (<=)",
+          "line": 141,
+          "code": "if (state == WRITE) begin"
+        },
+        {
+          "severity": "ERROR",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment (=) in sequential always block, should use non-blocking (<=)",
+          "line": 162,
+          "code": "if (state == COMPUTE) begin"
+        },
+        {
+          "severity": "ERROR",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment (=) in sequential always block, should use non-blocking (<=)",
+          "line": 164,
+          "code": "row = compute_counter;"
+        },
+        {
+          "severity": "ERROR",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment (=) in sequential always block, should use non-blocking (<=)",
+          "line": 167,
+          "code": "accumulator[row] = 0;"
+        },
+        {
+          "severity": "ERROR",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment (=) in sequential always block, should use non-blocking (<=)",
+          "line": 170,
+          "code": "for (col = 0; col < 256; col = col + 1) begin"
+        },
+        {
+          "severity": "ERROR",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment (=) in sequential always block, should use non-blocking (<=)",
+          "line": 172,
+          "code": "weight_val = decode_pentary(crossbar[row][col]);"
+        },
+        {
+          "severity": "ERROR",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment (=) in sequential always block, should use non-blocking (<=)",
+          "line": 173,
+          "code": "input_val = decode_pentary(input_vector[col*3 +: 3]);"
+        },
+        {
+          "severity": "ERROR",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment (=) in sequential always block, should use non-blocking (<=)",
+          "line": 176,
+          "code": "accumulator[row] = accumulator[row] + (weight_val * input_val);"
+        },
+        {
+          "severity": "ERROR",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment (=) in sequential always block, should use non-blocking (<=)",
+          "line": 212,
+          "code": "if (state == CALIBRATE) begin"
+        },
+        {
+          "severity": "ERROR",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment (=) in sequential always block, should use non-blocking (<=)",
+          "line": 232,
+          "code": "if (state == ERROR_CORR) begin"
+        },
+        {
+          "severity": "ERROR",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment (=) in sequential always block, should use non-blocking (<=)",
+          "line": 233,
+          "code": "error_detected = 1'b0;"
+        },
+        {
+          "severity": "ERROR",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment (=) in sequential always block, should use non-blocking (<=)",
+          "line": 236,
+          "code": "for (row = 0; row < 256; row = row + 1) begin"
+        },
+        {
+          "severity": "ERROR",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment (=) in sequential always block, should use non-blocking (<=)",
+          "line": 237,
+          "code": "if (ecc_data[row] != compute_ecc(row)) begin"
+        },
+        {
+          "severity": "ERROR",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment (=) in sequential always block, should use non-blocking (<=)",
+          "line": 238,
+          "code": "error_detected = 1'b1;"
+        }
+      ],
+      "warnings": [
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"crossbar\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"reference_cells\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"calibration_state\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"parity\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"ecc_data\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"signed\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"write_count\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"state\" has multiple drivers at lines: [86, 90, 92, 141, 162, 212, 232]",
+          "line": 86
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"compute_counter\" has multiple drivers at lines: [87, 94, 96]",
+          "line": 87
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"error_counter\" has multiple drivers at lines: [88, 239]",
+          "line": 88
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"next_state\" has multiple drivers at lines: [103, 108, 110, 112, 116, 121, 125, 129, 132]",
+          "line": 103
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"row\" has multiple drivers at lines: [164, 236]",
+          "line": 164
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"calibration_done_reg\" has multiple drivers at lines: [217, 219]",
+          "line": 217
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"error_detected\" has multiple drivers at lines: [233, 238]",
+          "line": 233
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"decode_pentary\" has multiple drivers at lines: [257, 258, 259, 260, 261, 262]",
+          "line": 257
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"encode_pentary\" has multiple drivers at lines: [272, 273, 274, 275, 276, 277]",
+          "line": 272
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"parity\" has multiple drivers at lines: [288, 290]",
+          "line": 288
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"resistance\" has multiple drivers at lines: [341, 345, 346, 347, 348, 349, 350]",
+          "line": 341
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"value\" has multiple drivers at lines: [342, 386, 388, 390, 392, 394]",
+          "line": 342
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"row\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"col\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"i\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"parity\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"c\" depends on itself",
+          "line": 0
+        }
+      ],
+      "info": [],
+      "metrics": {
+        "total_lines": 399,
+        "code_lines": 270,
+        "comment_lines": 60,
+        "blank_lines": 69,
+        "modules": 3,
+        "always_blocks": 8,
+        "assign_statements": 10,
+        "registers": 16,
+        "wires": 2
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/register_file.v",
+      "issues": [
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Unmatched begin/end: 19 begin, 30 end",
+          "line": 0
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 6,
+          "code": "* Register file with 32 registers, each storing 16 pentary digits (48 bits)."
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 10,
+          "code": "*   - 32 registers (R0-R31)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 11,
+          "code": "*   - R0 is hardwired to zero"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 29,
+          "code": "input  [4:0]  read_addr1,       // First read address (0-31)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 30,
+          "code": "input  [4:0]  read_addr2,       // Second read address (0-31)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 31,
+          "code": "output [47:0] read_data1,       // First read data"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 32,
+          "code": "output [47:0] read_data2,       // Second read data"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 35,
+          "code": "input  [4:0]  write_addr,       // Write address (0-31)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 36,
+          "code": "input  [47:0] write_data,       // Write data"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 37,
+          "code": "input         write_enable      // Write enable"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 69,
+          "code": "assign read_data1 = (read_addr1 == 5'b0) ? 48'b0 :  // R0 is always zero"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 74,
+          "code": "assign read_data2 = (read_addr2 == 5'b0) ? 48'b0 :  // R0 is always zero"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 89,
+          "code": "*   R0:  Zero (hardwired to 0)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 98,
+          "code": "*   - Status register (SR)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 99,
+          "code": "*   - Exception registers"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 120,
+          "code": "input  [47:0] pc_in,            // Program counter input"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 122,
+          "code": "output [47:0] pc_out,           // Program counter output"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 124,
+          "code": "input  [31:0] status_in,        // Status register input"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 126,
+          "code": "output [31:0] status_out,       // Status register output"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 130,
+          "code": "output [47:0] debug_data"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 143,
+          "code": "reg [47:0] pc;          // Program counter"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 144,
+          "code": "reg [31:0] status;      // Status register"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 145,
+          "code": "reg [47:0] epc;         // Exception program counter"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 146,
+          "code": "reg [31:0] cause;       // Exception cause"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 185,
+          "code": "assign read_data1 = (read_addr1 == 5'b0) ? 48'b0 :"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 189,
+          "code": "assign read_data2 = (read_addr2 == 5'b0) ? 48'b0 :"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 207,
+          "code": "* Advanced register file with scoreboarding for out-of-order execution."
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 208,
+          "code": "* Tracks which registers are currently being written."
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 231,
+          "code": "input  [4:0]  reserve_addr,     // Reserve register for future write"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 233,
+          "code": "input  [4:0]  release_addr,     // Release register (write complete)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 234,
+          "code": "input         release_enable"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 276,
+          "code": "assign read_data1 = (read_addr1 == 5'b0) ? 48'b0 :"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 280,
+          "code": "assign read_data2 = (read_addr2 == 5'b0) ? 48'b0 :"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 285,
+          "code": "assign read_valid1 = (read_addr1 == 5'b0) ? 1'b1 :"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 289,
+          "code": "assign read_valid2 = (read_addr2 == 5'b0) ? 1'b1 :"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 320,
+          "code": "input         write_enable [0:NUM_BANKS-1]"
+        },
+        {
+          "severity": "ERROR",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment (=) in sequential always block, should use non-blocking (<=)",
+          "line": 55,
+          "code": "for (i = 0; i < 32; i = i + 1) begin"
+        },
+        {
+          "severity": "ERROR",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment (=) in sequential always block, should use non-blocking (<=)",
+          "line": 156,
+          "code": "for (i = 0; i < 32; i = i + 1) begin"
+        },
+        {
+          "severity": "ERROR",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment (=) in sequential always block, should use non-blocking (<=)",
+          "line": 251,
+          "code": "for (i = 0; i < 32; i = i + 1) begin"
+        }
+      ],
+      "warnings": [
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: scoreboard is 32-bit but assigned 1-bit literal",
+          "line": 263,
+          "code": "scoreboard[reserve_addr] <= 1'b1;"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: scoreboard is 32-bit but assigned 1-bit literal",
+          "line": 267,
+          "code": "scoreboard[release_addr] <= 1'b0;"
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"pc\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"epc\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"cause\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"registers\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"status\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"scoreboard\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"i\" has multiple drivers at lines: [55, 156, 251, 326]",
+          "line": 55
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"read_data1\" has multiple drivers at lines: [69, 185, 276]",
+          "line": 69
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"read_addr1\" has multiple drivers at lines: [70, 186, 277, 286]",
+          "line": 70
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"read_data2\" has multiple drivers at lines: [74, 189, 280]",
+          "line": 74
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"read_addr2\" has multiple drivers at lines: [75, 190, 281, 290]",
+          "line": 75
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"pc\" has multiple drivers at lines: [159, 171]",
+          "line": 159
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"status\" has multiple drivers at lines: [160, 176]",
+          "line": 160
+        },
+        {
+          "severity": "WARNING",
+          "type": "state_machine",
+          "message": "State machine found but no next_state logic detected",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "state_machine",
+          "message": "State machine found but no state transitions detected",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"i\" depends on itself",
+          "line": 0
+        }
+      ],
+      "info": [],
+      "metrics": {
+        "total_lines": 341,
+        "code_lines": 228,
+        "comment_lines": 55,
+        "blank_lines": 58,
+        "modules": 4,
+        "always_blocks": 5,
+        "assign_statements": 11,
+        "registers": 8,
+        "wires": 0
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/pipeline_control.v",
+      "issues": [
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Unmatched begin/end: 18 begin, 24 end",
+          "line": 0
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 37,
+          "code": "input  [4:0]  id_rs1,           // Source register 1"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 38,
+          "code": "input  [4:0]  id_rs2,           // Source register 2"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 39,
+          "code": "input  [4:0]  id_rd,            // Destination register"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 40,
+          "code": "input         id_reg_write,     // Will write to register"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 41,
+          "code": "input         id_mem_read,      // Will read from memory"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 42,
+          "code": "input         id_branch,        // Is branch instruction"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 52,
+          "code": "output [1:0]  ex_forward_a,     // Forward control for operand A"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 53,
+          "code": "output [1:0]  ex_forward_b,     // Forward control for operand B"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 71,
+          "code": "output [47:0] predict_target"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 83,
+          "code": "assign load_use_hazard = ex_mem_read &&"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 96,
+          "code": "assign forward_mem_a = mem_reg_write &&"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 100,
+          "code": "assign forward_mem_b = mem_reg_write &&"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 106,
+          "code": "assign forward_wb_a = wb_reg_write &&"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 111,
+          "code": "assign forward_wb_b = wb_reg_write &&"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 120,
+          "code": "assign ex_forward_a = forward_mem_a ? 2'b01 :"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 124,
+          "code": "assign ex_forward_b = forward_mem_b ? 2'b01 :"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 155,
+          "code": "assign predict_target = if_pc + 48'd4;  // Next sequential instruction"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 181,
+          "code": "output reg [31:0] id_instruction"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 227,
+          "code": "output reg        ex_branch"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 281,
+          "code": "output reg        mem_mem_write"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 319,
+          "code": "output reg        wb_mem_to_reg"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 353,
+          "code": "output        predict_taken"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 359,
+          "code": "assign index = pc[9:2];  // Use bits [9:2] as index"
+        },
+        {
+          "severity": "ERROR",
+          "type": "blocking_in_sequential",
+          "message": "Blocking assignment (=) in sequential always block, should use non-blocking (<=)",
+          "line": 368,
+          "code": "for (i = 0; i < 256; i = i + 1) begin"
+        }
+      ],
+      "warnings": [
+        {
+          "severity": "WARNING",
+          "type": "uninitialized",
+          "message": "Register \"bht\" may not be initialized",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"ex_rd\" has multiple drivers at lines: [84, 237, 251]",
+          "line": 84
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"mem_rd\" has multiple drivers at lines: [98, 102, 109, 114, 287, 294]",
+          "line": 98
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"wb_rd\" has multiple drivers at lines: [108, 113, 325, 331]",
+          "line": 108
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"predict_taken\" has multiple drivers at lines: [154, 362]",
+          "line": 154
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"id_pc\" has multiple drivers at lines: [185, 188]",
+          "line": 185
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"id_instruction\" has multiple drivers at lines: [186, 189]",
+          "line": 186
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"ex_pc\" has multiple drivers at lines: [231, 245]",
+          "line": 231
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"ex_read_data1\" has multiple drivers at lines: [232, 246]",
+          "line": 232
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"ex_read_data2\" has multiple drivers at lines: [233, 247]",
+          "line": 233
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"ex_immediate\" has multiple drivers at lines: [234, 248]",
+          "line": 234
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"ex_rs1\" has multiple drivers at lines: [235, 249]",
+          "line": 235
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"ex_rs2\" has multiple drivers at lines: [236, 250]",
+          "line": 236
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"ex_alu_op\" has multiple drivers at lines: [238, 252]",
+          "line": 238
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"ex_alu_src\" has multiple drivers at lines: [239, 253]",
+          "line": 239
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"ex_reg_write\" has multiple drivers at lines: [240, 254]",
+          "line": 240
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"ex_mem_read\" has multiple drivers at lines: [241, 255]",
+          "line": 241
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"ex_mem_write\" has multiple drivers at lines: [242, 256]",
+          "line": 242
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"ex_branch\" has multiple drivers at lines: [243, 257]",
+          "line": 243
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"mem_alu_result\" has multiple drivers at lines: [285, 292]",
+          "line": 285
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"mem_write_data\" has multiple drivers at lines: [286, 293]",
+          "line": 286
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"mem_reg_write\" has multiple drivers at lines: [288, 295]",
+          "line": 288
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"mem_mem_read\" has multiple drivers at lines: [289, 296]",
+          "line": 289
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"mem_mem_write\" has multiple drivers at lines: [290, 297]",
+          "line": 290
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"wb_alu_result\" has multiple drivers at lines: [323, 329]",
+          "line": 323
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"wb_read_data\" has multiple drivers at lines: [324, 330]",
+          "line": 324
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"wb_reg_write\" has multiple drivers at lines: [326, 332]",
+          "line": 326
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"wb_mem_to_reg\" has multiple drivers at lines: [327, 333]",
+          "line": 327
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"i\" depends on itself",
+          "line": 0
+        }
+      ],
+      "info": [],
+      "metrics": {
+        "total_lines": 381,
+        "code_lines": 295,
+        "comment_lines": 39,
+        "blank_lines": 47,
+        "modules": 6,
+        "always_blocks": 5,
+        "assign_statements": 22,
+        "registers": 27,
+        "wires": 5
+      }
+    },
+    {
+      "file": "pentary-repo/hardware/pentary_alu_fixed.v",
+      "issues": [
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Unmatched begin/end: 10 begin, 23 end",
+          "line": 0
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 30,
+          "code": "input  [47:0] operand_a,      // 16 pentary digits (48 bits)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 31,
+          "code": "input  [47:0] operand_b,      // 16 pentary digits (48 bits)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 32,
+          "code": "input  [2:0]  opcode,         // Operation code"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 33,
+          "code": "output [47:0] result,         // 16 pentary digits (48 bits)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 34,
+          "code": "output        zero_flag,      // Set if result == 0"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 35,
+          "code": "output        negative_flag,  // Set if result < 0"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 36,
+          "code": "output        overflow_flag,  // Set if overflow occurred"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 37,
+          "code": "output        equal_flag,     // Set if operand_a == operand_b"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 38,
+          "code": "output        greater_flag    // Set if operand_a > operand_b"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 67,
+          "code": ".output_val(neg_b)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 82,
+          "code": ".output_val(mul2_result)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 89,
+          "code": ".output_val(div2_result)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 95,
+          "code": ".output_val(neg_result)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 101,
+          "code": ".output_val(abs_result)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 121,
+          "code": "3'b110: result_reg = sub_result;  // CMP uses subtraction"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 146,
+          "code": "assign overflow_flag = (opcode == 3'b000 && add_carry != 3'b010) ||"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 179,
+          "code": "output [47:0] output_val"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 184,
+          "code": "assign output_val[i*3 +: 3] ="
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 185,
+          "code": "(input_val[i*3 +: 3] == 3'b000) ? 3'b100 :  // -2 -> +2"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 186,
+          "code": "(input_val[i*3 +: 3] == 3'b001) ? 3'b011 :  // -1 -> +1"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 187,
+          "code": "(input_val[i*3 +: 3] == 3'b010) ? 3'b010 :  //  0 ->  0"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 188,
+          "code": "(input_val[i*3 +: 3] == 3'b011) ? 3'b001 :  // +1 -> -1"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 189,
+          "code": "(input_val[i*3 +: 3] == 3'b100) ? 3'b000 :  // +2 -> -2"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 198,
+          "code": "output        is_zero"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 209,
+          "code": "assign is_zero = &digit_is_zero;  // All digits must be zero"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 215,
+          "code": "output        is_negative"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 225,
+          "code": "is_neg = (input_val[i*3 +: 3] == 3'b000) ||"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 238,
+          "code": "output [47:0] output_val"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 250,
+          "code": ".output_val(negated)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 260,
+          "code": "output [47:0] result"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 268,
+          "code": ".output_val(neg_b)"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 292,
+          "code": "output [47:0] output_val"
+        },
+        {
+          "severity": "ERROR",
+          "type": "syntax",
+          "message": "Possible missing semicolon",
+          "line": 316,
+          "code": "output [47:0] output_val"
+        }
+      ],
+      "warnings": [
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: shifted is 48-bit but assigned 3-bit literal",
+          "line": 305,
+          "code": "shifted = {shifted[44:0], 3'b010};  // Append zero at LSB"
+        },
+        {
+          "severity": "WARNING",
+          "type": "width_mismatch",
+          "message": "Width mismatch: shifted is 48-bit but assigned 3-bit literal",
+          "line": 328,
+          "code": "shifted = {3'b010, shifted[47:3]};  // Prepend zero at MSB"
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"opcode\" has multiple drivers at lines: [9, 10, 11, 12, 13, 14, 15, 16, 147]",
+          "line": 9
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"result\" has multiple drivers at lines: [34, 127, 285]",
+          "line": 34
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"carry\" has multiple drivers at lines: [58, 73]",
+          "line": 58
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"result_reg\" has multiple drivers at lines: [115, 116, 117, 118, 119, 120, 121, 122, 123]",
+          "line": 115
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"i\" has multiple drivers at lines: [183, 204, 223, 227, 303, 326]",
+          "line": 183
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"is_neg\" has multiple drivers at lines: [222, 225]",
+          "line": 222
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"output_val\" has multiple drivers at lines: [253, 309, 332]",
+          "line": 253
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"positions\" has multiple drivers at lines: [294, 318]",
+          "line": 294
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"shift_amount\" has multiple drivers at lines: [295, 319]",
+          "line": 295
+        },
+        {
+          "severity": "WARNING",
+          "type": "multiple_drivers",
+          "message": "Signal \"shifted\" has multiple drivers at lines: [302, 305, 325, 328]",
+          "line": 302
+        },
+        {
+          "severity": "WARNING",
+          "type": "reset",
+          "message": "No reset signal detected in module",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"i\" depends on itself",
+          "line": 0
+        },
+        {
+          "severity": "WARNING",
+          "type": "combinational_loop",
+          "message": "Potential combinational loop: signal \"shifted\" depends on itself",
+          "line": 0
+        }
+      ],
+      "info": [],
+      "metrics": {
+        "total_lines": 333,
+        "code_lines": 256,
+        "comment_lines": 28,
+        "blank_lines": 49,
+        "modules": 8,
+        "always_blocks": 4,
+        "assign_statements": 15,
+        "registers": 4,
+        "wires": 20
+      }
+    }
+  ],
+  "summary": {
+    "total_files": 16,
+    "total_issues": 299,
+    "total_warnings": 397,
+    "total_info": 0
+  }
+}
