@@ -1,0 +1,51 @@
+# Matrix Multiplication
+# Purpose: Multiply two matrices using hardware acceleration
+# Code size: 25 instructions × 8 pents = 200 pents
+# Memory required: Minimal - uses memristor for matrix B storage
+# Instructions used: MATVEC, LOAD, STORE, ADDI, BEQ
+
+
+; matrix_multiply(A, B, C, rows, cols)
+; A = matrix A address (rows × cols)
+; B = matrix B address (cols × cols) in memristor
+; C = result matrix address
+; P1 = A address, P2 = B address, P3 = C address
+; P4 = rows, P5 = cols
+
+MATRIX_MUL:
+    PUSH P29              ; Save frame pointer
+    ADDI P29, P30, 0      ; FP = SP
+
+    ; Initialize row counter
+    ADDI P6, P0, 0        ; row = 0
+
+MAT_ROW_LOOP:
+    BEQ P6, P4, MAT_END   ; If row == rows, done
+
+    ; Load row vector from A
+    ADDI P7, P1, 0        ; P7 = current row address in A
+
+    ; Multiply row by matrix B using hardware acceleration
+    MATVEC P7, P2, P5     ; Result in P7, accelerated by memristor
+
+    ; Store result row to C
+    ADDI P8, P0, 0        ; col counter = 0
+MAT_COL_LOOP:
+    BEQ P8, P5, MAT_COL_END   ; If col == cols, done
+    LOAD P9, P7, 0        ; Load result element
+    STORE P9, P3, 0       ; Store to C
+    ADDI P7, P7, +        ; Next element in result
+    ADDI P3, P3, +        ; Next position in C
+    ADDI P8, P8, +        ; col++
+    JUMP MAT_COL_LOOP
+
+MAT_COL_END:
+    ; Move to next row
+    ADDI P1, P1, P5       ; Move to next row in A
+    ADDI P6, P6, +        ; row++
+    JUMP MAT_ROW_LOOP
+
+MAT_END:
+    POP P29               ; Restore frame pointer
+    RET
+

@@ -1,0 +1,44 @@
+# Dynamic Power Management
+# Purpose: Adjust processor power state based on workload
+# Code size: 18 instructions × 8 pents = 144 pents
+# Memory required: Minimal - accesses system registers
+# Instructions used: LOAD, STORE, ADDI, BLT, BGT, NOP
+
+
+; power_manager() - Adjust power state based on workload
+; Monitors instruction queue and adjusts power mode
+
+POWER_MGR:
+    ; Load current workload metric
+    LOAD P1, P0, +000+    ; Load from workload register (addr 626)
+
+    ; Define thresholds
+    ADDI P2, P0, +0       ; Low threshold = 5
+    ADDI P3, P0, +00      ; High threshold = 25
+
+    ; Check if workload is low
+    SUB P4, P1, P2        ; workload - low_threshold
+    BLT P4, PWR_LOW       ; If workload < low, go to low power
+
+    ; Check if workload is high
+    SUB P4, P1, P3        ; workload - high_threshold
+    BGT P4, PWR_HIGH      ; If workload > high, go to high power
+
+    ; Medium workload - set medium power
+    ADDI P5, P0, +        ; Power mode = 1 (medium)
+    JUMP PWR_SET
+
+PWR_LOW:
+    ; Low workload - set low power mode
+    ADDI P5, P0, 0        ; Power mode = 0 (low)
+    JUMP PWR_SET
+
+PWR_HIGH:
+    ; High workload - set high power mode
+    ADDI P5, P0, ⊕        ; Power mode = 2 (high)
+
+PWR_SET:
+    ; Write power mode to control register
+    STORE P5, P0, +000⊖   ; Store to power control (addr 624)
+    RET
+

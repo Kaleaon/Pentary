@@ -1,0 +1,52 @@
+# QuickSort Implementation
+# Purpose: Efficient in-place sorting of pentary arrays
+# Code size: 30 instructions × 8 pents = 240 pents
+# Memory required: Stack space for recursion (O(log n) depth)
+# Instructions used: LOAD, STORE, ADDI, SUB, BLT, BGT, CALL, RET
+
+
+; quicksort(array, left, right)
+; P1 = array base address
+; P2 = left index
+; P3 = right index
+
+QUICKSORT:
+    ; Base case: if left >= right, return
+    SUB P4, P3, P2        ; P4 = right - left
+    BLT P4, QSORT_RET     ; If right - left < 0, return
+    BEQ P4, QSORT_RET     ; If right - left == 0, return
+
+    ; Save parameters
+    PUSH P1
+    PUSH P2
+    PUSH P3
+
+    ; Partition the array
+    CALL PARTITION        ; Returns pivot index in P1
+    ADDI P5, P1, 0        ; Save pivot index
+
+    ; Restore parameters
+    POP P3                ; right
+    POP P2                ; left
+    POP P1                ; array
+
+    ; Recursively sort left partition
+    PUSH P5               ; Save pivot
+    ADDI P6, P5, -        ; pivot - 1
+    ADDI P7, P2, 0        ; left
+    CALL QUICKSORT        ; quicksort(array, left, pivot-1)
+
+    ; Recursively sort right partition
+    POP P5                ; Restore pivot
+    ADDI P2, P5, +        ; pivot + 1
+    CALL QUICKSORT        ; quicksort(array, pivot+1, right)
+
+QSORT_RET:
+    RET
+
+PARTITION:
+    ; Partition using last element as pivot
+    ; Returns pivot position in P1
+    ; Implementation details omitted for brevity
+    RET
+

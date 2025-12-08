@@ -1,0 +1,42 @@
+# String Operations Library
+# Purpose: Provide basic string manipulation functions for text processing
+# Code size: 23 instructions × 8 pents = 184 pents
+# Memory required: None - operates on provided addresses
+# Instructions used: LOAD, STORE, ADDI, BEQ, BNE, SUB
+
+
+; strlen(str) - Calculate string length
+; Input: P1 = string address (null-terminated)
+; Output: P1 = length
+STRLEN:
+    ADDI P2, P0, 0        ; length counter = 0
+STRLEN_LOOP:
+    LOAD P3, P1, 0        ; Load character
+    BEQ P3, STRLEN_END    ; If null, done
+    ADDI P2, P2, +        ; length++
+    ADDI P1, P1, +        ; address++
+    JUMP STRLEN_LOOP
+STRLEN_END:
+    ADDI P1, P2, 0        ; Return length in P1
+    RET
+
+; strcmp(s1, s2) - Compare two strings
+; Input: P1 = string1 address, P2 = string2 address
+; Output: P1 = 0 (equal), + (s1>s2), - (s1<s2)
+STRCMP:
+STRCMP_LOOP:
+    LOAD P3, P1, 0        ; Load char from s1
+    LOAD P4, P2, 0        ; Load char from s2
+    SUB P5, P3, P4        ; Compare chars
+    BNE P5, STRCMP_DIFF   ; If different, return
+    BEQ P3, STRCMP_END    ; If null, strings equal
+    ADDI P1, P1, +        ; s1++
+    ADDI P2, P2, +        ; s2++
+    JUMP STRCMP_LOOP
+STRCMP_DIFF:
+    ADDI P1, P5, 0        ; Return difference
+    RET
+STRCMP_END:
+    ADDI P1, P0, 0        ; Return 0 (equal)
+    RET
+

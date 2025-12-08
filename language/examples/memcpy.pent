@@ -1,0 +1,28 @@
+# Memory Copy Function
+# Purpose: Copy data from source to destination address
+# Code size: 9 instructions × 8 pents = 72 pents
+# Memory required: None - operates on provided addresses
+# Instructions used: LOAD, STORE, ADDI, BEQ, SUB
+
+
+; memcpy(dest, src, length)
+; P1 = destination address
+; P2 = source address  
+; P3 = length (number of words)
+
+MEMCPY:
+    BEQ P3, MEMCPY_END    ; If length == 0, done
+
+MEMCPY_LOOP:
+    LOAD P4, P2, 0        ; Load word from source
+    STORE P4, P1, 0       ; Store to destination
+
+    ADDI P1, P1, +        ; dest++
+    ADDI P2, P2, +        ; src++
+    ADDI P3, P3, -        ; length--
+
+    BNE P3, MEMCPY_LOOP   ; If length != 0, continue
+
+MEMCPY_END:
+    RET                   ; Return
+

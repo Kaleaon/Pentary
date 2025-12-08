@@ -1,0 +1,57 @@
+# Array Operations Library
+# Purpose: Provide array search, sort, and manipulation functions
+# Code size: 35 instructions × 8 pents = 280 pents
+# Memory required: None - operates on provided arrays
+# Instructions used: LOAD, STORE, ADDI, BEQ, BLT, MIN, MAX
+
+
+; find_min(array, length) - Find minimum value in array
+; Input: P1 = array address, P2 = length
+; Output: P1 = minimum value
+FIND_MIN:
+    LOAD P3, P1, 0        ; min = array[0]
+    ADDI P4, P0, +        ; index = 1
+FIND_MIN_LOOP:
+    BEQ P4, P2, FIND_MIN_END  ; If index == length, done
+    LOAD P5, P1, 0        ; Load array[i]
+    ADDI P1, P1, +        ; array++
+    MIN P3, P3, P5        ; min = min(min, array[i])
+    ADDI P4, P4, +        ; index++
+    JUMP FIND_MIN_LOOP
+FIND_MIN_END:
+    ADDI P1, P3, 0        ; Return min in P1
+    RET
+
+; find_max(array, length) - Find maximum value in array
+; Input: P1 = array address, P2 = length
+; Output: P1 = maximum value
+FIND_MAX:
+    LOAD P3, P1, 0        ; max = array[0]
+    ADDI P4, P0, +        ; index = 1
+FIND_MAX_LOOP:
+    BEQ P4, P2, FIND_MAX_END  ; If index == length, done
+    LOAD P5, P1, 0        ; Load array[i]
+    ADDI P1, P1, +        ; array++
+    MAX P3, P3, P5        ; max = max(max, array[i])
+    ADDI P4, P4, +        ; index++
+    JUMP FIND_MAX_LOOP
+FIND_MAX_END:
+    ADDI P1, P3, 0        ; Return max in P1
+    RET
+
+; array_sum(array, length) - Sum array elements
+; Input: P1 = array address, P2 = length
+; Output: P1 = sum
+ARRAY_SUM:
+    ADDI P3, P0, 0        ; sum = 0
+ARRAY_SUM_LOOP:
+    BEQ P2, ARRAY_SUM_END ; If length == 0, done
+    LOAD P4, P1, 0        ; Load array[i]
+    ADD P3, P3, P4        ; sum += array[i]
+    ADDI P1, P1, +        ; array++
+    ADDI P2, P2, -        ; length--
+    JUMP ARRAY_SUM_LOOP
+ARRAY_SUM_END:
+    ADDI P1, P3, 0        ; Return sum in P1
+    RET
+

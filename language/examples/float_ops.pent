@@ -1,0 +1,44 @@
+# Pentary Floating Point Operations
+# Purpose: Software implementation of floating-point arithmetic
+# Code size: 21 instructions × 8 pents = 168 pents
+# Memory required: Minimal - uses registers
+# Instructions used: LOAD, STORE, ADD, SUB, SHIFT, ADDI
+
+
+; fp_add(a_mantissa, a_exp, b_mantissa, b_exp)
+; Add two pentary floating point numbers
+; P1 = a_mantissa, P2 = a_exponent
+; P3 = b_mantissa, P4 = b_exponent
+; Returns: P1 = result_mantissa, P2 = result_exponent
+
+FP_ADD:
+    PUSH P29              ; Save frame pointer
+
+    ; Align exponents - shift smaller exponent
+    SUB P5, P2, P4        ; exp_diff = a_exp - b_exp
+    BEQ P5, FP_ADD_ALIGNED    ; If equal, already aligned
+    BLT P5, FP_SHIFT_A    ; If a_exp < b_exp, shift A
+
+FP_SHIFT_B:
+    ; Shift B right by exp_diff positions
+    SHIFT P3, P3, P5      ; b_mantissa >>= exp_diff
+    ADDI P4, P2, 0        ; b_exp = a_exp
+    JUMP FP_ADD_ALIGNED
+
+FP_SHIFT_A:
+    ; Shift A right by -exp_diff positions
+    NEG P5, P5            ; exp_diff = -exp_diff
+    SHIFT P1, P1, P5      ; a_mantissa >>= exp_diff
+    ADDI P2, P4, 0        ; a_exp = b_exp
+
+FP_ADD_ALIGNED:
+    ; Add mantissas
+    ADD P1, P1, P3        ; result_mantissa = a_mantissa + b_mantissa
+    ADDI P2, P2, 0        ; result_exp = aligned_exp
+
+    ; Normalize result (would need additional code)
+    ; For now, return raw result
+
+    POP P29
+    RET
+

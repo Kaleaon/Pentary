@@ -1,0 +1,452 @@
+[
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 212,
+    "type": "performance_multiplier",
+    "text": "- Small models: **10\u00d7 faster** (Pentary vs TPU)",
+    "match": "10\u00d7 faster",
+    "context": "\n**Real-World Benchmarks:**\n- Small models: **10\u00d7 faster** (Pentary vs TPU)\n- Medium models: **10\u00d7 faster** (Pentary vs TPU)\n- Large models (Gemma 2B): **5\u00d7 faster** (Pentary vs TPU)",
+    "needs_validation": true
+  },
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 213,
+    "type": "performance_multiplier",
+    "text": "- Medium models: **10\u00d7 faster** (Pentary vs TPU)",
+    "match": "10\u00d7 faster",
+    "context": "**Real-World Benchmarks:**\n- Small models: **10\u00d7 faster** (Pentary vs TPU)\n- Medium models: **10\u00d7 faster** (Pentary vs TPU)\n- Large models (Gemma 2B): **5\u00d7 faster** (Pentary vs TPU)\n",
+    "needs_validation": true
+  },
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 214,
+    "type": "performance_multiplier",
+    "text": "- Large models (Gemma 2B): **5\u00d7 faster** (Pentary vs TPU)",
+    "match": "5\u00d7 faster",
+    "context": "- Small models: **10\u00d7 faster** (Pentary vs TPU)\n- Medium models: **10\u00d7 faster** (Pentary vs TPU)\n- Large models (Gemma 2B): **5\u00d7 faster** (Pentary vs TPU)\n\n**Status**: \u2705 Complete - Comprehensive comparison analysis",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_titans_miras_implementation.md",
+    "line": 40,
+    "type": "performance_multiplier",
+    "text": "- **5\u00d7 better scaling** to extreme long contexts (10M+ tokens)",
+    "match": "5\u00d7 better",
+    "context": "- **20\u00d7 lower power** for surprise metric computation\n- **Native sparsity support** for selective memory updates\n- **5\u00d7 better scaling** to extreme long contexts (10M+ tokens)\n\n**Performance Projections:**",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_graphics_processor.md",
+    "line": 582,
+    "type": "comparison",
+    "text": "### 12.1 vs NVIDIA RTX 4090",
+    "match": "vs NVIDIA RTX 4090",
+    "context": "## 12. Comparison with Traditional GPUs\n\n### 12.1 vs NVIDIA RTX 4090\n\n| Metric | RTX 4090 | Pentary GPU | Winner |",
+    "needs_validation": true
+  },
+  {
+    "file": "research/GRAPHICS_RESEARCH_OVERVIEW.md",
+    "line": 139,
+    "type": "comparison",
+    "text": "### vs NVIDIA RTX 4090",
+    "match": "vs NVIDIA RTX 4090",
+    "context": "## Comparison with Traditional GPUs\n\n### vs NVIDIA RTX 4090\n\n| Metric | RTX 4090 | Pentary | Winner |",
+    "needs_validation": true
+  },
+  {
+    "file": "research/GRAPHICS_PROCESSOR_SUMMARY.md",
+    "line": 151,
+    "type": "comparison",
+    "text": "### vs NVIDIA RTX 4090",
+    "match": "vs NVIDIA RTX 4090",
+    "context": "## Comparison with Traditional GPUs\n\n### vs NVIDIA RTX 4090\n\n| Metric | RTX 4090 | Pentary | Winner |",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_titans_miras_implementation.md",
+    "line": 991,
+    "type": "cost",
+    "text": "| **Total BOM** | $1,900 |",
+    "match": "$1,900",
+    "context": "| **Assembly** | $200 |\n| **Testing** | $100 |\n| **Total BOM** | $1,900 |\n| **Margin (30%)** | $570 |\n| **Retail Price** | $2,470 |",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_titans_tech_specs.md",
+    "line": 217,
+    "type": "cost",
+    "text": "| **Volume Discount (10+)** | $900 |",
+    "match": "$900",
+    "context": "|------|-------|\n| **Retail Price** | $1,000 |\n| **Volume Discount (10+)** | $900 |\n| **Academic Discount** | $800 |\n| **Availability** | Q2 2027 (projected) |",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_quantum_computing_integration.md",
+    "line": 68,
+    "type": "cost",
+    "text": "- $1.3 billion in 2024",
+    "match": "$1.3",
+    "context": "\n**Quantum Computing Market:**\n- $1.3 billion in 2024\n- $7.6 billion by 2030 (34.6% CAGR)\n- $125 billion by 2040",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_quantum_computing_integration.md",
+    "line": 69,
+    "type": "cost",
+    "text": "- $7.6 billion by 2030 (34.6% CAGR)",
+    "match": "$7.6",
+    "context": "**Quantum Computing Market:**\n- $1.3 billion in 2024\n- $7.6 billion by 2030 (34.6% CAGR)\n- $125 billion by 2040\n",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_quantum_computing_integration.md",
+    "line": 70,
+    "type": "cost",
+    "text": "- $125 billion by 2040",
+    "match": "$125",
+    "context": "- $1.3 billion in 2024\n- $7.6 billion by 2030 (34.6% CAGR)\n- $125 billion by 2040\n\n**Target Applications:**",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_quantum_computing_integration.md",
+    "line": 73,
+    "type": "cost",
+    "text": "- Drug discovery: $70 billion market",
+    "match": "$70",
+    "context": "\n**Target Applications:**\n- Drug discovery: $70 billion market\n- Materials science: $50 billion market\n- Financial optimization: $30 billion market",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_quantum_computing_integration.md",
+    "line": 74,
+    "type": "cost",
+    "text": "- Materials science: $50 billion market",
+    "match": "$50",
+    "context": "**Target Applications:**\n- Drug discovery: $70 billion market\n- Materials science: $50 billion market\n- Financial optimization: $30 billion market\n- Cryptography: $25 billion market",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_quantum_computing_integration.md",
+    "line": 75,
+    "type": "cost",
+    "text": "- Financial optimization: $30 billion market",
+    "match": "$30",
+    "context": "- Drug discovery: $70 billion market\n- Materials science: $50 billion market\n- Financial optimization: $30 billion market\n- Cryptography: $25 billion market\n- AI/ML acceleration: $200 billion market",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_quantum_computing_integration.md",
+    "line": 76,
+    "type": "cost",
+    "text": "- Cryptography: $25 billion market",
+    "match": "$25",
+    "context": "- Materials science: $50 billion market\n- Financial optimization: $30 billion market\n- Cryptography: $25 billion market\n- AI/ML acceleration: $200 billion market\n",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_quantum_computing_integration.md",
+    "line": 77,
+    "type": "cost",
+    "text": "- AI/ML acceleration: $200 billion market",
+    "match": "$200",
+    "context": "- Financial optimization: $30 billion market\n- Cryptography: $25 billion market\n- AI/ML acceleration: $200 billion market\n\n---",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_quantum_computing_integration.md",
+    "line": 1121,
+    "type": "cost",
+    "text": "- Drug discovery: $70 billion market",
+    "match": "$70",
+    "context": "\n**Market Impact:**\n- Drug discovery: $70 billion market\n- 50% reduction in development time\n- 30% reduction in development cost",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_quantum_computing_integration.md",
+    "line": 1148,
+    "type": "cost",
+    "text": "- Materials science: $50 billion market",
+    "match": "$50",
+    "context": "\n**Market Impact:**\n- Materials science: $50 billion market\n- 40% faster materials discovery\n- 25% better performance",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_quantum_computing_integration.md",
+    "line": 1175,
+    "type": "cost",
+    "text": "- Financial optimization: $30 billion market",
+    "match": "$30",
+    "context": "\n**Market Impact:**\n- Financial optimization: $30 billion market\n- Better risk-adjusted returns\n- Faster trading decisions",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_quantum_computing_integration.md",
+    "line": 1202,
+    "type": "cost",
+    "text": "- Cryptography: $25 billion market",
+    "match": "$25",
+    "context": "\n**Market Impact:**\n- Cryptography: $25 billion market\n- Quantum-safe infrastructure\n- Secure communications",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_quantum_computing_integration.md",
+    "line": 1229,
+    "type": "cost",
+    "text": "- AI/ML: $200 billion market",
+    "match": "$200",
+    "context": "\n**Market Impact:**\n- AI/ML: $200 billion market\n- Quantum advantage in ML\n- New AI capabilities",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_quantum_computing_integration.md",
+    "line": 1363,
+    "type": "cost",
+    "text": "- $7.6 billion quantum computing market by 2030",
+    "match": "$7.6",
+    "context": "\n**Market Opportunity:**\n- $7.6 billion quantum computing market by 2030\n- $375 billion in application markets (drug discovery, materials, finance, crypto, AI)\n- First-mover advantage in pentary quantum systems",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_quantum_computing_integration.md",
+    "line": 1364,
+    "type": "cost",
+    "text": "- $375 billion in application markets (drug discovery, materials, finance, crypto, AI)",
+    "match": "$375",
+    "context": "**Market Opportunity:**\n- $7.6 billion quantum computing market by 2030\n- $375 billion in application markets (drug discovery, materials, finance, crypto, AI)\n- First-mover advantage in pentary quantum systems\n- Strong IP position",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_titans_miras_implementation.md",
+    "line": 1444,
+    "type": "cost",
+    "text": "- PCIe cards: 1,000 units @ $2,500 = $2.5M",
+    "match": "$2,500",
+    "context": "\n**Year 1 (Months 25-36):**\n- PCIe cards: 1,000 units @ $2,500 = $2.5M\n- USB accelerators: 5,000 units @ $1,000 = $5M\n- **Total Revenue:** $7.5M",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_titans_miras_implementation.md",
+    "line": 1444,
+    "type": "cost",
+    "text": "- PCIe cards: 1,000 units @ $2,500 = $2.5M",
+    "match": "$2.5",
+    "context": "\n**Year 1 (Months 25-36):**\n- PCIe cards: 1,000 units @ $2,500 = $2.5M\n- USB accelerators: 5,000 units @ $1,000 = $5M\n- **Total Revenue:** $7.5M",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_blockchain_distributed_systems.md",
+    "line": 1307,
+    "type": "cost",
+    "text": "- $67 billion blockchain technology market",
+    "match": "$67",
+    "context": "**Market Opportunity:**\n- $3 trillion cryptocurrency market\n- $67 billion blockchain technology market\n- Growing demand for green solutions\n- Regulatory pressure for efficiency",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_robotics_autonomous_systems.md",
+    "line": 40,
+    "type": "cost",
+    "text": "- Industrial robotics: $200 billion market by 2030",
+    "match": "$200",
+    "context": "**Market Demand:**\n- Autonomous vehicles: $2.1 trillion market by 2030\n- Industrial robotics: $200 billion market by 2030\n- Service robots: $100 billion market by 2030\n- Drones and UAVs: $50 billion market by 2030",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_robotics_autonomous_systems.md",
+    "line": 41,
+    "type": "cost",
+    "text": "- Service robots: $100 billion market by 2030",
+    "match": "$100",
+    "context": "- Autonomous vehicles: $2.1 trillion market by 2030\n- Industrial robotics: $200 billion market by 2030\n- Service robots: $100 billion market by 2030\n- Drones and UAVs: $50 billion market by 2030\n",
+    "needs_validation": true
+  },
+  {
+    "file": "research/pentary_robotics_autonomous_systems.md",
+    "line": 42,
+    "type": "cost",
+    "text": "- Drones and UAVs: $50 billion market by 2030",
+    "match": "$50",
+    "context": "- Industrial robotics: $200 billion market by 2030\n- Service robots: $100 billion market by 2030\n- Drones and UAVs: $50 billion market by 2030\n\n### Pentary Solution",
+    "needs_validation": true
+  },
+  {
+    "file": "BUSINESS_STRATEGY_MARKET_ANALYSIS.md",
+    "line": 643,
+    "type": "cost",
+    "text": "| **Hardware Engineers** | 5 | $180K | $900K |",
+    "match": "$900",
+    "context": "| **CEO/Founder** | 1 | $200K | $200K |\n| **CTO** | 1 | $250K | $250K |\n| **Hardware Engineers** | 5 | $180K | $900K |\n| **Software Engineers** | 3 | $160K | $480K |\n| **Verification Engineers** | 2 | $170K | $340K |",
+    "needs_validation": true
+  },
+  {
+    "file": "FPGA_PROTOTYPING_GUIDE.md",
+    "line": 410,
+    "type": "cost",
+    "text": "- **Cost**: $6,995",
+    "match": "$6,995",
+    "context": "- **Memory**: 4GB DDR4\n- **Interfaces**: PCIe Gen3 x16, Ethernet, USB\n- **Cost**: $6,995\n- **Availability**: In stock\n",
+    "needs_validation": true
+  },
+  {
+    "file": "FPGA_PROTOTYPING_GUIDE.md",
+    "line": 417,
+    "type": "cost",
+    "text": "- **Cost**: $8,995",
+    "match": "$8,995",
+    "context": "- **Memory**: 8GB HBM2\n- **Interfaces**: PCIe Gen3 x16, 100G Ethernet\n- **Cost**: $8,995\n- **Advantages**: Data center ready, high bandwidth memory\n",
+    "needs_validation": true
+  },
+  {
+    "file": "FPGA_PROTOTYPING_GUIDE.md",
+    "line": 426,
+    "type": "cost",
+    "text": "- **Cost**: $4,995",
+    "match": "$4,995",
+    "context": "- **Memory**: 4GB DDR4\n- **Interfaces**: PCIe Gen3 x16, Ethernet\n- **Cost**: $4,995\n- **Availability**: In stock\n",
+    "needs_validation": true
+  },
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 15,
+    "type": "performance_multiplier",
+    "text": "- **3-5\u00d7 speedup** for matrix-heavy simulations",
+    "match": "5\u00d7 speedup",
+    "context": "\n**Key Findings:**\n- **3-5\u00d7 speedup** for matrix-heavy simulations\n- **5-7\u00d7 energy efficiency** for HPC workloads\n- **Potential for exascale computing** at lower power",
+    "needs_validation": true
+  },
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 15,
+    "type": "range",
+    "text": "- **3-5\u00d7 speedup** for matrix-heavy simulations",
+    "match": "3-5\u00d7 speedup",
+    "context": "\n**Key Findings:**\n- **3-5\u00d7 speedup** for matrix-heavy simulations\n- **5-7\u00d7 energy efficiency** for HPC workloads\n- **Potential for exascale computing** at lower power",
+    "needs_validation": true
+  },
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 35,
+    "type": "performance_multiplier",
+    "text": "- **2-5\u00d7 improvement** in side-channel resistance",
+    "match": "5\u00d7 improvement",
+    "context": "- **2-3\u00d7 speedup** for lattice-based cryptography\n- **1.5-2\u00d7 speedup** for traditional crypto\n- **2-5\u00d7 improvement** in side-channel resistance\n\n**Applications:**",
+    "needs_validation": true
+  },
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 35,
+    "type": "range",
+    "text": "- **2-5\u00d7 improvement** in side-channel resistance",
+    "match": "2-5\u00d7 improvement",
+    "context": "- **2-3\u00d7 speedup** for lattice-based cryptography\n- **1.5-2\u00d7 speedup** for traditional crypto\n- **2-5\u00d7 improvement** in side-channel resistance\n\n**Applications:**",
+    "needs_validation": true
+  },
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 38,
+    "type": "performance_multiplier",
+    "text": "- Post-Quantum Crypto (Kyber): **2.5\u00d7 speedup**",
+    "match": "2.5\u00d7 speedup",
+    "context": "\n**Applications:**\n- Post-Quantum Crypto (Kyber): **2.5\u00d7 speedup**\n- Homomorphic Encryption: **2.5-3.5\u00d7 speedup**\n- Side-Channel Resistance: **2-5\u00d7 improvement**",
+    "needs_validation": true
+  },
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 39,
+    "type": "performance_multiplier",
+    "text": "- Homomorphic Encryption: **2.5-3.5\u00d7 speedup**",
+    "match": "3.5\u00d7 speedup",
+    "context": "**Applications:**\n- Post-Quantum Crypto (Kyber): **2.5\u00d7 speedup**\n- Homomorphic Encryption: **2.5-3.5\u00d7 speedup**\n- Side-Channel Resistance: **2-5\u00d7 improvement**\n- Traditional Crypto: **1.5-2\u00d7 speedup**",
+    "needs_validation": true
+  },
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 39,
+    "type": "range",
+    "text": "- Homomorphic Encryption: **2.5-3.5\u00d7 speedup**",
+    "match": "2.5-3.5\u00d7 speedup",
+    "context": "**Applications:**\n- Post-Quantum Crypto (Kyber): **2.5\u00d7 speedup**\n- Homomorphic Encryption: **2.5-3.5\u00d7 speedup**\n- Side-Channel Resistance: **2-5\u00d7 improvement**\n- Traditional Crypto: **1.5-2\u00d7 speedup**",
+    "needs_validation": true
+  },
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 40,
+    "type": "performance_multiplier",
+    "text": "- Side-Channel Resistance: **2-5\u00d7 improvement**",
+    "match": "5\u00d7 improvement",
+    "context": "- Post-Quantum Crypto (Kyber): **2.5\u00d7 speedup**\n- Homomorphic Encryption: **2.5-3.5\u00d7 speedup**\n- Side-Channel Resistance: **2-5\u00d7 improvement**\n- Traditional Crypto: **1.5-2\u00d7 speedup**\n",
+    "needs_validation": true
+  },
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 40,
+    "type": "range",
+    "text": "- Side-Channel Resistance: **2-5\u00d7 improvement**",
+    "match": "2-5\u00d7 improvement",
+    "context": "- Post-Quantum Crypto (Kyber): **2.5\u00d7 speedup**\n- Homomorphic Encryption: **2.5-3.5\u00d7 speedup**\n- Side-Channel Resistance: **2-5\u00d7 improvement**\n- Traditional Crypto: **1.5-2\u00d7 speedup**\n",
+    "needs_validation": true
+  },
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 52,
+    "type": "range",
+    "text": "- **3-5\u00d7 energy efficiency** for mobile DSP",
+    "match": "3-5\u00d7 energy",
+    "context": "**Key Findings:**\n- **2-4\u00d7 speedup** for matrix-based processing\n- **3-5\u00d7 energy efficiency** for mobile DSP\n- **Real-time processing** at lower power\n",
+    "needs_validation": true
+  },
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 57,
+    "type": "performance_multiplier",
+    "text": "- Image Processing: **2-2.5\u00d7 speedup**",
+    "match": "2.5\u00d7 speedup",
+    "context": "**Applications:**\n- Audio Processing: **2-3\u00d7 speedup**, **2.5\u00d7 efficiency**\n- Image Processing: **2-2.5\u00d7 speedup**\n- Communications (5G): **2-3\u00d7 speedup**, **3.3\u00d7 efficiency**\n- Biomedical Signals: **2-3\u00d7 speedup**, **4\u00d7 efficiency**",
+    "needs_validation": true
+  },
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 57,
+    "type": "range",
+    "text": "- Image Processing: **2-2.5\u00d7 speedup**",
+    "match": "2-2.5\u00d7 speedup",
+    "context": "**Applications:**\n- Audio Processing: **2-3\u00d7 speedup**, **2.5\u00d7 efficiency**\n- Image Processing: **2-2.5\u00d7 speedup**\n- Communications (5G): **2-3\u00d7 speedup**, **3.3\u00d7 efficiency**\n- Biomedical Signals: **2-3\u00d7 speedup**, **4\u00d7 efficiency**",
+    "needs_validation": true
+  },
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 69,
+    "type": "performance_multiplier",
+    "text": "- **3-5\u00d7 speedup** for sparse graph operations",
+    "match": "5\u00d7 speedup",
+    "context": "\n**Key Findings:**\n- **3-5\u00d7 speedup** for sparse graph operations\n- **2-3\u00d7 speedup** for database queries\n- **Memory efficiency** for large graphs",
+    "needs_validation": true
+  },
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 69,
+    "type": "range",
+    "text": "- **3-5\u00d7 speedup** for sparse graph operations",
+    "match": "3-5\u00d7 speedup",
+    "context": "\n**Key Findings:**\n- **3-5\u00d7 speedup** for sparse graph operations\n- **2-3\u00d7 speedup** for database queries\n- **Memory efficiency** for large graphs",
+    "needs_validation": true
+  },
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 74,
+    "type": "performance_multiplier",
+    "text": "- PageRank: **5\u00d7 speedup**",
+    "match": "5\u00d7 speedup",
+    "context": "\n**Applications:**\n- PageRank: **5\u00d7 speedup**\n- Graph Neural Networks: **4\u00d7 speedup**\n- Graph Traversal: **2.5\u00d7 speedup**",
+    "needs_validation": true
+  },
+  {
+    "file": "research/RESEARCH_COMPLETE_SUMMARY.md",
+    "line": 76,
+    "type": "performance_multiplier",
+    "text": "- Graph Traversal: **2.5\u00d7 speedup**",
+    "match": "2.5\u00d7 speedup",
+    "context": "- PageRank: **5\u00d7 speedup**\n- Graph Neural Networks: **4\u00d7 speedup**\n- Graph Traversal: **2.5\u00d7 speedup**\n- Database Queries: **1.5-2\u00d7 speedup**\n",
+    "needs_validation": true
+  }
+]

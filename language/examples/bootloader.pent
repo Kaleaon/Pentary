@@ -1,0 +1,30 @@
+# Pentary Bootloader
+# Purpose: Initialize processor state, set up stack, and jump to main program
+# Code size: 7 instructions × 8 pents = 56 pents
+# Memory required: Minimal - runs from ROM
+# Instructions used: ADDI, LOAD, STORE, JUMP
+
+
+; Pentary Bootloader
+; Initialize processor and jump to main program
+
+BOOT_START:
+    ; Initialize stack pointer (SP = P30) to top of memory
+    ; Stack starts at address 1000 (in decimal for clarity)
+    ADDI P30, P0, +000    ; SP = 1000 in pentary (=125 decimal)
+
+    ; Initialize frame pointer
+    ADDI P29, P30, 0      ; FP = SP
+
+    ; Clear status register
+    ADDI P1, P0, 0        ; Zero out P1
+
+    ; Set power mode to full power
+    ADDI P2, P0, ⊕        ; P2 = 2 (full power)
+
+    ; Jump to main program at address 100
+    ADDI P3, P0, +00      ; P3 = 100 (in pentary = 25 decimal)
+    JUMP P3               ; Jump to main program
+
+    HALT                  ; Should never reach here
+

@@ -1,0 +1,51 @@
+# Neural Network Inference Kernel
+# Purpose: Perform forward pass through a neural network layer using pentary hardware acceleration
+# Code size: 22 instructions × 8 pents = 176 pents
+# Memory required: Uses memristor crossbar for weight storage
+# Instructions used: MATVEC, RELU, QUANT, LOAD, STORE, ADDI
+
+
+; nn_layer(input_addr, weight_addr, output_addr, size)
+; P1 = input vector address
+; P2 = weight matrix address (in memristor crossbar)
+; P3 = output vector address
+; P4 = layer size
+
+NN_LAYER:
+    PUSH P29              ; Save frame pointer
+    ADDI P29, P30, 0      ; FP = SP
+
+    ; Matrix-vector multiply using memristor crossbar
+    MATVEC P1, P2, P4     ; Hardware accelerated: output = W × input
+
+    ; Apply ReLU activation
+    ADDI P5, P0, 0        ; index = 0
+NN_RELU_LOOP:
+    BEQ P5, P4, NN_RELU_END   ; If index == size, done
+    LOAD P6, P3, 0        ; Load output[i]
+    RELU P6, P6           ; output[i] = ReLU(output[i])
+    STORE P6, P3, 0       ; Store back
+    ADDI P3, P3, +        ; output++
+    ADDI P5, P5, +        ; index++
+    JUMP NN_RELU_LOOP
+
+NN_RELU_END:
+    POP P29               ; Restore frame pointer
+    RET
+
+; quantize_weights(addr, length)
+; Quantize floating-point weights to 5-level pentary
+; Input: P1 = weight array address, P2 = length
+QUANT_WEIGHTS:
+    ADDI P3, P0, 0        ; index = 0
+QUANT_LOOP:
+    BEQ P3, P2, QUANT_END ; If index == length, done
+    LOAD P4, P1, 0        ; Load weight[i]
+    QUANT P4, P4          ; Quantize to {-2, -1, 0, +1, +2}
+    STORE P4, P1, 0       ; Store quantized value
+    ADDI P1, P1, +        ; addr++
+    ADDI P3, P3, +        ; index++
+    JUMP QUANT_LOOP
+QUANT_END:
+    RET
+

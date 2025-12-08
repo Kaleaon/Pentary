@@ -1,0 +1,58 @@
+# Pentary Math Library
+# Purpose: Provide fundamental mathematical operations
+# Code size: 15 instructions × 8 pents = 120 pents
+# Memory required: None - pure functions
+# Instructions used: ADD, SUB, MUL, DIV, ABS, SIGN, MIN, MAX
+
+
+; Pentary Math Library Functions
+
+; abs(x) - Absolute value
+; Input: P1 = x
+; Output: P1 = |x|
+ABS_FUNC:
+    ABS P1, P1            ; P1 = |P1|
+    RET
+
+; sign(x) - Sign function
+; Input: P1 = x
+; Output: P1 = sign(x) ∈ {-2, -1, 0, +1, +2}
+SIGN_FUNC:
+    SIGN P1, P1           ; P1 = sign(P1)
+    RET
+
+; max(a, b) - Maximum of two values
+; Input: P1 = a, P2 = b
+; Output: P1 = max(a, b)
+MAX_FUNC:
+    MAX P1, P1, P2        ; P1 = max(P1, P2)
+    RET
+
+; min(a, b) - Minimum of two values
+; Input: P1 = a, P2 = b
+; Output: P1 = min(a, b)
+MIN_FUNC:
+    MIN P1, P1, P2        ; P1 = min(P1, P2)
+    RET
+
+; clamp(x, min, max) - Clamp value to range
+; Input: P1 = x, P2 = min, P3 = max
+; Output: P1 = clamped value
+CLAMP_FUNC:
+    CLAMP P1, P1, P2, P3  ; P1 = clamp(P1, P2, P3)
+    RET
+
+; multiply(a, b) - Multiply two values
+; Input: P1 = a, P2 = b
+; Output: P1 = a × b
+MUL_FUNC:
+    MUL P1, P1, P2        ; P1 = P1 × P2
+    RET
+
+; divide(a, b) - Divide two values
+; Input: P1 = a, P2 = b
+; Output: P1 = a ÷ b
+DIV_FUNC:
+    DIV P1, P1, P2        ; P1 = P1 ÷ P2
+    RET
+

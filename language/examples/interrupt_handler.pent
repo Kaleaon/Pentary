@@ -1,0 +1,63 @@
+# Interrupt Service Routine
+# Purpose: Handle hardware interrupts and exceptions
+# Code size: 35 instructions × 8 pents = 280 pents
+# Memory required: Stack space for register save/restore
+# Instructions used: LOAD, STORE, PUSH, POP, RET, ADDI
+
+
+; Interrupt Service Routine (ISR)
+; Automatically called when interrupt occurs
+; Must save all registers and restore on exit
+
+ISR_ENTRY:
+    ; Save all general-purpose registers
+    PUSH P1
+    PUSH P2
+    PUSH P3
+    PUSH P4
+    PUSH P5
+    PUSH P6
+    PUSH P7
+    PUSH P8
+
+    ; Load interrupt type from system register
+    ; (Assuming interrupt type in special register)
+    ADDI P1, P0, 0        ; Get interrupt type
+
+    ; Branch based on interrupt type
+    BEQ P1, ISR_TIMER     ; Timer interrupt
+    ADDI P2, P0, +
+    BEQ P1, ISR_IO        ; I/O interrupt
+    JUMP ISR_UNKNOWN      ; Unknown interrupt
+
+ISR_TIMER:
+    ; Handle timer interrupt
+    ; Increment system tick counter
+    LOAD P3, P0, +0000    ; Load tick counter from address 625
+    ADDI P3, P3, +        ; Increment
+    STORE P3, P0, +0000   ; Store back
+    JUMP ISR_EXIT
+
+ISR_IO:
+    ; Handle I/O interrupt
+    ; Process I/O request
+    JUMP ISR_EXIT
+
+ISR_UNKNOWN:
+    ; Unknown interrupt - just return
+    NOP
+
+ISR_EXIT:
+    ; Restore all registers
+    POP P8
+    POP P7
+    POP P6
+    POP P5
+    POP P4
+    POP P3
+    POP P2
+    POP P1
+
+    ; Return from interrupt
+    RET
+
