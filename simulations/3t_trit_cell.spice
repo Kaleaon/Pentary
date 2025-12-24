@@ -1,0 +1,156 @@
+* 3T Dynamic Trit Cell - SPICE Netlist
+* Pentary Processor Project
+* Technology: Skywater 130nm (adapted for Caravel Analogue)
+* Voltage Range: 0V to 3.3V (5 levels)
+
+.title 3T Pentary Trit Cell Simulation
+
+* Include Skywater 130nm models
+.include "sky130_fd_pr__nfet_01v8.pm3.spice"
+.include "sky130_fd_pr__pfet_01v8.pm3.spice"
+
+* Supply voltages
+.param VDD=3.3
+.param VSS=0
+
+* Pentary voltage levels
+.param VP2=3.3    ; +2 level
+.param VP1=2.5    ; +1 level
+.param V0=1.65    ; 0 level (mid-rail)
+.param VM1=0.8    ; -1 level
+.param VM2=0.0    ; -2 level
+
+* Timing parameters
+.param twrite=10n  ; Write pulse width
+.param tread=10n   ; Read pulse width
+.param tsetup=5n   ; Setup time
+.param thold=5n    ; Hold time
+
+* 3T Trit Cell Circuit
+* T1: Write transistor (NMOS)
+* T2: Storage transistor (PMOS) - gate capacitance
+* T3: Read transistor (NMOS) - source follower
+
+.subckt trit_cell_3t WL RL BL SL VDD VSS
+* WL = Word Line (write enable)
+* RL = Read Line (read enable)
+* BL = Bit Line (write data)
+* SL = Sense Line (read data)
+
+* T1: Write transistor (NMOS, W=0.5u L=0.18u)
+M1 Vstorage WL BL VSS sky130_fd_pr__nfet_01v8 W=0.5u L=0.18u
+
+* T2: Storage transistor (PMOS, W=2u L=0.18u)
+* Large W for high gate capacitance (~15fF)
+* Gate tied to VDD (always off, used only for capacitance)
+M2 VDD Vstorage VDD VDD sky130_fd_pr__pfet_01v8 W=2u L=0.18u
+
+* T3: Read transistor (NMOS, W=1u L=0.18u)
+* Source follower configuration
+M3 SL RL Vstorage VSS sky130_fd_pr__nfet_01v8 W=1u L=0.18u
+
+* Storage node capacitance (gate cap of T2 + parasitic)
+* Cgs of T2 ≈ W*L*Cox ≈ 2u*0.18u*8.6fF/um² ≈ 3.1fF
+* Cgd of T2 ≈ similar
+* Total ≈ 15fF (including parasitics)
+Cstorage Vstorage VSS 15f
+
+.ends trit_cell_3t
+
+* Instantiate the cell
+Xcell WL RL BL SL VDD VSS trit_cell_3t
+
+* Voltage sources
+Vdd VDD 0 DC {VDD}
+Vss VSS 0 DC 0
+
+* Word Line (WL) - Write enable
+VWL WL 0 PULSE(0 {VDD} {tsetup} 1n 1n {twrite} 100n)
+
+* Read Line (RL) - Read enable  
+VRL RL 0 PULSE(0 {VDD} 50n 1n 1n {tread} 100n)
+
+* Bit Line (BL) - Write data
+* Test sequence: Write +2, +1, 0, -1, -2
+VBL BL 0 PWL(
++ 0n {VP2}
++ 100n {VP1}
++ 200n {V0}
++ 300n {VM1}
++ 400n {VM2}
++ 500n {VP2}
++ )
+
+* Sense Line load (represents sense amplifier input)
+RSL SL 0 10k
+CSL SL 0 50f
+
+* Analysis commands
+
+* Transient analysis - Write and read operations
+.tran 0.1n 600n
+
+* DC analysis - Voltage transfer characteristics
+.dc VBL 0 {VDD} 0.01
+
+* AC analysis - Frequency response
+.ac dec 10 1 1G
+
+* Operating point analysis
+.op
+
+* Measurements
+
+* Measure write time (BL to Vstorage)
+.meas tran twrite_delay 
++ TRIG v(BL) VAL={VP2} RISE=1
++ TARG v(Vstorage) VAL={VP2*0.9} RISE=1
+
+* Measure read time (RL to SL)
+.meas tran tread_delay
++ TRIG v(RL) VAL={VDD/2} RISE=1
++ TARG v(SL) VAL={VP2*0.5} RISE=1
+
+* Measure storage node voltage levels
+.meas tran Vstorage_p2 FIND v(Vstorage) AT=20n
+.meas tran Vstorage_p1 FIND v(Vstorage) AT=120n
+.meas tran Vstorage_0 FIND v(Vstorage) AT=220n
+.meas tran Vstorage_m1 FIND v(Vstorage) AT=320n
+.meas tran Vstorage_m2 FIND v(Vstorage) AT=420n
+
+* Measure sense line voltage levels
+.meas tran SL_p2 FIND v(SL) AT=60n
+.meas tran SL_p1 FIND v(SL) AT=160n
+.meas tran SL_0 FIND v(SL) AT=260n
+.meas tran SL_m1 FIND v(SL) AT=360n
+.meas tran SL_m2 FIND v(SL) AT=460n
+
+* Measure leakage current (storage node)
+.meas tran Ileak AVG i(Cstorage) FROM=30n TO=40n
+
+* Measure write energy
+.meas tran Ewrite INTEG p(VBL) FROM=0n TO=15n
+
+* Measure read energy  
+.meas tran Eread INTEG p(VRL) FROM=50n TO=65n
+
+* Control statements
+.control
+run
+
+* Plot results
+plot v(BL) v(Vstorage) v(SL)
+plot v(WL) v(RL)
+
+* Print measurements
+print Vstorage_p2 Vstorage_p1 Vstorage_0 Vstorage_m1 Vstorage_m2
+print SL_p2 SL_p1 SL_0 SL_m1 SL_m2
+print twrite_delay tread_delay
+print Ileak Ewrite Eread
+
+* Save results
+write 3t_trit_cell_results.raw
+
+.endc
+
+.end

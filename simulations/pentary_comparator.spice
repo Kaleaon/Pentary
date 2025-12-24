@@ -1,0 +1,239 @@
+* Pentary Comparator - 5-Level Voltage Comparator
+* Compares two pentary voltages and outputs digital result
+* Technology: Skywater 130nm
+
+.title Pentary Comparator Simulation
+
+* Include Skywater 130nm models
+.include "sky130_fd_pr__nfet_01v8.pm3.spice"
+.include "sky130_fd_pr__pfet_01v8.pm3.spice"
+
+* Supply voltages
+.param VDD=3.3
+.param VSS=0
+
+* Pentary voltage levels
+.param VP2=3.3
+.param VP1=2.5
+.param V0=1.65
+.param VM1=0.8
+.param VM2=0.0
+
+* Pentary Comparator Circuit
+* Differential amplifier with high gain
+* Outputs: GT (A>B), EQ (A==B), LT (A<B)
+
+.subckt pentary_comparator A B GT EQ LT VDD VSS
+* A, B: Input voltages (pentary levels)
+* GT: A > B (digital output)
+* EQ: A == B (digital output)
+* LT: A < B (digital output)
+
+* Differential pair (input stage)
+* High gain for sharp transition
+M1 Vdiff A Vtail VSS sky130_fd_pr__nfet_01v8 W=10u L=0.5u
+M2 Vdiff_inv B Vtail VSS sky130_fd_pr__nfet_01v8 W=10u L=0.5u
+
+* Tail current source
+M3 Vtail Vbias VSS VSS sky130_fd_pr__nfet_01v8 W=5u L=1u
+Vbias Vbias 0 DC 1.0
+
+* Active load (current mirror)
+M4 Vdiff Vdiff VDD VDD sky130_fd_pr__pfet_01v8 W=10u L=0.5u
+M5 Vdiff_inv Vdiff VDD VDD sky130_fd_pr__pfet_01v8 W=10u L=0.5u
+
+* Second stage amplifier (increase gain)
+M6 Vout1 Vdiff VDD VDD sky130_fd_pr__pfet_01v8 W=20u L=0.5u
+M7 Vout1 Vout1 VSS VSS sky130_fd_pr__nfet_01v8 W=10u L=0.5u
+
+* Output buffer and logic
+* GT output: A > B
+M8 GT_pre Vout1 VDD VDD sky130_fd_pr__pfet_01v8 W=5u L=0.5u
+M9 GT_pre Vout1 VSS VSS sky130_fd_pr__nfet_01v8 W=2.5u L=0.5u
+
+* Inverter for GT
+M10 GT GT_pre VDD VDD sky130_fd_pr__pfet_01v8 W=5u L=0.5u
+M11 GT GT_pre VSS VSS sky130_fd_pr__nfet_01v8 W=2.5u L=0.5u
+
+* LT output: A < B (inverse of GT)
+M12 LT GT VDD VDD sky130_fd_pr__pfet_01v8 W=5u L=0.5u
+M13 LT GT VSS VSS sky130_fd_pr__nfet_01v8 W=2.5u L=0.5u
+
+* EQ output: A == B (window comparator)
+* Detect when |A-B| < threshold
+Xwindow A B EQ VDD VSS window_comparator
+
+* Load capacitors
+CGT GT 0 10f
+CLT LT 0 10f
+CEQ EQ 0 10f
+
+.ends pentary_comparator
+
+* Window comparator for equality detection
+.subckt window_comparator A B EQ VDD VSS
+* Detects when |A-B| < 0.2V (within noise margin)
+
+* Upper threshold comparator (A-B < +0.2V)
+Xupper A Bplus upper VDD VSS simple_comparator
+Voffset_plus Bplus B DC 0.2
+
+* Lower threshold comparator (A-B > -0.2V)
+Xlower A Bminus lower VDD VSS simple_comparator
+Voffset_minus Bminus B DC -0.2
+
+* AND gate: EQ = upper AND NOT(lower)
+* If both conditions met, A ≈ B
+M1 EQ_pre upper VDD VDD sky130_fd_pr__pfet_01v8 W=5u L=0.5u
+M2 EQ_pre lower_inv VSS VSS sky130_fd_pr__nfet_01v8 W=2.5u L=0.5u
+
+* Inverter for lower
+M3 lower_inv lower VDD VDD sky130_fd_pr__pfet_01v8 W=5u L=0.5u
+M4 lower_inv lower VSS VSS sky130_fd_pr__nfet_01v8 W=2.5u L=0.5u
+
+* Output buffer
+M5 EQ EQ_pre VDD VDD sky130_fd_pr__pfet_01v8 W=5u L=0.5u
+M6 EQ EQ_pre VSS VSS sky130_fd_pr__nfet_01v8 W=2.5u L=0.5u
+
+.ends window_comparator
+
+* Simple comparator subcircuit
+.subckt simple_comparator A B OUT VDD VSS
+* Differential pair
+M1 Vdiff A Vtail VSS sky130_fd_pr__nfet_01v8 W=5u L=0.5u
+M2 Vdiff_inv B Vtail VSS sky130_fd_pr__nfet_01v8 W=5u L=0.5u
+
+* Tail current
+M3 Vtail Vbias VSS VSS sky130_fd_pr__nfet_01v8 W=2.5u L=1u
+Vbias_local Vbias 0 DC 1.0
+
+* Load
+M4 Vdiff Vdiff VDD VDD sky130_fd_pr__pfet_01v8 W=5u L=0.5u
+M5 Vdiff_inv Vdiff VDD VDD sky130_fd_pr__pfet_01v8 W=5u L=0.5u
+
+* Output stage
+M6 OUT Vdiff_inv VDD VDD sky130_fd_pr__pfet_01v8 W=5u L=0.5u
+M7 OUT Vdiff_inv VSS VSS sky130_fd_pr__nfet_01v8 W=2.5u L=0.5u
+
+.ends simple_comparator
+
+* Test circuit
+Vdd VDD 0 DC {VDD}
+Vss VSS 0 DC 0
+
+* Instantiate comparator
+Xcomp A B GT EQ LT VDD VSS pentary_comparator
+
+* Input A - sweep through all pentary levels
+VA A 0 PWL(
++ 0n {VM2}
++ 100n {VM1}
++ 200n {V0}
++ 300n {VP1}
++ 400n {VP2}
++ 500n {VM2}
++ )
+
+* Input B - fixed at V0 (mid-level)
+VB B 0 DC {V0}
+
+* Load resistors
+RGT GT 0 10k
+RLT LT 0 10k
+REQ EQ 0 10k
+
+* Analysis commands
+
+* Transient analysis
+.tran 0.1n 600n
+
+* DC sweep - transfer characteristics
+.dc VA 0 {VDD} 0.01 VB 0 {VDD} 0.825
+
+* Measurements
+
+* Measure propagation delay (A to GT)
+.meas tran tpd_rise
++ TRIG v(A) VAL={V0} RISE=1
++ TARG v(GT) VAL={VDD/2} RISE=1
+
+.meas tran tpd_fall
++ TRIG v(A) VAL={V0} FALL=1
++ TARG v(GT) VAL={VDD/2} FALL=1
+
+* Measure output levels
+.meas tran GT_high MAX v(GT) FROM=350n TO=450n
+.meas tran GT_low MIN v(GT) FROM=50n TO=150n
+.meas tran LT_high MAX v(LT) FROM=50n TO=150n
+.meas tran LT_low MIN v(LT) FROM=350n TO=450n
+.meas tran EQ_high MAX v(EQ) FROM=200n TO=250n
+
+* Measure transition points
+.meas tran A_at_GT_transition WHEN v(GT)={VDD/2} RISE=1
+.meas tran A_at_LT_transition WHEN v(LT)={VDD/2} FALL=1
+
+* Measure power consumption
+.meas tran Pavg AVG p(Vdd) FROM=0n TO=600n
+
+* Measure gain (dV_out/dV_in)
+.meas dc gain DERIV v(GT) AT={V0}
+
+* Control statements
+.control
+run
+
+* Plot input and outputs
+plot v(A) v(B)
+plot v(GT) v(EQ) v(LT)
+
+* Plot transfer characteristics
+plot v(GT) vs v(A)
+plot v(LT) vs v(A)
+plot v(EQ) vs v(A)
+
+* Print measurements
+print tpd_rise tpd_fall
+print GT_high GT_low LT_high LT_low EQ_high
+print A_at_GT_transition A_at_LT_transition
+print Pavg gain
+
+* Verify logic correctness
+echo "=== Logic Verification ==="
+echo "When A < B (A=VM2, B=V0):"
+echo "  GT should be LOW, LT should be HIGH, EQ should be LOW"
+echo "When A = B (A=V0, B=V0):"
+echo "  GT should be LOW, LT should be LOW, EQ should be HIGH"
+echo "When A > B (A=VP2, B=V0):"
+echo "  GT should be HIGH, LT should be LOW, EQ should be LOW"
+
+* Save results
+write pentary_comparator_results.raw
+
+.endc
+
+* Test all combinations
+.param test_case=0
+
+.if (test_case==1)
+  * Test case 1: A=VM2, B=V0 (A < B)
+  .param VA_val={VM2}
+  .param VB_val={V0}
+.elseif (test_case==2)
+  * Test case 2: A=V0, B=V0 (A == B)
+  .param VA_val={V0}
+  .param VB_val={V0}
+.elseif (test_case==3)
+  * Test case 3: A=VP2, B=V0 (A > B)
+  .param VA_val={VP2}
+  .param VB_val={V0}
+.elseif (test_case==4)
+  * Test case 4: A=VP1, B=VP1 (A == B)
+  .param VA_val={VP1}
+  .param VB_val={VP1}
+.elseif (test_case==5)
+  * Test case 5: A=VM1, B=VM2 (A > B)
+  .param VA_val={VM1}
+  .param VB_val={VM2}
+.endif
+
+.end

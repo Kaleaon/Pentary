@@ -1,0 +1,198 @@
+* Voltage Reference Ladder for Pentary Levels
+* Generates 5 voltage levels from 3.3V supply
+* For Caravel Analogue implementation
+
+.title Pentary Voltage Reference Ladder
+
+* Include Skywater 130nm models
+.include "sky130_fd_pr__res_high_po.pm3.spice"
+
+* Supply voltage
+.param VDD=3.3
+.param VSS=0
+
+* Target voltage levels
+.param VP2_target=3.3    ; +2 level
+.param VP1_target=2.5    ; +1 level
+.param V0_target=1.65    ; 0 level (mid-rail)
+.param VM1_target=0.8    ; -1 level
+.param VM2_target=0.0    ; -2 level
+
+* Resistor ladder design
+* Total voltage drop: 3.3V
+* 4 equal resistors for 5 levels
+* Spacing: 0.825V between levels
+
+* Resistor values (10kΩ each for low power)
+.param R=10k
+
+* Voltage reference ladder circuit
+Vdd VDD 0 DC {VDD}
+Vss VSS 0 DC 0
+
+* Resistor ladder
+* VDD (3.3V) to VP2 (3.3V) - no resistor needed
+* VP2 to VP1: 0.8V drop
+R1 VDD VP1 {R*0.97}
+
+* VP1 to V0: 0.85V drop
+R2 VP1 V0 {R*1.03}
+
+* V0 to VM1: 0.85V drop
+R3 V0 VM1 {R*1.03}
+
+* VM1 to VM2: 0.8V drop
+R4 VM1 VSS {R*0.97}
+
+* VP2 is directly connected to VDD
+.param VP2=VDD
+
+* Buffer amplifiers for each reference voltage
+* Using simple source followers to provide drive capability
+
+* VP2 buffer (direct from VDD)
+XBufP2 VDD VREF_P2 VDD VSS voltage_buffer
+
+* VP1 buffer
+XBufP1 VP1 VREF_P1 VDD VSS voltage_buffer
+
+* V0 buffer
+XBuf0 V0 VREF_0 VDD VSS voltage_buffer
+
+* VM1 buffer
+XBufM1 VM1 VREF_M1 VDD VSS voltage_buffer
+
+* VM2 buffer (direct from VSS)
+XBufM2 VSS VREF_M2 VDD VSS voltage_buffer
+
+* Voltage buffer subcircuit (source follower)
+.subckt voltage_buffer VIN VOUT VDD VSS
+* Simple NMOS source follower
+M1 VDD VIN VOUT VSS sky130_fd_pr__nfet_01v8 W=10u L=0.5u
+Rbias VOUT VSS 100k
+.ends voltage_buffer
+
+* Load capacitors (representing distribution network)
+CLOAD_P2 VREF_P2 0 100p
+CLOAD_P1 VREF_P1 0 100p
+CLOAD_0 VREF_0 0 100p
+CLOAD_M1 VREF_M1 0 100p
+CLOAD_M2 VREF_M2 0 100p
+
+* Load resistors (representing current draw)
+RLOAD_P2 VREF_P2 0 1Meg
+RLOAD_P1 VREF_P1 0 1Meg
+RLOAD_0 VREF_0 0 1Meg
+RLOAD_M1 VREF_M1 0 1Meg
+RLOAD_M2 VREF_M2 0 1Meg
+
+* Analysis commands
+
+* DC operating point
+.op
+
+* DC sweep to verify voltage levels
+.dc VDD 3.0 3.6 0.01
+
+* Transient analysis (startup)
+.tran 0.1n 1u
+
+* AC analysis (PSRR - Power Supply Rejection Ratio)
+.ac dec 10 1 100Meg
+
+* Temperature sweep
+.dc temp -40 125 5
+
+* Measurements
+
+* Measure voltage levels at nominal conditions
+.meas dc VP2_actual FIND v(VREF_P2) AT=3.3
+.meas dc VP1_actual FIND v(VREF_P1) AT=3.3
+.meas dc V0_actual FIND v(VREF_0) AT=3.3
+.meas dc VM1_actual FIND v(VREF_M1) AT=3.3
+.meas dc VM2_actual FIND v(VREF_M2) AT=3.3
+
+* Measure voltage spacing
+.meas dc spacing_p2_p1 PARAM='VP2_actual-VP1_actual'
+.meas dc spacing_p1_0 PARAM='VP1_actual-V0_actual'
+.meas dc spacing_0_m1 PARAM='V0_actual-VM1_actual'
+.meas dc spacing_m1_m2 PARAM='VM1_actual-VM2_actual'
+
+* Measure errors from target
+.meas dc error_p2 PARAM='abs(VP2_actual-{VP2_target})'
+.meas dc error_p1 PARAM='abs(VP1_actual-{VP1_target})'
+.meas dc error_0 PARAM='abs(V0_actual-{V0_target})'
+.meas dc error_m1 PARAM='abs(VM1_actual-{VM1_target})'
+.meas dc error_m2 PARAM='abs(VM2_actual-{VM2_target})'
+
+* Measure total current consumption
+.meas dc Itotal FIND i(Vdd) AT=3.3
+
+* Measure power consumption
+.meas dc Ptotal PARAM='Itotal*3.3'
+
+* Measure line regulation (VDD variation)
+.meas dc VP1_at_3.0V FIND v(VREF_P1) WHEN v(VDD)=3.0
+.meas dc VP1_at_3.6V FIND v(VREF_P1) WHEN v(VDD)=3.6
+.meas dc line_reg PARAM='(VP1_at_3.6V-VP1_at_3.0V)/(3.6-3.0)'
+
+* Measure temperature coefficient
+.meas dc VP1_at_m40C FIND v(VREF_P1) WHEN temp=-40
+.meas dc VP1_at_125C FIND v(VREF_P1) WHEN temp=125
+.meas dc temp_coeff PARAM='(VP1_at_125C-VP1_at_m40C)/(125-(-40))'
+
+* Control statements
+.control
+run
+
+* Plot voltage levels
+plot v(VREF_P2) v(VREF_P1) v(VREF_0) v(VREF_M1) v(VREF_M2)
+
+* Plot ladder voltages
+plot v(VDD) v(VP1) v(V0) v(VM1) v(VSS)
+
+* Print measurements
+print VP2_actual VP1_actual V0_actual VM1_actual VM2_actual
+print spacing_p2_p1 spacing_p1_0 spacing_0_m1 spacing_m1_m2
+print error_p2 error_p1 error_0 error_m1 error_m2
+print Itotal Ptotal
+print line_reg temp_coeff
+
+* Calculate and print specifications
+let avg_spacing = (spacing_p2_p1 + spacing_p1_0 + spacing_0_m1 + spacing_m1_m2)/4
+let max_error = maximum(error_p2, error_p1, error_0, error_m1, error_m2)
+let noise_margin = avg_spacing * 0.4
+
+print avg_spacing max_error noise_margin
+
+echo "=== Voltage Reference Ladder Specifications ==="
+echo "Average Spacing: " avg_spacing " V"
+echo "Maximum Error: " max_error " V"
+echo "Noise Margin (40%): " noise_margin " V"
+echo "Total Current: " Itotal " A"
+echo "Total Power: " Ptotal " W"
+echo "Line Regulation: " line_reg " V/V"
+echo "Temp Coefficient: " temp_coeff " V/°C"
+
+* Save results
+write voltage_reference_results.raw
+
+.endc
+
+* Corner analysis
+.param corner=0
+.if (corner==1)
+  * Fast corner
+  .lib "sky130_fd_pr__nfet_01v8__ff.corner.spice" ff
+  .lib "sky130_fd_pr__pfet_01v8__ff.corner.spice" ff
+.elseif (corner==2)
+  * Slow corner
+  .lib "sky130_fd_pr__nfet_01v8__ss.corner.spice" ss
+  .lib "sky130_fd_pr__pfet_01v8__ss.corner.spice" ss
+.elseif (corner==3)
+  * Typical corner
+  .lib "sky130_fd_pr__nfet_01v8__tt.corner.spice" tt
+  .lib "sky130_fd_pr__pfet_01v8__tt.corner.spice" tt
+.endif
+
+.end
