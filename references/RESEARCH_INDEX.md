@@ -326,11 +326,37 @@ See individual PDF files for full citation information. Key references:
 
 ### Future Additions
 
-- [ ] More pentary-specific research (if found)
-- [ ] Analog computing papers
-- [ ] AI/ML quantization research
+- [x] More pentary-specific research (if found) - Added COMPREHENSIVE_LITERATURE_REVIEW.md
+- [x] Analog computing papers - Integrated in ferroelectric_implementation.md
+- [x] AI/ML quantization research - Added pentary_qat_guide.md
 - [ ] Open-source chip design case studies
 - [ ] Performance benchmarking papers
+
+---
+
+## 📚 New Research Documents (December 2024)
+
+### Complete Literature Review
+| Document | Description | Papers | Topics |
+|----------|-------------|--------|--------|
+| [COMPREHENSIVE_LITERATURE_REVIEW.md](../research/COMPREHENSIVE_LITERATURE_REVIEW.md) | **45+ papers surveyed** | 45+ | MVL, quantization, memristors, accelerators |
+
+### Implementation Research
+| Document | Description | Words | Key Topics |
+|----------|-------------|-------|------------|
+| [pentary_power_model.md](../research/pentary_power_model.md) | Energy/power analysis | 5,000 | CMOS power, shift-add savings, memory bandwidth |
+| [ferroelectric_implementation.md](../research/ferroelectric_implementation.md) | Ferroelectric memory | 7,000 | HfZrO, FeFET, 5-level cells, crossbar integration |
+| [pentary_error_correction.md](../research/pentary_error_correction.md) | ECC for pentary | 8,000 | GF(5) arithmetic, Reed-Solomon, hardware |
+| [pentary_qat_guide.md](../research/pentary_qat_guide.md) | QAT implementation | 10,000 | PyTorch code, training pipeline, benchmarks |
+| [pentary_training_methodology.md](../research/pentary_training_methodology.md) | Training methodology | 8,000 | Best practices, architecture selection, debugging |
+
+### Key References Added
+1. **Lee et al. (2025)** - "HfZrO-based synaptic resistor circuit" - Science Advances
+2. **Horowitz (2014)** - "Computing's energy problem" - ISSCC
+3. **Prezioso et al. (2015)** - "Training integrated neuromorphic network" - Nature
+4. **Ielmini & Wong (2018)** - "In-memory computing with resistive devices" - Nature Electronics
+5. **Jacob et al. (2018)** - "Quantization and Training of Neural Networks" - CVPR
+6. **Esser et al. (2020)** - "Learned Step Size Quantization" - ICLR
 
 ### Contributing
 

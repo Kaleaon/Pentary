@@ -78,10 +78,13 @@ This document provides a transparent mapping between claims made in this reposit
 | 45% power reduction | ⚠️ | Power modeling simulations | 75% |
 | Zero-state consumes no power | ⚠️ | Physical disconnect design (theoretical) | 70% |
 | 70% savings with 80% sparse weights | ⚠️ | Based on sparsity × zero-power assumption | 65% |
+| Shift-add 4-5× energy savings | ⚠️ | First principles analysis | 75% |
+| Memory bandwidth 2.7× reduction | ✅ | Information theory (8/3 = 2.67) | 90% |
 
 **Evidence Files:**
 - [Validation Summary](VALIDATION_SUMMARY.md)
 - [Hardware Benchmark Report](validation/hardware_benchmark_report.md)
+- [**Pentary Power Model**](research/pentary_power_model.md) - Detailed energy analysis (NEW)
 
 **Validation Status:** Requires hardware implementation for confirmation
 
@@ -131,11 +134,14 @@ This document provides a transparent mapping between claims made in this reposit
 |-------|--------|----------|------------|
 | 1-3% accuracy loss | ⚠️ | Requires Quantization-Aware Training (QAT) | 65% |
 | Current accuracy without QAT | ⚠️ | Higher loss observed (83% in some tests) | 65% |
+| QAT restores accuracy | ⚠️ | Based on INT4 literature extrapolation | 70% |
 
 **Evidence Files:**
 - [Validation Summary](VALIDATION_SUMMARY.md)
+- [**Pentary QAT Guide**](research/pentary_qat_guide.md) - Complete implementation guide (NEW)
+- [**Training Methodology**](research/pentary_training_methodology.md) - Best practices (NEW)
 
-**Validation Status:** QAT implementation required to achieve 1-3% target
+**Validation Status:** QAT implementation provided; requires experimental validation
 
 ---
 
@@ -222,7 +228,18 @@ All claims were validated using:
 1. **Mathematical Proofs** - Rigorous derivations from first principles
 2. **Hardware Simulations** - ALU simulations at multiple bit widths
 3. **Software Benchmarks** - Python implementations tested on real data
-4. **Literature Review** - Cross-referenced with published research
+4. **Literature Review** - Cross-referenced with 45+ published papers
+
+### New Research Documentation (December 2024)
+
+| Document | Purpose | Key Evidence |
+|----------|---------|--------------|
+| [COMPREHENSIVE_LITERATURE_REVIEW.md](research/COMPREHENSIVE_LITERATURE_REVIEW.md) | 45+ papers surveyed | Validates MVL, quantization, memristors |
+| [pentary_power_model.md](research/pentary_power_model.md) | Energy analysis | First-principles power calculations |
+| [ferroelectric_implementation.md](research/ferroelectric_implementation.md) | Memory technology | HfZrO 5-level cells feasibility |
+| [pentary_error_correction.md](research/pentary_error_correction.md) | ECC codes | GF(5) Reed-Solomon implementation |
+| [pentary_qat_guide.md](research/pentary_qat_guide.md) | QAT implementation | Complete PyTorch code |
+| [pentary_training_methodology.md](research/pentary_training_methodology.md) | Training practices | Architecture selection, debugging |
 
 ### Test Infrastructure
 
@@ -270,4 +287,6 @@ To add new validated claims:
 **Last Updated:** December 2024  
 **Total Claims in Repository:** 12,084  
 **Critical Claims Validated:** 50+  
+**Papers Reviewed:** 45+  
+**New Research Documents:** 6  
 **Overall Project Confidence:** 75-85%
