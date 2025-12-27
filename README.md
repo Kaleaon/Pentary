@@ -1,103 +1,346 @@
-# Pentary
-5 point LLM quantization
-THE PENTARY MANIFESTO
+# Pentary Computing
 
-Breaking the Binary Stranglehold on Artificial IntelligenceVersion 1.0 | Status: Open Hardware Initiative
+**Balanced Quinary (Base-5) Architecture for AI Acceleration**
 
-## 🚀 Quick Start
+A research project exploring 5-level quantization for neural networks and alternative computing architectures.
 
-### New to Pentary?
+[![Status](https://img.shields.io/badge/Status-Research%20Prototype-yellow)]()
+[![License](https://img.shields.io/badge/License-Open%20Source-green)]()
+[![Validation](https://img.shields.io/badge/Claims%20Validated-50%2B-blue)]()
 
-1. **Start Here**: [GETTING_STARTED.md](GETTING_STARTED.md) - Complete getting started guide
-2. **Beginner Tutorial**: [BEGINNER_TUTORIAL.md](BEGINNER_TUTORIAL.md) - Learn the basics
-3. **Quick Reference**: [QUICK_REFERENCE.md](QUICK_REFERENCE.md) - Command cheat sheet
+---
 
-### Setup
+## What is Pentary?
+
+Pentary computing uses a **balanced base-5 number system** with digits {-2, -1, 0, +1, +2} instead of binary {0, 1}. This approach offers potential advantages for neural network inference through:
+
+- **Compact representation** - Each digit carries 2.32 bits of information ([proof](research/pentary_foundations.md#13-information-density-analysis))
+- **Zero-state efficiency** - Zero values can be implemented as physical disconnects
+- **Simplified multiplication** - Weights in {-2..+2} require only shift-add operations
+
+---
+
+## Quick Start
+
+### Prerequisites
 
 ```bash
-# Run setup script (checks dependencies, installs packages)
-./setup.sh
-
-# Or manually install
+# Python 3.7+ required
+python3 --version
 pip install numpy
 ```
 
 ### Try It Out
 
 ```bash
-# Interactive CLI (recommended for beginners)
+# Interactive CLI
 python3 tools/pentary_cli.py
 
-# Test basic tools
+# Run examples
 python3 tools/pentary_converter.py
-python3 tools/pentary_arithmetic.py
 python3 tools/pentary_simulator.py
-
-# Generate examples
-python3 tools/example_generator.py
-
-# Neural network tools
-python3 tools/pentary_nn.py
-python3 tools/pentary_quantizer.py
-python3 tools/pentary_iteration.py
 ```
 
-## 📦 Tools Overview
+### First Steps
 
-### Core Tools
-- **pentary_converter.py**: Decimal ↔ Pentary conversion, arithmetic operations
-- **pentary_arithmetic.py**: Low-level digit operations, carry handling
-- **pentary_simulator.py**: Full processor simulator with ISA support
+| Goal | Start Here |
+|------|------------|
+| New to Pentary? | [GETTING_STARTED.md](GETTING_STARTED.md) |
+| Learn the basics | [BEGINNER_TUTORIAL.md](BEGINNER_TUTORIAL.md) |
+| Quick reference | [QUICK_REFERENCE.md](QUICK_REFERENCE.md) |
 
-### Neural Network Tools
-- **pentary_nn.py**: Neural network layers (Linear, Conv2D, ReLU, Pooling)
-- **pentary_quantizer.py**: Model quantization, calibration, accuracy analysis
-- **pentary_iteration.py**: Profiling, optimization, benchmarking, rapid iteration
+---
 
-### Hardware Design
-- **pentary_chip_design.v**: Verilog implementation of key components
-- **pentary_chip_synthesis.tcl**: Synthesis scripts for ASIC design
-- **pentary_chip_layout.md**: Layout guidelines and floorplan
+## Project Status
 
-## 📚 Documentation
+**Phase:** Research & Simulation  
+**Confidence Level:** 75-85% on core claims ([detailed assessment](CLAIMS_EVIDENCE_MATRIX.md))
+
+| Area | Status | Notes |
+|------|--------|-------|
+| Mathematical Theory | ✅ Complete | Proofs verified |
+| Software Tools | ✅ Working | Tested and documented |
+| Hardware Design | 📝 Designed | Awaiting implementation |
+| FPGA Prototype | ⏳ Planned | Not yet built |
+| ASIC Fabrication | ⏳ Future | Requires funding |
+
+See [RESEARCH_GAP_ANALYSIS.md](RESEARCH_GAP_ANALYSIS.md) for honest assessment of what's proven vs theoretical.
+
+---
+
+## Key Claims & Evidence
+
+All major claims are documented with evidence. See [CLAIMS_EVIDENCE_MATRIX.md](CLAIMS_EVIDENCE_MATRIX.md) for full details.
+
+### Verified Claims (85-100% confidence)
+
+| Claim | Evidence | Status |
+|-------|----------|--------|
+| 2.32× information density vs binary | [Mathematical proof](research/pentary_foundations.md) | ✅ Proven |
+| 10× memory reduction for NNs | [Benchmark results](validation/nn_benchmark_report.md) | ✅ Measured |
+| 2.43× multiplication speedup | [Complexity analysis](VALIDATION_MASTER_REPORT.md) | ✅ Calculated |
+| 3-8× fewer cycles | [Hardware simulation](validation/hardware_benchmark_report.md) | ✅ Simulated |
+
+### Plausible Claims (Pending Hardware Validation)
+
+| Claim | Evidence | Status |
+|-------|----------|--------|
+| 20× smaller multipliers | [Design analysis](architecture/pentary_alu_design.md) | ⚠️ Designed |
+| 45% power reduction | [Power modeling](VALIDATION_SUMMARY.md) | ⚠️ Modeled |
+| Zero-state power savings | [Theoretical analysis](research/pentary_foundations.md) | ⚠️ Theoretical |
+
+---
+
+## Documentation Directory
 
 ### Getting Started
-- **[GETTING_STARTED.md](GETTING_STARTED.md)** - Start here! Complete guide
-- **[BEGINNER_TUTORIAL.md](BEGINNER_TUTORIAL.md)** - Step-by-step tutorial
-- **[QUICK_START.md](QUICK_START.md)** - 5-minute quick start
-- **[QUICK_REFERENCE.md](QUICK_REFERENCE.md)** - Command cheat sheet
 
-### Visual Documentation
-- **[VISUAL_INDEX.md](VISUAL_INDEX.md)** - 🎨 **NEW!** Complete diagram gallery with 16 high-quality visualizations
-- **[ENHANCEMENT_SUMMARY.md](ENHANCEMENT_SUMMARY.md)** - 📊 **NEW!** Summary of all enhancements
+- [GETTING_STARTED.md](GETTING_STARTED.md) - Setup and first steps
+- [BEGINNER_TUTORIAL.md](BEGINNER_TUTORIAL.md) - Learn pentary concepts
+- [QUICK_START.md](QUICK_START.md) - 5-minute quickstart
+- [QUICK_REFERENCE.md](QUICK_REFERENCE.md) - Command cheat sheet
 
-### Complete Guides
-- [Complete Guide](PENTARY_COMPLETE_GUIDE.md) - Comprehensive reference
-- [Project Summary](PROJECT_SUMMARY.md) - Project overview
+### Core Documentation
+
+- [INDEX.md](INDEX.md) - Complete project index
+- [PROJECT_SUMMARY.md](PROJECT_SUMMARY.md) - Executive summary
+- [PENTARY_COMPLETE_GUIDE.md](PENTARY_COMPLETE_GUIDE.md) - Comprehensive guide
+- [USER_GUIDE.md](USER_GUIDE.md) - User documentation
+
+### Research & Theory
+
+| Document | Description |
+|----------|-------------|
+| [research/pentary_foundations.md](research/pentary_foundations.md) | Mathematical foundations with proofs |
+| [research/pentary_logic_gates.md](research/pentary_logic_gates.md) | Logic gate designs and truth tables |
+| [research/pentary_sota_comparison.md](research/pentary_sota_comparison.md) | Comparison with TPU, GPU, etc. |
+| [research/pentary_ai_architectures_analysis.md](research/pentary_ai_architectures_analysis.md) | AI architecture analysis |
+| [research/RESEARCH_ROADMAP.md](research/RESEARCH_ROADMAP.md) | Research priorities |
+
+Full research index: [RESEARCH_INDEX.md](RESEARCH_INDEX.md) (48 documents)
 
 ### Architecture & Design
-- [Processor Architecture](architecture/pentary_processor_architecture.md) - ISA specification
-- [Chip Design Explained](hardware/CHIP_DESIGN_EXPLAINED.md) - Complete chip explanation
-- [Chip Layout Guidelines](hardware/pentary_chip_layout.md) - Physical design
-- [Memristor Implementation](hardware/memristor_implementation.md) - Hardware details
-- [Verilog Design](hardware/pentary_chip_design.v) - RTL implementation
 
-### Research (Expanded)
-- [SOTA AI Systems Comparison](research/pentary_sota_comparison.md) - 🚀 **NEW!** Pentary vs Gemini 3, GPT-5.1, H200/B200 (12,000 words)
-- [SOTA Comparison Summary](research/SOTA_COMPARISON_SUMMARY.md) - 📊 **NEW!** Executive summary with benchmarks
-- [AI Architectures Analysis](research/pentary_ai_architectures_analysis.md) - 🤖 Comprehensive AI implementation guide (15,000 words)
-- [AI Architectures Summary](research/AI_ARCHITECTURES_SUMMARY.md) - 📊 Executive summary of AI findings
-- [Foundations - Expanded](research/pentary_foundations_expanded.md) - 📖 **NEW!** Deep dive with proofs
-- [Logic Gates - Expanded](research/pentary_logic_gates_expanded.md) - 📖 **NEW!** Complete gate library
-- [Memristor Drift Analysis](research/memristor_drift_analysis.md) - 🔬 **NEW!** Feature vs. flaw analysis
+| Document | Description |
+|----------|-------------|
+| [architecture/pentary_processor_architecture.md](architecture/pentary_processor_architecture.md) | ISA specification (50+ instructions) |
+| [architecture/pentary_alu_design.md](architecture/pentary_alu_design.md) | ALU circuit designs |
+| [architecture/pentary_memory_model.md](architecture/pentary_memory_model.md) | Memory hierarchy design |
+| [hardware/memristor_implementation.md](hardware/memristor_implementation.md) | Memristor hardware design |
+| [hardware/CHIP_DESIGN_EXPLAINED.md](hardware/CHIP_DESIGN_EXPLAINED.md) | Complete chip explanation |
 
-### Tools & Language
-- [Tools README](tools/README.md) - All available tools
-- [Language README](language/README.md) - Pent programming language
+### Hardware Implementation
 
-1. The Crisis of ComputeWe have hit a wall. The current trajectory of Artificial Intelligence is unsustainable.To build "Intelligence," we are currently relying on Binary Logic (Base-2)—a system designed in the 1940s for vacuum tubes, not for neural networks. We are forcing silicon to perform billions of wasteful floating-point multiplications (FP16) just to approximate what a biological neuron does with a simple pulse of voltage.The result is an Energy Crisis and a Privacy Crisis.Training a single model consumes a city's worth of electricity.Running a "Smart" model requires a $30,000 GPU cluster.True AI is becoming the exclusive domain of trillion-dollar monopolies, locked behind cloud APIs, renting our own intelligence back to us.We believe the future of AI is not bigger data centers. It is smarter physics.
-2.
-3. 2. The Solution: Balanced Quinary ArchitectureWe propose a fundamental shift from Binary Logic to Balanced Pentary (Base-5) Logic.Nature does not think in "On/Off." Neurons function via Excitation and Inhibition. Our hardware must reflect this. By adopting a Signed-Digit System {-2, -1, 0, +1, +2}, we align the silicon with the math of the neural network.The Three Laws of Pentary Logic:Zero is Absolute: In our architecture, the "0" state is a physical disconnect. It consumes zero power. This unlocks massive sparsity natively.Symmetry is Efficiency: Positive and Negative weights are symmetric voltages (+V and -V). Subtraction is simply addition.Multiplication is Obsolete: By locking weights to integers {-2...2}, we replace massive Floating Point Units (3,000 transistors) with simple Shift-Add Circuits (150 transistors).Result: A chip that is 20x smaller, 7x more memory-dense, and 10x more energy-efficient than the industry standard.
-   3.
-   4. 3. The Hardware Ecosystem
-      4. We are not just building a chip; we are building a distributed nervous system for the next generation of machines.I. The Pentary Deck (Personal Inference)A smartphone-sized card capable of running 24-Billion Parameter models locally.Power: < 25 Watts.Latency: Near-zero (In-Memory Compute).Goal: To put a GPT-4 class mind in the pocket of every doctor, engineer, and student, completely offline and uncensored.II. The Monolith (The Enterprise Vault)A stack of 50 Pentary Decks submerged in dielectric fluid, fitting inside a standard file cabinet.Capacity: 1 Trillion Parameters.Power: Runs on a standard wall outlet (110V/15A).Goal: To allow small businesses and universities to own and run "Frontier Models" without building a data center.III. The Reflex (Robotic Autonomy)Dispersed Pentary Chiplets embedded directly into robotic joints and skins.Function: Local processing of physics and pressure.Goal: To give robots "Spinal Cords"—autonomic reflexes that prevent falling and crushing, processing data in microseconds at the edge, rather than milliseconds in the cloud.4. The "Physics-First" PhilosophyWe reject the brute-force approach of modern GPU architecture.We do not move data to compute; we move compute to the data (In-Memory Processing).We do not simulate math; we use voltage physics to perform the accumulation (Analog-Digital Hybrid).We do not wait for the cloud; the intelligence lives in the device.5. The Call to ArmsWe are building this Open Source.The definitions, the Verilog cores, and the quantization compilers are free. We are democratizing the hardware layer of AI because if the hardware remains closed, the intelligence will remain centralized.To the Hackers: Help us build the FPGA prototypes.To the Researchers: Help us refine the 5-state quantization algorithms.To the Investors: Help us print the first 7nm wafer.The future is not Binary. It is Balanced.[The Pentary Project]Est. 2025
+| Document | Description |
+|----------|-------------|
+| [hardware/pentary_chip_design.v](hardware/pentary_chip_design.v) | Verilog implementation |
+| [hardware/pentary_chip_layout.md](hardware/pentary_chip_layout.md) | Physical layout guidelines |
+| [FPGA_PROTOTYPE_GUIDE.md](FPGA_PROTOTYPE_GUIDE.md) | FPGA prototyping guide |
+| [CHIP_DESIGN_ROADMAP.md](CHIP_DESIGN_ROADMAP.md) | Implementation roadmap |
+
+### Validation & Evidence
+
+| Document | Description |
+|----------|-------------|
+| [CLAIMS_EVIDENCE_MATRIX.md](CLAIMS_EVIDENCE_MATRIX.md) | All claims with evidence links |
+| [VALIDATION_SUMMARY.md](VALIDATION_SUMMARY.md) | Validation overview |
+| [VALIDATION_MASTER_REPORT.md](VALIDATION_MASTER_REPORT.md) | Complete validation (50+ pages) |
+| [RESEARCH_GAP_ANALYSIS.md](RESEARCH_GAP_ANALYSIS.md) | Honest gap assessment |
+| [BENCHMARK_GUIDE.md](BENCHMARK_GUIDE.md) | Reproducible benchmark instructions |
+| [validation/README.md](validation/README.md) | Test framework documentation |
+
+### Planning & Implementation
+
+| Document | Description |
+|----------|-------------|
+| [IMPLEMENTATION_ROADMAP.md](IMPLEMENTATION_ROADMAP.md) | Step-by-step development guide |
+| [QUANTIZATION_COMPARISON.md](QUANTIZATION_COMPARISON.md) | Comparison with INT8/INT4/FP8 |
+| [KNOWN_LIMITATIONS.md](KNOWN_LIMITATIONS.md) | Failure modes and limitations |
+| [FAQ.md](FAQ.md) | Common questions answered |
+| [ACADEMIC_PAPER_OUTLINE.md](ACADEMIC_PAPER_OUTLINE.md) | Publication-ready paper outline |
+| [FUTURE_RESEARCH_DIRECTIONS.md](FUTURE_RESEARCH_DIRECTIONS.md) | Research gaps and next steps |
+| [research/RECENT_ADVANCES_INTEGRATION.md](research/RECENT_ADVANCES_INTEGRATION.md) | Latest research integration |
+
+### Tools & Software
+
+| Tool | Description |
+|------|-------------|
+| [tools/pentary_cli.py](tools/pentary_cli.py) | Interactive command-line interface |
+| [tools/pentary_converter.py](tools/pentary_converter.py) | Number conversion utilities |
+| [tools/pentary_arithmetic.py](tools/pentary_arithmetic.py) | Arithmetic operations |
+| [tools/pentary_simulator.py](tools/pentary_simulator.py) | Processor simulator |
+| [tools/pentary_nn.py](tools/pentary_nn.py) | Neural network layers |
+| [tools/pentary_quantizer.py](tools/pentary_quantizer.py) | Model quantization |
+
+Full tools documentation: [tools/README.md](tools/README.md)
+
+### Language
+
+- [language/README.md](language/README.md) - Pent programming language
+- [language/pent_language_spec.md](language/pent_language_spec.md) - Language specification
+- [language/examples/](language/examples/) - Example programs
+
+---
+
+## Repository Structure
+
+```
+pentary/
+├── README.md                 # This file
+├── CLAIMS_EVIDENCE_MATRIX.md # Claims with evidence links
+├── RESEARCH_GAP_ANALYSIS.md  # Honest gap assessment
+├── VALIDATION_SUMMARY.md     # Validation overview
+│
+├── research/                 # 48 research documents (250K+ words)
+│   ├── pentary_foundations.md
+│   ├── pentary_logic_gates.md
+│   └── ...
+│
+├── architecture/             # Processor architecture specs
+│   ├── pentary_processor_architecture.md
+│   ├── pentary_alu_design.md
+│   └── ...
+│
+├── hardware/                 # Hardware implementation
+│   ├── pentary_chip_design.v
+│   ├── memristor_implementation.md
+│   └── ...
+│
+├── tools/                    # Working software (20+ tools)
+│   ├── pentary_cli.py
+│   ├── pentary_converter.py
+│   └── ...
+│
+├── validation/               # Test suite and results
+│   ├── claims_extracted.json    # 12,084 claims extracted
+│   ├── validation_framework.py
+│   └── ...
+│
+├── language/                 # Pent programming language
+├── pdk/                      # Process design kit integration
+├── references/               # Academic references
+└── diagrams/                 # Visual documentation
+```
+
+---
+
+## Technical Overview
+
+### Pentary Number System
+
+| Digit | Value | Symbol |
+|-------|-------|--------|
+| -2 | Strong negative | ⊖ |
+| -1 | Weak negative | − |
+| 0 | Zero | 0 |
+| +1 | Weak positive | + |
+| +2 | Strong positive | ⊕ |
+
+**Example:** 42 decimal = ⊕⊖⊕ pentary (2×25 - 2×5 + 2×1)
+
+### Information Density
+
+```
+Binary:  log₂(2) = 1.00 bits per digit
+Pentary: log₂(5) = 2.32 bits per digit
+
+Ratio: 2.32× information density advantage
+```
+
+See [mathematical proof](research/pentary_foundations.md#13-information-density-analysis).
+
+### Neural Network Application
+
+Pentary maps naturally to 5-level neural network quantization:
+
+| Weight Range | Pentary Value |
+|--------------|---------------|
+| [-1.0, -0.6] | -2 (⊖) |
+| [-0.6, -0.2] | -1 (−) |
+| [-0.2, +0.2] | 0 |
+| [+0.2, +0.6] | +1 (+) |
+| [+0.6, +1.0] | +2 (⊕) |
+
+---
+
+## Validation Methodology
+
+All claims are validated using:
+
+1. **Mathematical Proofs** - Formal derivations from first principles
+2. **Software Benchmarks** - Tested implementations in Python
+3. **Hardware Simulations** - ALU models at multiple bit widths
+4. **Literature Review** - Cross-referenced with published research
+
+### Run Validation
+
+```bash
+# Run benchmarks
+python3 validation/pentary_hardware_tests.py
+python3 validation/pentary_nn_benchmarks.py
+
+# View results
+cat validation/hardware_benchmark_report.md
+cat validation/nn_benchmark_report.md
+```
+
+---
+
+## References
+
+This project builds on established research in:
+
+- Multi-valued logic (Setun computer, 1958)
+- Neural network quantization (Han et al., 2016)
+- Memristor technology (Chua, 1971; Strukov et al., 2008)
+
+See [REFERENCES_SUMMARY.md](REFERENCES_SUMMARY.md) for complete bibliography.
+
+---
+
+## Contributing
+
+Contributions welcome in these areas:
+
+| Area | Skills Needed |
+|------|---------------|
+| FPGA Prototyping | Verilog/VHDL, FPGA tools |
+| Hardware Validation | Test engineering |
+| Neural Network Research | PyTorch/TensorFlow, ML |
+| Documentation | Technical writing |
+
+See [todo.md](todo.md) for current priorities.
+
+---
+
+## Limitations & Caveats
+
+**This is a research project, not production-ready technology.**
+
+- No physical hardware has been fabricated
+- Many performance claims are simulation-based
+- Manufacturing costs are estimates
+- Competitive comparisons are modeled, not measured
+
+See [RESEARCH_GAP_ANALYSIS.md](RESEARCH_GAP_ANALYSIS.md) for detailed limitations.
+
+---
+
+## License
+
+Open Source Hardware Initiative
+
+---
+
+## Contact
+
+- Issues: Use GitHub Issues
+- Documentation updates: Submit PRs
+- Research collaboration: See [research/RESEARCH_ROADMAP.md](research/RESEARCH_ROADMAP.md)
+
+---
+
+**Project Status:** Research Prototype  
+**Validation Coverage:** 50+ critical claims validated  
+**Documentation:** 250,000+ words across 150+ files  
+**Last Updated:** December 2024

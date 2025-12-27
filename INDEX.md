@@ -1,5 +1,39 @@
 # Pentary Processor - Complete Index
 
+## Important Project Documents
+
+### Core Documentation
+| Document | Description |
+|----------|-------------|
+| [README.md](README.md) | Project overview and quick start |
+| [CLAIMS_EVIDENCE_MATRIX.md](CLAIMS_EVIDENCE_MATRIX.md) | **All claims with evidence links** |
+| [RESEARCH_GAP_ANALYSIS.md](RESEARCH_GAP_ANALYSIS.md) | **Honest assessment of proven vs theoretical** |
+| [VALIDATION_SUMMARY.md](VALIDATION_SUMMARY.md) | Validation results overview |
+| [REFERENCES_SUMMARY.md](REFERENCES_SUMMARY.md) | Bibliography and citations |
+
+### New Essential Documents (December 2024)
+| Document | Description |
+|----------|-------------|
+| [QUANTIZATION_COMPARISON.md](QUANTIZATION_COMPARISON.md) | **Pentary vs INT8/INT4/FP8 analysis** |
+| [IMPLEMENTATION_ROADMAP.md](IMPLEMENTATION_ROADMAP.md) | **Step-by-step development guide** |
+| [KNOWN_LIMITATIONS.md](KNOWN_LIMITATIONS.md) | **Failure modes and when NOT to use** |
+| [FAQ.md](FAQ.md) | **Common questions and skepticism** |
+| [BENCHMARK_GUIDE.md](BENCHMARK_GUIDE.md) | **Reproducible benchmark instructions** |
+| [ACADEMIC_PAPER_OUTLINE.md](ACADEMIC_PAPER_OUTLINE.md) | **Publication-ready paper outline** |
+
+### Deep Research Documents (December 2024 - NEW)
+| Document | Description | Words |
+|----------|-------------|-------|
+| [COMPREHENSIVE_LITERATURE_REVIEW.md](research/COMPREHENSIVE_LITERATURE_REVIEW.md) | **45+ papers reviewed, complete bibliography** | 8,000 |
+| [pentary_power_model.md](research/pentary_power_model.md) | **Detailed power/energy consumption analysis** | 5,000 |
+| [ferroelectric_implementation.md](research/ferroelectric_implementation.md) | **HfZrO-based 5-level memory cells** | 7,000 |
+| [pentary_error_correction.md](research/pentary_error_correction.md) | **GF(5) Reed-Solomon ECC implementation** | 8,000 |
+| [pentary_qat_guide.md](research/pentary_qat_guide.md) | **Complete QAT PyTorch implementation** | 10,000 |
+| [pentary_training_methodology.md](research/pentary_training_methodology.md) | **Best practices for NN training** | 8,000 |
+| [RECENT_ADVANCES_INTEGRATION.md](research/RECENT_ADVANCES_INTEGRATION.md) | **Science Advances 2025 paper analysis** | 3,000 |
+
+---
+
 ## 🆕 Latest Additions (2025-01-06)
 
 ### CLARA-Pentary Synthesis (NEW!)
@@ -109,6 +143,16 @@ This index provides quick access to all documentation in the Pentary Processor p
 | [pentary_economics.md](research/pentary_economics.md) | Cost analysis and economics | 4,000 | Manufacturing costs, TCO, ROI, market analysis |
 | [pentary_realtime_systems.md](research/pentary_realtime_systems.md) | Real-time systems | 4,000 | Deterministic execution, WCET, latency, control systems |
 | [pentary_quantum_interface.md](research/pentary_quantum_interface.md) | Quantum computing interface | 3,000 | Hybrid computing, quantum error correction, encoding schemes |
+
+### Deep Technical Implementation Research (NEW - December 2024)
+| Document | Description | Words | Topics |
+|----------|-------------|-------|--------|
+| [COMPREHENSIVE_LITERATURE_REVIEW.md](research/COMPREHENSIVE_LITERATURE_REVIEW.md) | **Complete literature survey** | 8,000 | 45+ papers, MVL, quantization, memristors, AI accelerators |
+| [pentary_power_model.md](research/pentary_power_model.md) | **Power consumption model** | 5,000 | Energy per op, memory power, system-level model, validation |
+| [ferroelectric_implementation.md](research/ferroelectric_implementation.md) | **Ferroelectric memory** | 7,000 | HfZrO, FeFET, 5-level cells, crossbar arrays, fabrication |
+| [pentary_error_correction.md](research/pentary_error_correction.md) | **Error correction codes** | 8,000 | GF(5) math, Reed-Solomon, hardware implementation, testing |
+| [pentary_qat_guide.md](research/pentary_qat_guide.md) | **QAT implementation** | 10,000 | PyTorch code, STE, training pipeline, export, benchmarks |
+| [pentary_training_methodology.md](research/pentary_training_methodology.md) | **Training best practices** | 8,000 | Architecture selection, augmentation, distillation, debugging |
 
 **Key Sections:**
 - Balanced pentary representation {-2, -1, 0, +1, +2}
