@@ -43,8 +43,8 @@ python tools/pentary_arithmetic.py
 python tools/pentary_simulator.py
 
 # Run validation suite
-python validation/pentary_hardware_tests.py
-python validation/pentary_nn_benchmarks.py
+python3 validation/pentary_hardware_tests.py
+python3 validation/pentary_nn_benchmarks.py
 ```
 
 ### Success Criteria
@@ -444,8 +444,8 @@ source venv/bin/activate
 pip install -r tools/requirements.txt
 
 # 2. Run validation
-python validation/pentary_hardware_tests.py
-python validation/pentary_nn_benchmarks.py
+python3 validation/pentary_hardware_tests.py
+python3 validation/pentary_nn_benchmarks.py
 
 # 3. Try the tools
 python tools/pentary_cli.py

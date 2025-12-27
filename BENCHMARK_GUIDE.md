@@ -109,7 +109,7 @@ for n in [0, 1, 5, 10, 42, 100, -50, 1000]:
 
 ```bash
 # Run hardware benchmarks
-python validation/pentary_hardware_tests.py
+python3 validation/pentary_hardware_tests.py
 ```
 
 ### Expected Results
@@ -191,10 +191,10 @@ Large (51.2M)           204.80M     51.20M     19.20M    10.7×
 
 ```bash
 # Run NN benchmarks
-python validation/pentary_nn_benchmarks.py
+python3 validation/pentary_nn_benchmarks.py
 
 # Or manual test with PyTorch (if installed)
-python -c "
+python3 -c "
 import numpy as np
 
 # Simulate quantization effects

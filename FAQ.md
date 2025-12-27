@@ -269,7 +269,7 @@ python tools/pentary_converter.py
 python tools/pentary_simulator.py
 
 # Run benchmarks
-python validation/pentary_hardware_tests.py
+python3 validation/pentary_hardware_tests.py
 ```
 
 **See:** [GETTING_STARTED.md](GETTING_STARTED.md)
