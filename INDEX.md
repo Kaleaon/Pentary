@@ -1,5 +1,17 @@
 # Pentary Processor - Complete Index
 
+## Important Project Documents
+
+| Document | Description |
+|----------|-------------|
+| [README.md](README.md) | Project overview and quick start |
+| [CLAIMS_EVIDENCE_MATRIX.md](CLAIMS_EVIDENCE_MATRIX.md) | **All claims with evidence links** |
+| [RESEARCH_GAP_ANALYSIS.md](RESEARCH_GAP_ANALYSIS.md) | **Honest assessment of proven vs theoretical** |
+| [VALIDATION_SUMMARY.md](VALIDATION_SUMMARY.md) | Validation results overview |
+| [REFERENCES_SUMMARY.md](REFERENCES_SUMMARY.md) | Bibliography and citations |
+
+---
+
 ## 🆕 Latest Additions (2025-01-06)
 
 ### CLARA-Pentary Synthesis (NEW!)
