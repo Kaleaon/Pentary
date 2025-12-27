@@ -146,7 +146,18 @@ Full research index: [RESEARCH_INDEX.md](RESEARCH_INDEX.md) (48 documents)
 | [VALIDATION_SUMMARY.md](VALIDATION_SUMMARY.md) | Validation overview |
 | [VALIDATION_MASTER_REPORT.md](VALIDATION_MASTER_REPORT.md) | Complete validation (50+ pages) |
 | [RESEARCH_GAP_ANALYSIS.md](RESEARCH_GAP_ANALYSIS.md) | Honest gap assessment |
+| [BENCHMARK_GUIDE.md](BENCHMARK_GUIDE.md) | Reproducible benchmark instructions |
 | [validation/README.md](validation/README.md) | Test framework documentation |
+
+### Planning & Implementation
+
+| Document | Description |
+|----------|-------------|
+| [IMPLEMENTATION_ROADMAP.md](IMPLEMENTATION_ROADMAP.md) | Step-by-step development guide |
+| [QUANTIZATION_COMPARISON.md](QUANTIZATION_COMPARISON.md) | Comparison with INT8/INT4/FP8 |
+| [KNOWN_LIMITATIONS.md](KNOWN_LIMITATIONS.md) | Failure modes and limitations |
+| [FAQ.md](FAQ.md) | Common questions answered |
+| [ACADEMIC_PAPER_OUTLINE.md](ACADEMIC_PAPER_OUTLINE.md) | Publication-ready paper outline |
 
 ### Tools & Software
 

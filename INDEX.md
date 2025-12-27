@@ -2,6 +2,7 @@
 
 ## Important Project Documents
 
+### Core Documentation
 | Document | Description |
 |----------|-------------|
 | [README.md](README.md) | Project overview and quick start |
@@ -9,6 +10,16 @@
 | [RESEARCH_GAP_ANALYSIS.md](RESEARCH_GAP_ANALYSIS.md) | **Honest assessment of proven vs theoretical** |
 | [VALIDATION_SUMMARY.md](VALIDATION_SUMMARY.md) | Validation results overview |
 | [REFERENCES_SUMMARY.md](REFERENCES_SUMMARY.md) | Bibliography and citations |
+
+### New Essential Documents (December 2024)
+| Document | Description |
+|----------|-------------|
+| [QUANTIZATION_COMPARISON.md](QUANTIZATION_COMPARISON.md) | **Pentary vs INT8/INT4/FP8 analysis** |
+| [IMPLEMENTATION_ROADMAP.md](IMPLEMENTATION_ROADMAP.md) | **Step-by-step development guide** |
+| [KNOWN_LIMITATIONS.md](KNOWN_LIMITATIONS.md) | **Failure modes and when NOT to use** |
+| [FAQ.md](FAQ.md) | **Common questions and skepticism** |
+| [BENCHMARK_GUIDE.md](BENCHMARK_GUIDE.md) | **Reproducible benchmark instructions** |
+| [ACADEMIC_PAPER_OUTLINE.md](ACADEMIC_PAPER_OUTLINE.md) | **Publication-ready paper outline** |
 
 ---
 
