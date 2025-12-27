@@ -165,7 +165,7 @@ This document provides a transparent mapping between claims made in this reposit
 | Claim | Status | Evidence | Confidence |
 |-------|--------|----------|------------|
 | 3× better AI performance | ⚠️ | Composite metric from multiple benchmarks | 70% |
-| 45% higher memory density | ✅ | (2.32 - 1) / 1 × 100% = 132% more bits/digit | 95% |
+| 132% higher information density | ✅ | (2.32 - 1) / 1 × 100% = 132% more bits/digit | 95% |
 
 **Evidence Files:**
 - [Validation Summary](VALIDATION_SUMMARY.md)
