@@ -12,8 +12,8 @@ cd /path/to/pentary
 pip install numpy
 
 # Run all benchmarks
-python validation/pentary_hardware_tests.py
-python validation/pentary_nn_benchmarks.py
+python3 validation/pentary_hardware_tests.py
+python3 validation/pentary_nn_benchmarks.py
 
 # View results
 cat validation/hardware_benchmark_report.md
@@ -416,11 +416,11 @@ python tools/pentary_converter.py 2>&1 | head -20
 echo ""
 
 echo "2. Hardware Simulation"
-python validation/pentary_hardware_tests.py 2>&1 | head -30
+python3 validation/pentary_hardware_tests.py 2>&1 | head -30
 echo ""
 
 echo "3. Neural Network Benchmarks"
-python validation/pentary_nn_benchmarks.py 2>&1 | head -30
+python3 validation/pentary_nn_benchmarks.py 2>&1 | head -30
 echo ""
 
 echo "=== Complete ==="

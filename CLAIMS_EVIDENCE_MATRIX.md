@@ -256,8 +256,8 @@ All claims were validated using:
 
 ```bash
 # Run all benchmarks
-python validation/pentary_hardware_tests.py
-python validation/pentary_nn_benchmarks.py
+python3 validation/pentary_hardware_tests.py
+python3 validation/pentary_nn_benchmarks.py
 
 # View results
 cat validation/hardware_benchmark_report.md
