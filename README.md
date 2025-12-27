@@ -158,6 +158,8 @@ Full research index: [RESEARCH_INDEX.md](RESEARCH_INDEX.md) (48 documents)
 | [KNOWN_LIMITATIONS.md](KNOWN_LIMITATIONS.md) | Failure modes and limitations |
 | [FAQ.md](FAQ.md) | Common questions answered |
 | [ACADEMIC_PAPER_OUTLINE.md](ACADEMIC_PAPER_OUTLINE.md) | Publication-ready paper outline |
+| [FUTURE_RESEARCH_DIRECTIONS.md](FUTURE_RESEARCH_DIRECTIONS.md) | Research gaps and next steps |
+| [research/RECENT_ADVANCES_INTEGRATION.md](research/RECENT_ADVANCES_INTEGRATION.md) | Latest research integration |
 
 ### Tools & Software
 

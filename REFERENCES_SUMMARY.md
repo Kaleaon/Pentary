@@ -6,6 +6,16 @@ This document provides a comprehensive list of references supporting the Pentary
 
 ## Primary Research References
 
+### Recent Breakthrough Research (2024-2025)
+
+0. **Lee et al., "HfZrO-based synaptic resistor circuit for a Super-Turing intelligent system" (2025)** ⭐ NEW
+   - Science Advances, Vol. 11, Issue 9
+   - DOI: [10.1126/sciadv.adr2082](https://doi.org/10.1126/sciadv.adr2082)
+   - **Highly Relevant:** Demonstrates multi-level ferroelectric memory for neuromorphic computing
+   - Validates in-memory computing, shows real-world drone navigation application
+   - Provides alternative material (HfZrO) for pentary storage implementation
+   - See analysis: [research/RECENT_ADVANCES_INTEGRATION.md](research/RECENT_ADVANCES_INTEGRATION.md)
+
 ### Multi-Valued Logic and Ternary Computing
 
 1. **Setun Ternary Computer (1958)**

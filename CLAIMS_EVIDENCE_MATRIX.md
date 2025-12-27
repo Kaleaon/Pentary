@@ -45,6 +45,18 @@ This document provides a transparent mapping between claims made in this reposit
 
 ## Hardware Claims
 
+### In-Memory Computing Viability
+
+| Claim | Status | Evidence | Confidence |
+|-------|--------|----------|------------|
+| In-memory computing is practical | ✅ | Lee et al. 2025 (Science Advances) demonstrates working synaptic resistor array | 80% |
+| Multi-level memory cells work | ✅ | HfZrO ferroelectric devices show stable multi-level states | 75% |
+| Power reduction vs digital | ⚠️ | Lee et al. shows "significantly superior power consumption" | 70% |
+
+**New Evidence (2025):**
+- [Lee et al., Science Advances eadr2082](https://doi.org/10.1126/sciadv.adr2082) - Demonstrated drone navigation with in-memory synaptic computing
+- See analysis: [research/RECENT_ADVANCES_INTEGRATION.md](research/RECENT_ADVANCES_INTEGRATION.md)
+
 ### Transistor Count
 
 | Claim | Status | Evidence | Confidence |
