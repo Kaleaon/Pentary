@@ -239,6 +239,108 @@ print(f"Mean latency: {result['mean_time_ms']:.2f} ms")
 print(f"Throughput: {result['throughput_fps']:.2f} fps")
 ```
 
+## Advanced Neural Architectures
+
+### pentary_mamba.py
+**Purpose**: Selective State Space Model (Mamba) for O(n) sequence modeling.
+
+**Based on**: [Mamba: Linear-Time Sequence Modeling with Selective State Spaces](https://arxiv.org/abs/2312.00752)
+
+**Features**:
+- PentarySSMCore: Selective state space with input-dependent parameters
+- PentaryMambaBlock: Complete block with gating and convolution
+- PentaryMamba: Full model with generation
+
+**Example**:
+```python
+from pentary_mamba import PentaryMamba
+
+model = PentaryMamba(vocab_size=10000, d_model=256, n_layers=4)
+logits = model.forward(input_ids)
+generated = model.generate(prompt_ids, max_new_tokens=50)
+```
+
+### pentary_rwkv.py
+**Purpose**: Linear Attention RNN combining Transformer training with RNN inference.
+
+**Based on**: [RWKV: Reinventing RNNs for the Transformer Era](https://arxiv.org/abs/2305.13048)
+
+**Features**:
+- PentaryTimeMix: Core WKV attention mechanism
+- PentaryChannelMix: Gated feed-forward network
+- O(1) inference memory per token
+
+**Example**:
+```python
+from pentary_rwkv import PentaryRWKV
+
+model = PentaryRWKV(vocab_size=10000, d_model=256, n_layers=6)
+
+# Parallel (training)
+logits = model.forward(input_ids)
+
+# Recurrent O(1) (inference)
+logits, states = model.forward_recurrent(token_id, states)
+```
+
+### pentary_retnet.py
+**Purpose**: Retentive Network replacing attention with explicit decay.
+
+**Based on**: [Retentive Network: A Successor to Transformer for Large Language Models](https://arxiv.org/abs/2307.08621)
+
+**Features**:
+- PentaryRetention: Core retention with decay matrix
+- Three modes: Parallel, Recurrent, Chunkwise
+- Multi-head retention
+
+**Example**:
+```python
+from pentary_retnet import PentaryRetNet
+
+model = PentaryRetNet(vocab_size=10000, d_model=256, n_layers=6, gamma=0.95)
+
+# Parallel (training)
+logits = model.forward(input_ids)
+
+# Recurrent O(1) (inference)
+logits, states = model.forward_recurrent(token, states, position)
+```
+
+### pentary_world_model.py
+**Purpose**: World Model for model-based reinforcement learning.
+
+**Based on**: [World Models](https://arxiv.org/abs/1803.10122), [DreamerV3](https://arxiv.org/abs/2301.04104)
+
+**Features**:
+- PentaryEncoder/Decoder: Visual processing
+- PentaryRSSM: Recurrent State Space Model with 5-category stochastic states
+- 5 categories = perfect pentary alignment!
+
+**Example**:
+```python
+from pentary_world_model import PentaryWorldModel
+
+model = PentaryWorldModel(obs_shape=(64, 64, 3), action_dim=4)
+
+# Encode observation
+z = model.encode(observation)
+
+# Imagine future (planning)
+imagined = model.imagine(h, stoch_z, actions, horizon=15)
+```
+
+### pentary_pope.py
+**Purpose**: Polar Coordinate Position Embeddings (PoPE) for Transformers.
+
+**Based on**: [Decoupling the 'What' and 'Where' With Polar Coordinate Positional Embeddings](https://arxiv.org/abs/2509.10534)
+
+**Features**:
+- Magnitude for content, angle for position
+- Pentary-quantized angular lookup tables
+- Better length extrapolation
+
+---
+
 ## Advanced Usage
 
 ### Rapid Iteration Workflow
@@ -347,5 +449,13 @@ See LICENSE file in project root.
 
 ---
 
-**Last Updated**: 2025  
+**Last Updated**: December 2025  
 **Status**: Tools are functional and tested
+
+## New in December 2025
+- Added PentaryMamba (Selective State Space Model)
+- Added PentaryRWKV (Linear Attention RNN)
+- Added PentaryRetNet (Retentive Network)
+- Added PentaryWorldModel (Latent Dynamics)
+- Added PentaryPoPE (Polar Position Embeddings)
+- Comprehensive test suite: `tests/test_architectures_quick.py`

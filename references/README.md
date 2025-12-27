@@ -83,6 +83,80 @@ Research papers are copyright of their respective authors and publishers. Includ
 
 ---
 
-**Last Updated**: December 26, 2024  
-**Total Papers**: 6  
-**Total Size**: ~10MB
+## AI Architecture Papers (NEW)
+
+### State Space Models & Linear Attention
+
+7. **mamba.pdf** (1.1MB)
+   - "Mamba: Linear-Time Sequence Modeling with Selective State Spaces"
+   - arXiv:2312.00752 (Gu & Dao, 2023)
+   - **Pentary Compatibility: ⭐⭐⭐⭐⭐ Excellent**
+
+8. **mamba2_ssd.pdf** (3.2MB)
+   - "Transformers are SSMs: Generalized Models and Efficient Algorithms"
+   - arXiv:2405.21060 (Dao & Gu, 2024)
+   - **Pentary Compatibility: ⭐⭐⭐⭐⭐ Excellent**
+
+9. **rwkv.pdf** (1.6MB)
+   - "RWKV: Reinventing RNNs for the Transformer Era"
+   - arXiv:2305.13048 (Peng et al., 2023)
+   - **Pentary Compatibility: ⭐⭐⭐⭐⭐ Excellent**
+
+10. **retnet.pdf** (0.8MB)
+    - "Retentive Network: A Successor to Transformer"
+    - arXiv:2307.08621 (Sun et al., 2023)
+    - **Pentary Compatibility: ⭐⭐⭐⭐⭐ Excellent**
+
+### Diffusion Models
+
+11. **ddpm.pdf** (10.3MB)
+    - "Denoising Diffusion Probabilistic Models"
+    - arXiv:2006.11239 (Ho et al., 2020)
+    - **Pentary Compatibility: ⭐⭐⭐ Moderate**
+
+12. **latent_diffusion.pdf** (40.8MB)
+    - "High-Resolution Image Synthesis with Latent Diffusion Models"
+    - arXiv:2112.10752 (Rombach et al., 2021)
+    - **Pentary Compatibility: ⭐⭐⭐⭐ Good**
+
+### Efficient Transformers & Positional Encoding
+
+13. **flash_attention.pdf** (2.6MB)
+    - "FlashAttention: Fast and Memory-Efficient Exact Attention"
+    - arXiv:2205.14135 (Dao et al., 2022)
+    - **Pentary Compatibility: ⭐⭐⭐⭐ Good**
+
+14. **llama.pdf** (0.7MB)
+    - "LLaMA: Open and Efficient Foundation Language Models"
+    - arXiv:2302.13971 (Touvron et al., 2023)
+    - **Pentary Compatibility: ⭐⭐⭐⭐ Good**
+
+15. **pope.pdf** (4.0MB)
+    - "Decoupling the 'What' and 'Where' With Polar Coordinate Position Embeddings"
+    - arXiv:2509.10534 (Gopalakrishnan et al., 2025)
+    - **Pentary Compatibility: ⭐⭐⭐⭐⭐ Excellent**
+
+## Compatibility Summary
+
+See `PAPER_ARCHIVE.md` for detailed compatibility analysis.
+
+### Best Architectures for Pentary
+
+| Rank | Architecture | Why |
+|------|--------------|-----|
+| 1 | Mamba | Linear O(n), natural state updates |
+| 2 | RetNet | O(1) inference, three paradigms |
+| 3 | RWKV | Proven at 14B scale, RNN inference |
+| 4 | PoPE | Angular encoding = pentary levels |
+| 5 | Latent Diffusion | Compressed space aligns with pentary |
+
+### Related Research Documents
+
+- `/workspace/research/advanced_architectures_pentary_compatibility.md`
+- `/workspace/research/pope_pentary_compatibility.md`
+
+---
+
+**Last Updated**: December 27, 2024  
+**Total Papers**: 15  
+**Total Size**: ~75MB
