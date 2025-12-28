@@ -8,10 +8,10 @@ This directory contains research papers, historical documents, and technical ref
 
 ## Directory Structure
 
-```
+```text
 references/
 ├── papers/              # Academic papers and publications
-├── research/            # Technical research documents  
+├── research/            # Technical research documents
 ├── trinary-systems/     # Historical trinary/ternary computing
 ├── PAPER_ARCHIVE.md     # Comprehensive paper index with compatibility ratings
 ├── RESEARCH_INDEX.md    # Research topic index

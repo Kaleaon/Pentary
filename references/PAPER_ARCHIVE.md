@@ -22,7 +22,7 @@ This archive contains references to key papers analyzed for compatibility with P
 10. [Mixture of Experts (MoE)](#mixture-of-experts-moe)
 11. [Hardware & Accelerators](#hardware--accelerators)
 12. [In-Memory Computing & Neuromorphic](#in-memory-computing--neuromorphic)
-13. [Ternary/Multi-Valued Logic](#ternarymulti-valued-logic)
+13. [Ternary and Multi-Valued Logic](#ternary-and-multi-valued-logic)
 
 ---
 
@@ -173,7 +173,7 @@ This archive contains references to key papers analyzed for compatibility with P
 - **arXiv:** [2006.11239](https://arxiv.org/abs/2006.11239)
 - **Date:** June 2020
 - **Pentary Compatibility:** ⭐⭐⭐ (Moderate)
-- **Summary:** High quality image synthesis using diffusion probabilistic models.
+- **Summary:** High-quality image synthesis using diffusion probabilistic models.
 - **PDF:** `ddpm.pdf`
 
 ### Latent Diffusion Models (Stable Diffusion)
@@ -614,7 +614,7 @@ This archive contains references to key papers analyzed for compatibility with P
 
 ---
 
-## Ternary/Multi-Valued Logic
+## Ternary and Multi-Valued Logic
 
 ### Setun Ternary Computer
 - **Source:** HAL Archives
@@ -635,6 +635,8 @@ This archive contains references to key papers analyzed for compatibility with P
 - **PDF:** `research/Ternary_CMOS_Standard_Cell_Design.pdf`
 
 ### Memristor-CMOS Ternary Logic
+- **Authors:** Various
+- **arXiv:** [1711.05190](https://arxiv.org/abs/1711.05190)
 - **Source:** arXiv
 - **Pentary Compatibility:** ⭐⭐⭐⭐⭐ (Excellent)
 - **Summary:** Hybrid memristor-CMOS ternary implementation.
@@ -684,6 +686,9 @@ This archive contains references to key papers analyzed for compatibility with P
 
 ## Download Commands
 
+> **Note:** This section covers high-priority papers for quick setup. For the complete collection,
+> refer to individual paper entries above which include all arXiv links.
+
 ```bash
 # Quantization Papers
 wget https://arxiv.org/pdf/2210.17323 -O gptq.pdf
@@ -712,8 +717,20 @@ wget https://arxiv.org/pdf/1605.04711 -O ternary_weight_networks.pdf
 wget https://arxiv.org/pdf/2402.17764 -O bitnet.pdf
 wget https://arxiv.org/pdf/2310.11453 -O bitnet_1_58.pdf
 
-# Hardware
+# Hardware & Accelerators
 wget https://arxiv.org/pdf/1704.04760 -O tpu_v1.pdf
+
+# Diffusion Models
+wget https://arxiv.org/pdf/2006.11239 -O ddpm.pdf
+wget https://arxiv.org/pdf/2112.10752 -O latent_diffusion.pdf
+
+# Positional Encodings
+wget https://arxiv.org/pdf/2104.09864 -O rope.pdf
+wget https://arxiv.org/pdf/2509.10534 -O pope.pdf
+
+# Attention & Memory
+wget https://arxiv.org/pdf/2205.14135 -O flash_attention.pdf
+wget https://arxiv.org/pdf/2304.11062 -O pageattention_vllm.pdf
 ```
 
 ---
