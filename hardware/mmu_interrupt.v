@@ -112,8 +112,8 @@ module MMU (
     reg [2:0] walker_state;
     localparam IDLE = 3'b000;
     localparam LEVEL1 = 3'b001;
-    localparam LEVEL2 = 3'b002;
-    localparam LEVEL3 = 3'b003;
+    localparam LEVEL2 = 3'b010;
+    localparam LEVEL3 = 3'b011;
     localparam UPDATE_TLB = 3'b100;
     
     reg [47:0] pte_addr;
