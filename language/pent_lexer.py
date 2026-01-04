@@ -78,6 +78,7 @@ class TokenType(Enum):
     COLON = "COLON"
     COMMA = "COMMA"
     DOT = "DOT"
+    DOT_DOT = "DOT_DOT"  # ..
     ARROW = "ARROW"  # ->
     
     # Special
@@ -175,7 +176,10 @@ class Lexer:
         elif c == ',':
             self.add_token(TokenType.COMMA)
         elif c == '.':
-            self.add_token(TokenType.DOT)
+            if self.match('.'):
+                self.add_token(TokenType.DOT_DOT)
+            else:
+                self.add_token(TokenType.DOT)
         elif c == ':':
             self.add_token(TokenType.COLON)
         

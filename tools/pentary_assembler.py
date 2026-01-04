@@ -34,7 +34,7 @@ class PentaryAssembler:
         cleaned_lines = []
 
         # Pass 1: Clean code and find labels
-        current_address = 1  # 1-based address for simulator
+        current_address = 0  # 0-based address for simulator
 
         for i, line in enumerate(source_lines):
             # Strip comments and whitespace

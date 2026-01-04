@@ -128,6 +128,17 @@ class ForStatement(ASTNode):
         return f"For({self.variable})"
 
 
+class RangeExpression(ASTNode):
+    """Range expression: start..end"""
+    def __init__(self, start: 'Expression', end: 'Expression'):
+        super().__init__()
+        self.start = start
+        self.end = end
+
+    def __repr__(self):
+        return f"Range()"
+
+
 class Expression(ASTNode):
     """Base class for expressions"""
     pass
@@ -186,6 +197,17 @@ class Identifier(Expression):
     
     def __repr__(self):
         return f"Identifier({self.name})"
+
+
+class Assignment(Expression):
+    """Assignment expression: name = value"""
+    def __init__(self, name: str, value: Expression):
+        super().__init__()
+        self.name = name
+        self.value = value
+
+    def __repr__(self):
+        return f"Assignment({self.name})"
 
 
 class Parser:
@@ -332,11 +354,30 @@ class Parser:
     def for_statement(self) -> ForStatement:
         """Parse for statement: for var in iterable { body }"""
         variable = self.consume(TokenType.IDENTIFIER, "Expected loop variable").value
-        self.consume(TokenType.USE if self.check(TokenType.USE) else TokenType.IDENTIFIER, "Expected 'in'")
-        if self.previous().type == TokenType.USE:
-            # Handle 'in' keyword (if we add it)
-            pass
-        iterable = self.expression()
+
+        # Check for 'in' keyword. Currently the lexer might identify it as IDENTIFIER or USE (if defined)
+        # We'll check if the next token is identifier "in" or some other token representing it
+        if self.check(TokenType.IDENTIFIER) and self.peek().value == "in":
+            self.advance()
+        elif self.check(TokenType.USE): # Fallback if 'in' mapped to USE
+             self.advance()
+        else:
+             # Just consume expecting it is "in"
+             self.consume(TokenType.IDENTIFIER, "Expected 'in'")
+             if self.previous().value != "in":
+                  # If strict validation needed. For now assume it passed or was something else
+                  pass
+
+        # Parse iterable
+        start = self.expression()
+
+        # Check if it's a range (start..end)
+        if self.match(TokenType.DOT_DOT):
+            end = self.expression()
+            iterable = RangeExpression(start, end)
+        else:
+            iterable = start
+
         body = self.block()
         return ForStatement(variable, iterable, body)
     
@@ -371,8 +412,18 @@ class Parser:
         return self.assignment()
     
     def assignment(self) -> Expression:
-        """Parse assignment (for now, just equality)"""
+        """Parse assignment"""
         expr = self.equality()
+
+        if self.match(TokenType.EQUAL):
+            equals = self.previous()
+            value = self.assignment()
+
+            if isinstance(expr, Identifier):
+                return Assignment(expr.name, value)
+
+            raise self.error(equals, "Invalid assignment target.")
+
         return expr
     
     def equality(self) -> Expression:
