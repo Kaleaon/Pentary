@@ -346,7 +346,8 @@ class PentaryProcessor:
                 # BLT Rs, target (branch if Rs < 0)
                 rs, target = parts[1].rstrip(','), int(parts[2])
                 value = self.get_register(rs)
-                if PentaryConverter.pentary_to_decimal(value) < 0:
+                val_dec = PentaryConverter.pentary_to_decimal(value)
+                if val_dec < 0:
                     self.pc = target - 1
             
             elif opcode == "BGT":
@@ -379,13 +380,31 @@ class PentaryProcessor:
             elif opcode == "MOVI":
                 # MOVI Rd, Imm (pseudo-instruction: move immediate)
                 rd, imm = parts[1].rstrip(','), parts[2]
-                # Try to parse as decimal first, then as pentary literal
-                try:
-                    imm_val = int(imm)
-                    value = PentaryConverter.decimal_to_pentary(imm_val)
-                except ValueError:
-                    # Must be a pentary literal
+
+                # Check if it's a pentary literal (only contains pentary digits)
+                is_pentary = True
+                for char in imm:
+                    if char not in PentaryConverter.REVERSE_SYMBOLS:
+                        is_pentary = False
+                        break
+
+                if is_pentary:
                     value = imm
+                else:
+                    try:
+                        imm_val = int(imm)
+                        value = PentaryConverter.decimal_to_pentary(imm_val)
+                    except ValueError:
+                        # Fallback, treat as string/pentary
+                        value = imm
+
+                self.set_register(rd, value)
+                self.update_flags(value)
+
+            elif opcode == "MOV":
+                # MOV Rd, Rs (move register to register)
+                rd, rs = parts[1].rstrip(','), parts[2]
+                value = self.get_register(rs)
                 self.set_register(rd, value)
                 self.update_flags(value)
             

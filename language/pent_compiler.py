@@ -19,7 +19,7 @@ if _parent_dir not in sys.path:
 from pent_lexer import Lexer
 from pent_parser import Parser, ASTNode, Function, LetStatement, ReturnStatement, \
     IfStatement, WhileStatement, ForStatement, BinaryExpression, UnaryExpression, \
-    CallExpression, Literal, Identifier, Block, Program
+    CallExpression, Literal, Identifier, Block, Program, RangeExpression, Assignment
 
 from tools.pentary_converter import PentaryConverter
 
@@ -170,10 +170,76 @@ class CodeGenerator:
     
     def generate_for(self, stmt: ForStatement):
         """Generate code for for loop"""
-        # For now, treat as while loop
-        # TODO: Implement proper for loop generation
-        self.generate_while(WhileStatement(stmt.iterable, stmt.body))
-    
+        start_reg = None
+        end_reg = None
+
+        # Determine range (start, end)
+        if isinstance(stmt.iterable, RangeExpression):
+            start_reg = self.generate_expression(stmt.iterable.start)
+            end_reg = self.generate_expression(stmt.iterable.end)
+        elif isinstance(stmt.iterable, CallExpression) and stmt.iterable.name == "range":
+            # Handle range(start, end) or range(end)
+            if len(stmt.iterable.arguments) == 2:
+                start_reg = self.generate_expression(stmt.iterable.arguments[0])
+                end_reg = self.generate_expression(stmt.iterable.arguments[1])
+            elif len(stmt.iterable.arguments) == 1:
+                # range(end) -> 0..end
+                start_reg = self.allocate_register()
+                self.emit(f"MOVI P{start_reg}, 0")
+                end_reg = self.generate_expression(stmt.iterable.arguments[0])
+            else:
+                raise Exception("range() expects 1 or 2 arguments")
+        else:
+             # Fallback for array/other iterables not supported yet in assembly
+             # TODO: Implement array iteration
+             # Since we can't easily iterate without length/type info in pure assembly from a raw pointer,
+             # we raise an error or fallback.
+             # For now, we'll try to treat it as a collection if possible, but safely we can't.
+             # Given the "Pentary" context, let's assume valid ranges for now.
+             raise Exception("For loop only supports ranges (start..end or range()) currently")
+
+        # Loop variable register
+        loop_var_reg = self.allocate_register()
+        self.variables[stmt.variable] = loop_var_reg
+
+        # Initialize loop variable: loop_var = start
+        self.emit(f"MOV P{loop_var_reg}, P{start_reg}")
+
+        loop_label = self.new_label("for_loop")
+        end_label = self.new_label("for_end")
+
+        self.emit(f"{loop_label}:")
+
+        # Check condition: loop_var < end
+        temp_reg = self.allocate_register()
+        self.emit(f"SUB P{temp_reg}, P{loop_var_reg}, P{end_reg}")
+        # If loop_var - end >= 0, then loop_var >= end. We want < end.
+        # So if >= 0 (not negative), we break.
+        # Pentary: Negative means < 0.
+        # So we branch to end if NOT negative (i.e., >= 0).
+        # Wait, BLT branches if < 0.
+        # We want to continue if < 0. So we want to break if >= 0.
+        # There is no BGE instruction in the simulator (BEQ, BNE, BLT, BGT).
+        # So we can use: if (loop_var - end) >= 0 goto end.
+        # >= 0 is equivalent to NOT ( < 0 ).
+        # Or: if (loop_var - end) < 0 continue, else jump end.
+
+        cont_label = self.new_label("for_cont")
+        self.emit(f"BLT P{temp_reg}, {cont_label}") # If < 0, continue
+        self.emit(f"JUMP {end_label}") # Else, break
+        self.emit(f"{cont_label}:")
+
+        # Body
+        self.generate_block(stmt.body)
+
+        # Increment: loop_var = loop_var + 1
+        self.emit(f"ADDI P{loop_var_reg}, P{loop_var_reg}, 1")
+
+        # Jump back
+        self.emit(f"JUMP {loop_label}")
+
+        self.emit(f"{end_label}:")
+
     def generate_expression(self, expr: ASTNode) -> int:
         """Generate code for expression, return register containing result"""
         if isinstance(expr, BinaryExpression):
@@ -186,9 +252,21 @@ class CodeGenerator:
             return self.generate_literal(expr)
         elif isinstance(expr, Identifier):
             return self.generate_identifier(expr)
+        elif isinstance(expr, Assignment):
+            return self.generate_assignment(expr)
         else:
             raise Exception(f"Unknown expression type: {type(expr)}")
     
+    def generate_assignment(self, expr: Assignment) -> int:
+        """Generate code for assignment"""
+        value_reg = self.generate_expression(expr.value)
+        if expr.name in self.variables:
+            target_reg = self.variables[expr.name]
+            self.emit(f"MOV P{target_reg}, P{value_reg}")
+            return target_reg
+        else:
+            raise Exception(f"Undefined variable: {expr.name}")
+
     def generate_binary(self, expr: BinaryExpression) -> int:
         """Generate code for binary expression"""
         left_reg = self.generate_expression(expr.left)
