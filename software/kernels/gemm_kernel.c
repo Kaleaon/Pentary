@@ -51,7 +51,29 @@ static pentary_nn_status_t gemm_tiled(
                 pentary_memset(C_tile, 0, tile_size, stream);
             } else {
                 // Load existing C tile
-                // TODO: Copy C[m*PTC_TILE_SIZE:, n*PTC_TILE_SIZE:] to C_tile
+                // C is assumed to be row-major: index = i * ldc + j
+                // We zero the tile first to handle boundary conditions easily
+                pentary_memset(C_tile, 0, tile_size, stream);
+
+                int m_start = m * PTC_TILE_SIZE;
+                int n_start = n * PTC_TILE_SIZE;
+
+                // Determine valid region within the tile
+                int valid_rows = (m_start + PTC_TILE_SIZE <= M) ? PTC_TILE_SIZE : (M - m_start);
+                int valid_cols = (n_start + PTC_TILE_SIZE <= N) ? PTC_TILE_SIZE : (N - n_start);
+
+                size_t row_copy_size = valid_cols * sizeof(float);
+
+                for (int i = 0; i < valid_rows; i++) {
+                    // Source address: C + (m_start + i) * ldc + n_start
+                    // pentary_ptr_t is void*, so we cast to char* for byte arithmetic
+                    char* src_addr = (char*)C + ((m_start + i) * ldc + n_start) * sizeof(float);
+
+                    // Dest address: C_tile + i * PTC_TILE_SIZE
+                    char* dst_addr = (char*)C_tile + (i * PTC_TILE_SIZE) * sizeof(float);
+
+                    pentary_memcpy_d2d((pentary_ptr_t)dst_addr, (pentary_ptr_t)src_addr, row_copy_size, stream);
+                }
             }
             
             // Accumulate over K dimension

@@ -131,6 +131,17 @@ pentary_status_t pentary_memcpy_d2h(void* dst, pentary_ptr_t src,
 pentary_status_t pentary_memcpy_d2d(pentary_ptr_t dst, pentary_ptr_t src,
                                      size_t size, pentary_stream_t stream);
 
+/**
+ * @brief Set memory to a value
+ * @param ptr Pointer to memory
+ * @param value Value to set
+ * @param size Size in bytes
+ * @param stream Stream for asynchronous operation (NULL for synchronous)
+ * @return Status code
+ */
+pentary_status_t pentary_memset(pentary_ptr_t ptr, int value,
+                                 size_t size, pentary_stream_t stream);
+
 // ============================================================================
 // Stream Management
 // ============================================================================
