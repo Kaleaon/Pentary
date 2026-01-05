@@ -7,11 +7,49 @@
  * matrix multiplication with minimal data movement.
  */
 
+#include <stdbool.h>
 #include "pentary_nn.h"
 #include "pentary_runtime.h"
 
 // PTC configuration
 #define PTC_TILE_SIZE 16  // 16x16 systolic array
+
+extern pentary_status_t pentary_memset(pentary_ptr_t ptr, int value, size_t size, pentary_stream_t stream);
+
+static void load_tile_from_matrix(
+    pentary_ptr_t matrix, int ld,
+    int matrix_rows, int matrix_cols,
+    int tile_row_start, int tile_col_start,
+    pentary_ptr_t tile,
+    pentary_stream_t stream
+) {
+    for (int i = 0; i < PTC_TILE_SIZE; i++) {
+        int r = tile_row_start + i;
+        char* dst_row_ptr = (char*)tile + (i * PTC_TILE_SIZE) * sizeof(float);
+
+        if (r < matrix_rows) {
+            // Calculate valid columns to copy
+            int cols_to_copy = matrix_cols - tile_col_start;
+            if (cols_to_copy > PTC_TILE_SIZE) cols_to_copy = PTC_TILE_SIZE;
+            if (cols_to_copy < 0) cols_to_copy = 0;
+
+            if (cols_to_copy > 0) {
+                // Address: matrix + (r * ld + tile_col_start) * sizeof(float)
+                char* src_row_ptr = (char*)matrix + (r * ld + tile_col_start) * sizeof(float);
+                pentary_memcpy_d2d((pentary_ptr_t)dst_row_ptr, (pentary_ptr_t)src_row_ptr, cols_to_copy * sizeof(float), stream);
+            }
+
+            // Zero padding if needed
+            if (cols_to_copy < PTC_TILE_SIZE) {
+                size_t pad_size = (PTC_TILE_SIZE - cols_to_copy) * sizeof(float);
+                pentary_memset((pentary_ptr_t)(dst_row_ptr + cols_to_copy * sizeof(float)), 0, pad_size, stream);
+            }
+        } else {
+            // Entire row is padding
+            pentary_memset((pentary_ptr_t)dst_row_ptr, 0, PTC_TILE_SIZE * sizeof(float), stream);
+        }
+    }
+}
 
 /**
  * @brief Tile a matrix for optimal PTC dataflow
@@ -79,10 +117,10 @@ static pentary_nn_status_t gemm_tiled(
             // Accumulate over K dimension
             for (int k = 0; k < K_tiles; k++) {
                 // Load A tile: A[m*PTC_TILE_SIZE:(m+1)*PTC_TILE_SIZE, k*PTC_TILE_SIZE:(k+1)*PTC_TILE_SIZE]
-                // TODO: Implement tile loading from HBM to on-chip memory
+                load_tile_from_matrix(A, lda, M, K, m * PTC_TILE_SIZE, k * PTC_TILE_SIZE, A_tile, stream);
                 
                 // Load B tile: B[k*PTC_TILE_SIZE:(k+1)*PTC_TILE_SIZE, n*PTC_TILE_SIZE:(n+1)*PTC_TILE_SIZE]
-                // TODO: Implement tile loading from HBM to on-chip memory
+                load_tile_from_matrix(B, ldb, K, N, k * PTC_TILE_SIZE, n * PTC_TILE_SIZE, B_tile, stream);
                 
                 // Dispatch to PTC
                 // This is a hardware instruction that triggers the systolic array
