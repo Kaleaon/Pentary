@@ -12,6 +12,7 @@
 #ifndef PENTARY_NN_H
 #define PENTARY_NN_H
 
+#include <stdbool.h>
 #include "pentary_runtime.h"
 
 #ifdef __cplusplus
