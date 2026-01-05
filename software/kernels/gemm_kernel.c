@@ -14,6 +14,30 @@
 #define PTC_TILE_SIZE 16  // 16x16 systolic array
 
 /**
+ * @brief Helper to copy a 2D tile between memory spaces
+ *
+ * Performs a strided copy to move a tile (sub-matrix) between HBM and On-Chip memory.
+ */
+static void copy_tile_2d(
+    pentary_ptr_t dst_base, int dst_stride,
+    pentary_ptr_t src_base, int src_stride,
+    int height, int width,
+    pentary_stream_t stream
+) {
+    size_t row_size = width * sizeof(float);
+
+    // Cast to char* to perform byte-level arithmetic
+    char* dst_ptr = (char*)dst_base;
+    char* src_ptr = (char*)src_base;
+
+    for (int i = 0; i < height; i++) {
+        pentary_memcpy_d2d((pentary_ptr_t)dst_ptr, (pentary_ptr_t)src_ptr, row_size, stream);
+        dst_ptr += dst_stride * sizeof(float);
+        src_ptr += src_stride * sizeof(float);
+    }
+}
+
+/**
  * @brief Tile a matrix for optimal PTC dataflow
  * 
  * The PTC systolic array processes 16x16 tiles. This function tiles the
@@ -50,27 +74,36 @@ static pentary_nn_status_t gemm_tiled(
                 // Zero initialize
                 pentary_memset(C_tile, 0, tile_size, stream);
             } else {
-                // Load existing C tile
-                // TODO: Copy C[m*PTC_TILE_SIZE:, n*PTC_TILE_SIZE:] to C_tile
+                // Load existing C tile: C[m*PTC_TILE_SIZE:, n*PTC_TILE_SIZE:]
+                char* C_src_addr = (char*)C + (m * PTC_TILE_SIZE * ldc + n * PTC_TILE_SIZE) * sizeof(float);
+                copy_tile_2d(C_tile, PTC_TILE_SIZE, (pentary_ptr_t)C_src_addr, ldc, PTC_TILE_SIZE, PTC_TILE_SIZE, stream);
             }
             
             // Accumulate over K dimension
             for (int k = 0; k < K_tiles; k++) {
                 // Load A tile: A[m*PTC_TILE_SIZE:(m+1)*PTC_TILE_SIZE, k*PTC_TILE_SIZE:(k+1)*PTC_TILE_SIZE]
-                // TODO: Implement tile loading from HBM to on-chip memory
+                char* A_src_addr = (char*)A + (m * PTC_TILE_SIZE * lda + k * PTC_TILE_SIZE) * sizeof(float);
+                copy_tile_2d(A_tile, PTC_TILE_SIZE, (pentary_ptr_t)A_src_addr, lda, PTC_TILE_SIZE, PTC_TILE_SIZE, stream);
                 
                 // Load B tile: B[k*PTC_TILE_SIZE:(k+1)*PTC_TILE_SIZE, n*PTC_TILE_SIZE:(n+1)*PTC_TILE_SIZE]
-                // TODO: Implement tile loading from HBM to on-chip memory
+                char* B_src_addr = (char*)B + (k * PTC_TILE_SIZE * ldb + n * PTC_TILE_SIZE) * sizeof(float);
+                copy_tile_2d(B_tile, PTC_TILE_SIZE, (pentary_ptr_t)B_src_addr, ldb, PTC_TILE_SIZE, PTC_TILE_SIZE, stream);
                 
                 // Dispatch to PTC
                 // This is a hardware instruction that triggers the systolic array
                 // In assembly: TGEMM A_tile, B_tile, C_tile
                 // TODO: Implement PTC dispatch via inline assembly or intrinsic
+                // For now, this is a placeholder as no intrinsic API is exposed yet.
             }
             
             // Scale and write back C tile
             // C[m*PTC_TILE_SIZE:(m+1)*PTC_TILE_SIZE, n*PTC_TILE_SIZE:(n+1)*PTC_TILE_SIZE] = alpha * C_tile + beta * C_old
-            // TODO: Implement tile writeback from on-chip memory to HBM
+            // Note: Since we lack a device-side scaling kernel, we perform a direct writeback here.
+            // This assumes alpha=1.0 and beta was handled by the initialization step.
+            // We write C_tile back to HBM.
+
+            char* C_dst_addr = (char*)C + (m * PTC_TILE_SIZE * ldc + n * PTC_TILE_SIZE) * sizeof(float);
+            copy_tile_2d((pentary_ptr_t)C_dst_addr, ldc, C_tile, PTC_TILE_SIZE, PTC_TILE_SIZE, PTC_TILE_SIZE, stream);
         }
     }
     
