@@ -178,7 +178,7 @@ class CodeGenerator:
             start_reg = self.generate_expression(stmt.iterable.start)
             end_reg = self.generate_expression(stmt.iterable.end)
         elif isinstance(stmt.iterable, CallExpression) and stmt.iterable.name == "range":
-            # Handle range(start, end) or range(end)
+            # Handle range(start, end) or range(end) or range(start, end, step)
             if len(stmt.iterable.arguments) == 2:
                 start_reg = self.generate_expression(stmt.iterable.arguments[0])
                 end_reg = self.generate_expression(stmt.iterable.arguments[1])
@@ -187,17 +187,75 @@ class CodeGenerator:
                 start_reg = self.allocate_register()
                 self.emit(f"MOVI P{start_reg}, 0")
                 end_reg = self.generate_expression(stmt.iterable.arguments[0])
+            elif len(stmt.iterable.arguments) == 3:
+                start_reg = self.generate_expression(stmt.iterable.arguments[0])
+                end_reg = self.generate_expression(stmt.iterable.arguments[1])
+                step_val = stmt.iterable.arguments[2]
+                if isinstance(step_val, Literal) and isinstance(step_val.value, int):
+                    step_reg = self.generate_expression(step_val)
+                    step_int = step_val.value
+                elif isinstance(step_val, UnaryExpression) and step_val.operator == "-" and \
+                     isinstance(step_val.operand, Literal) and isinstance(step_val.operand.value, int):
+                    # Handle negative literal (it's parsed as unary expression)
+                    step_reg = self.generate_expression(step_val)
+                    step_int = -step_val.operand.value
+                else:
+                    raise Exception("range() step must be a constant integer")
             else:
-                raise Exception("range() expects 1 or 2 arguments")
+                raise Exception("range() expects 1, 2, or 3 arguments")
         else:
-             # Fallback for array/other iterables not supported yet in assembly
-             # TODO: Implement array iteration
-             # Since we can't easily iterate without length/type info in pure assembly from a raw pointer,
-             # we raise an error or fallback.
-             # For now, we'll try to treat it as a collection if possible, but safely we can't.
-             # Given the "Pentary" context, let's assume valid ranges for now.
-             raise Exception("For loop only supports ranges (start..end or range()) currently")
+            # Implement array iteration
+            # Assumption: iterable evaluates to a pointer to a length-prefixed array
+            # Layout: [Length, Element 0, Element 1, ...]
+            array_ptr_reg = self.generate_expression(stmt.iterable)
 
+            # Load length: len = [ptr]
+            len_reg = self.allocate_register()
+            self.emit(f"LOAD P{len_reg}, [P{array_ptr_reg}]")
+
+            # Initialize index: i = 0
+            index_reg = self.allocate_register()
+            self.emit(f"MOVI P{index_reg}, 0")
+
+            # Allocate register for the loop variable (element)
+            elem_reg = self.allocate_register()
+            self.variables[stmt.variable] = elem_reg
+
+            loop_label = self.new_label("for_loop")
+            end_label = self.new_label("for_end")
+
+            self.emit(f"{loop_label}:")
+
+            # Check condition: index < len
+            temp_reg = self.allocate_register()
+            self.emit(f"SUB P{temp_reg}, P{index_reg}, P{len_reg}")
+            # if index - len >= 0, break
+
+            cont_label = self.new_label("for_cont")
+            self.emit(f"BLT P{temp_reg}, {cont_label}") # If < 0 (index < len), continue
+            self.emit(f"JUMP {end_label}") # Else, break
+            self.emit(f"{cont_label}:")
+
+            # Load element: elem = [ptr + 1 + index]
+            # addr = ptr + 1 + index
+            addr_reg = self.allocate_register()
+            self.emit(f"ADDI P{addr_reg}, P{array_ptr_reg}, 1")
+            self.emit(f"ADD P{addr_reg}, P{addr_reg}, P{index_reg}")
+            self.emit(f"LOAD P{elem_reg}, [P{addr_reg}]")
+
+            # Body
+            self.generate_block(stmt.body)
+
+            # Increment index: i = i + 1
+            self.emit(f"ADDI P{index_reg}, P{index_reg}, 1")
+
+            # Jump back
+            self.emit(f"JUMP {loop_label}")
+
+            self.emit(f"{end_label}:")
+            return
+
+        # Range iteration path
         # Loop variable register
         loop_var_reg = self.allocate_register()
         self.variables[stmt.variable] = loop_var_reg
@@ -210,30 +268,31 @@ class CodeGenerator:
 
         self.emit(f"{loop_label}:")
 
-        # Check condition: loop_var < end
+        # Check condition: loop_var < end (if step > 0) or loop_var > end (if step < 0)
         temp_reg = self.allocate_register()
         self.emit(f"SUB P{temp_reg}, P{loop_var_reg}, P{end_reg}")
-        # If loop_var - end >= 0, then loop_var >= end. We want < end.
-        # So if >= 0 (not negative), we break.
-        # Pentary: Negative means < 0.
-        # So we branch to end if NOT negative (i.e., >= 0).
-        # Wait, BLT branches if < 0.
-        # We want to continue if < 0. So we want to break if >= 0.
-        # There is no BGE instruction in the simulator (BEQ, BNE, BLT, BGT).
-        # So we can use: if (loop_var - end) >= 0 goto end.
-        # >= 0 is equivalent to NOT ( < 0 ).
-        # Or: if (loop_var - end) < 0 continue, else jump end.
 
         cont_label = self.new_label("for_cont")
-        self.emit(f"BLT P{temp_reg}, {cont_label}") # If < 0, continue
+
+        # Determine branch direction based on step (if available)
+        if 'step_int' in locals() and step_int < 0:
+            # Step is negative, check loop_var > end (SUB > 0)
+            self.emit(f"BGT P{temp_reg}, {cont_label}") # If > 0, continue
+        else:
+            # Step is positive (default), check loop_var < end (SUB < 0)
+            self.emit(f"BLT P{temp_reg}, {cont_label}") # If < 0, continue
+
         self.emit(f"JUMP {end_label}") # Else, break
         self.emit(f"{cont_label}:")
 
         # Body
         self.generate_block(stmt.body)
 
-        # Increment: loop_var = loop_var + 1
-        self.emit(f"ADDI P{loop_var_reg}, P{loop_var_reg}, 1")
+        # Increment: loop_var = loop_var + step
+        if 'step_reg' in locals():
+            self.emit(f"ADD P{loop_var_reg}, P{loop_var_reg}, P{step_reg}")
+        else:
+            self.emit(f"ADDI P{loop_var_reg}, P{loop_var_reg}, 1")
 
         # Jump back
         self.emit(f"JUMP {loop_label}")
