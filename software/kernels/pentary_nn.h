@@ -13,6 +13,7 @@
 #define PENTARY_NN_H
 
 #include "pentary_runtime.h"
+#include <stdbool.h>
 
 #ifdef __cplusplus
 extern "C" {

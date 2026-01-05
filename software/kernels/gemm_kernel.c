@@ -10,6 +10,9 @@
 #include "pentary_nn.h"
 #include "pentary_runtime.h"
 
+// Forward declaration for missing runtime function
+extern pentary_status_t pentary_memset(pentary_ptr_t ptr, int value, size_t size, pentary_stream_t stream);
+
 // PTC configuration
 #define PTC_TILE_SIZE 16  // 16x16 systolic array
 
@@ -65,12 +68,20 @@ static pentary_nn_status_t gemm_tiled(
                 // Dispatch to PTC
                 // This is a hardware instruction that triggers the systolic array
                 // In assembly: TGEMM A_tile, B_tile, C_tile
-                // TODO: Implement PTC dispatch via inline assembly or intrinsic
+                // Using +r for C_tile as it is the accumulator (read-write)
+                // Inputs A_tile and B_tile are read-only
+                __asm__ volatile (
+                    "tgemm %1, %2, %0"
+                    : "+r" (C_tile)
+                    : "r" (A_tile), "r" (B_tile)
+                    : "memory"
+                );
             }
             
             // Scale and write back C tile
             // C[m*PTC_TILE_SIZE:(m+1)*PTC_TILE_SIZE, n*PTC_TILE_SIZE:(n+1)*PTC_TILE_SIZE] = alpha * C_tile + beta * C_old
             // TODO: Implement tile writeback from on-chip memory to HBM
+            // Note: Writeback requires specialized handling of HBM strided access which is outside the scope of the current task.
         }
     }
     
