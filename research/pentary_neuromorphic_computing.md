@@ -1097,6 +1097,7 @@ Pentary neuromorphic computing represents a paradigm shift in brain-inspired AI,
 
 ## References
 
+### Original References
 1. Intel Loihi 2 Neuromorphic Processor (2024)
 2. IBM TrueNorth Cognitive Computing (2014)
 3. BrainChip Akida 2.0 Neuromorphic Processor (2024)
@@ -1108,9 +1109,50 @@ Pentary neuromorphic computing represents a paradigm shift in brain-inspired AI,
 9. Memristor-Based Neuromorphic Systems Research
 10. STDP Learning in Spiking Neural Networks
 
+### Additional References from Chen et al. (2025) Memristor Review [DOI: 10.34133/research.0916]
+
+**Neuromorphic Synapses and Plasticity:**
+11. Chen S, et al. (2025). "Electrochemical ohmic memristors for continual learning." *Nat Commun*. DOI: 10.1038/s41467-025-57543-w
+12. Ma F, et al. (2020). "Optoelectronic perovskite synapses for neuromorphic computing." *Adv Funct Mater*. DOI: 10.1002/adfm.201908901
+13. Shi J, et al. (2024). "Adaptive processing enabled by sodium alginate based complementary memristor for neuromorphic sensory system." *Adv Mater*. DOI: 10.1002/adma.202314156
+14. Qian C, et al. (2019). "Solar-stimulated optoelectronic synapse based on organic heterojunction." *Nano Energy*. DOI: 10.1016/j.nanoen.2019.104095
+15. Dai X, et al. (2024). "Artificial synapse based on tri-layer AlN/AlScN/AlN stacked memristor." *Nano Energy*. DOI: 10.1016/j.nanoen.2024.109473
+
+**Hardware Neurons:**
+16. Pei Y, et al. (2025). "Ultra robust negative differential resistance memristor for hardware neuron circuit implementation." *Nat Commun*. DOI: 10.1038/s41467-024-55293-9
+17. Zhao J, et al. (2024). "Neural morphology perception system based on antiferroelectric AgNbO₃ neurons." *InfoMat*. DOI: 10.1002/inf2.12637
+18. Cheng Y, et al. (2025). "Bioinspired adaptive neuron enabled by self-powered optoelectronic memristor." *Adv Sci*. DOI: 10.1002/advs.202417461
+
+**Neuromorphic Vision:**
+19. Meng J, et al. (2021). "Integrated In-sensor computing optoelectronic device for environment-adaptable artificial retina perception application." *Nano Lett*. DOI: 10.1021/acs.nanolett.1c03240
+20. Fu X, et al. (2023). "Graphene/MoS₂-xOx/graphene photomemristor with tunable non-volatile responsivities for neuromorphic vision processing." *Light Sci Appl*. DOI: 10.1038/s41377-023-01079-5
+21. Huang H, et al. (2024). "Fully integrated multi-mode optoelectronic memristor array for diversified in-sensor computing." *Nat Nanotechnol*. DOI: 10.1038/s41565-024-01794-z
+22. Wang T-Y, et al. (2021). "Reconfigurable optoelectronic memristor for in-sensor computing applications." *Nano Energy*. DOI: 10.1016/j.nanoen.2021.106291
+
+**In-Memory Neuromorphic Computing:**
+23. Prezioso M, et al. (2015). "Training and operation of an integrated neuromorphic network based on metal-oxide memristors." *Nature*. DOI: 10.1038/nature14441
+24. Wang Z, et al. (2019). "In situ training of feed-forward and recurrent convolutional memristor networks." *Nat Mach Intell*. DOI: 10.1038/s42256-019-0089-1
+25. Zidan MA, et al. (2018). "The future of electronics based on memristive systems." *Nat Electron*. DOI: 10.1038/s41928-017-0006-8
+26. Duan X, et al. (2024). "Memristor-based neuromorphic chips." *Adv Mater*. DOI: 10.1002/adma.202310704
+
+**Reservoir Computing:**
+27. Zhang Z, et al. (2022). "In-sensor reservoir computing system for latent fingerprint recognition with deep ultraviolet photo-synapses and memristor array." *Nat Commun*. DOI: 10.1038/s41467-022-34230-8
+
+**Wearable Neuromorphic Systems:**
+28. Wang T, et al. (2022). "Reconfigurable neuromorphic memristor network for ultralow-power smart textile electronics." *Nat Commun*. DOI: 10.1038/s41467-022-35160-1
+29. Jebali F, et al. (2024). "Powering AI at the edge: A robust, memristor-based binarized neural network with miniaturized solar cell." *Nat Commun*. DOI: 10.1038/s41467-024-44766-6
+
+**MoS₂ and 2D Materials for Neuromorphic:**
+30. Krishnaprasad A, et al. (2022). "MoS₂ synapses with ultra-low variability and their implementation in Boolean logic." *ACS Nano*. DOI: 10.1021/acsnano.1c09904
+
 ---
 
-**Document Version:** 1.0  
-**Last Updated:** January 2025  
+> **📚 For comprehensive memristor applications**: See [Advances in Memristors for In-Memory Computing](./memristor_in_memory_computing_advances.md)
+
+---
+
+**Document Version:** 2.0  
+**Last Updated:** January 2026  
 **Status:** Research Proposal  
-**Classification:** Public
+**Classification:** Public  
+**Recent Update:** Added 20 references from Chen et al. (2025) comprehensive memristor review

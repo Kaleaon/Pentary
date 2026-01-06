@@ -301,4 +301,17 @@ If you use Pentary in your research, please cite:
 
 This project builds upon decades of research in non-binary computing, DRAM technology, and AI accelerator design. We thank the broader research community for their foundational work.
 
+### Key Research References
+
+The Pentary architecture is informed by recent advances in memristor technology and in-memory computing:
+
+- **Chen et al. (2025)**: "Advances of Emerging Memristors for In-Memory Computing Applications" - Comprehensive review of memristor materials, logic implementations, and neuromorphic computing. [DOI: 10.34133/research.0916](https://doi.org/10.34133/research.0916)
+- See [research/memristor_in_memory_computing_advances.md](research/memristor_in_memory_computing_advances.md) for detailed analysis of how these advances apply to Pentary.
+
+**Key supporting literature:**
+- Jeon K, et al. (2024). Self-rectifying memristor crossbar arrays. *Nat Commun*
+- Chen W-H, et al. (2019). CMOS-integrated computing-in-memory. *Nat Electron*
+- Prezioso M, et al. (2015). Integrated neuromorphic memristor networks. *Nature*
+- Krishnaprasad A, et al. (2022). MoS₂ synapses with ultra-low variability. *ACS Nano*
+
 **Pentary Computing - Redefining AI Performance**
