@@ -8,8 +8,7 @@ from typing import List, Optional, Dict, Any
 import sys
 import os
 
-# Ensure consistent imports by always importing from pent_lexer directly
-# when run from the language directory
+# Add language directory to path for imports
 _this_dir = os.path.dirname(os.path.abspath(__file__))
 if _this_dir not in sys.path:
     sys.path.insert(0, _this_dir)
@@ -681,7 +680,8 @@ class Parser:
         """Check if current token is of type"""
         if self.is_at_end():
             return False
-        return self.peek().type == type
+        # Compare by name to handle potential TokenType module duplication issues
+        return self.peek().type.name == type.name
     
     def advance(self) -> Token:
         """Advance and return current token"""
