@@ -8,8 +8,7 @@ from typing import List, Optional, Dict, Any
 import sys
 import os
 
-# Ensure consistent imports by always importing from pent_lexer directly
-# when run from the language directory
+# Add language directory to path for imports
 _this_dir = os.path.dirname(os.path.abspath(__file__))
 if _this_dir not in sys.path:
     sys.path.insert(0, _this_dir)
@@ -210,6 +209,71 @@ class Assignment(Expression):
         return f"Assignment({self.name})"
 
 
+class ArrayLiteral(Expression):
+    """Array literal: [elem1, elem2, ...]"""
+    def __init__(self, elements: List[Expression]):
+        super().__init__()
+        self.elements = elements
+
+    def __repr__(self):
+        return f"ArrayLiteral({len(self.elements)} elements)"
+
+
+class IndexExpression(Expression):
+    """Index expression: array[index]"""
+    def __init__(self, array: Expression, index: Expression):
+        super().__init__()
+        self.array = array
+        self.index = index
+
+    def __repr__(self):
+        return f"IndexExpression()"
+
+
+class StructDefinition(ASTNode):
+    """Struct definition: struct Name { field1: type1, ... }"""
+    def __init__(self, name: str, fields: List['StructField']):
+        super().__init__()
+        self.name = name
+        self.fields = fields
+
+    def __repr__(self):
+        return f"StructDefinition({self.name}, {len(self.fields)} fields)"
+
+
+class StructField(ASTNode):
+    """Struct field definition"""
+    def __init__(self, name: str, field_type: str):
+        super().__init__()
+        self.name = name
+        self.field_type = field_type
+
+    def __repr__(self):
+        return f"StructField({self.name}: {self.field_type})"
+
+
+class StructInstantiation(Expression):
+    """Struct instantiation: StructName { field1: value1, ... }"""
+    def __init__(self, struct_name: str, field_values: Dict[str, Expression]):
+        super().__init__()
+        self.struct_name = struct_name
+        self.field_values = field_values
+
+    def __repr__(self):
+        return f"StructInstantiation({self.struct_name})"
+
+
+class FieldAccess(Expression):
+    """Field access: expr.field"""
+    def __init__(self, object: Expression, field: str):
+        super().__init__()
+        self.object = object
+        self.field = field
+
+    def __repr__(self):
+        return f"FieldAccess(.{self.field})"
+
+
 class Parser:
     """Parser for Pent language"""
     
@@ -227,13 +291,39 @@ class Parser:
         return Program(statements)
     
     def declaration(self) -> Optional[ASTNode]:
-        """Parse a declaration (function, variable, etc.)"""
+        """Parse a declaration (function, variable, struct, etc.)"""
+        # Check for function
         if self.check(TokenType.FN):
             return self.function_declaration()
-        elif self.check(TokenType.LET):
+        # Check for let statement
+        if self.check(TokenType.LET):
             return self.let_statement()
-        else:
-            return self.statement()
+        # Check for struct definition
+        if self.check(TokenType.STRUCT):
+            return self.struct_declaration()
+        # Otherwise, parse as statement
+        return self.statement()
+
+    def struct_declaration(self) -> StructDefinition:
+        """Parse struct declaration: struct Name { field1: type1, ... }"""
+        self.consume(TokenType.STRUCT, "Expected 'struct'")
+        name = self.consume(TokenType.IDENTIFIER, "Expected struct name").value
+        
+        self.consume(TokenType.LEFT_BRACE, "Expected '{' after struct name")
+        fields = []
+        
+        while not self.check(TokenType.RIGHT_BRACE) and not self.is_at_end():
+            field_name = self.consume(TokenType.IDENTIFIER, "Expected field name").value
+            self.consume(TokenType.COLON, "Expected ':' after field name")
+            field_type = self.type_annotation()
+            fields.append(StructField(field_name, field_type))
+            
+            # Allow trailing comma
+            if not self.check(TokenType.RIGHT_BRACE):
+                self.match(TokenType.COMMA)
+        
+        self.consume(TokenType.RIGHT_BRACE, "Expected '}' after struct fields")
+        return StructDefinition(name, fields)
     
     def function_declaration(self) -> Function:
         """Parse function declaration: fn name(params) -> type? { body }"""
@@ -474,11 +564,20 @@ class Parser:
         return self.call()
     
     def call(self) -> Expression:
-        """Parse function call"""
+        """Parse function call, array index, and field access"""
         expr = self.primary()
         while True:
             if self.match(TokenType.LEFT_PAREN):
                 expr = self.finish_call(expr)
+            elif self.match(TokenType.LEFT_BRACKET):
+                # Array indexing
+                index = self.expression()
+                self.consume(TokenType.RIGHT_BRACKET, "Expected ']' after index")
+                expr = IndexExpression(expr, index)
+            elif self.match(TokenType.DOT):
+                # Field access
+                field = self.consume(TokenType.IDENTIFIER, "Expected field name after '.'").value
+                expr = FieldAccess(expr, field)
             else:
                 break
         return expr
@@ -522,14 +621,52 @@ class Parser:
             return Literal(self.previous().value, "string")
         
         if self.match(TokenType.IDENTIFIER):
-            return Identifier(self.previous().value)
+            name = self.previous().value
+            # Check for struct instantiation: StructName { field: value, ... }
+            if self.check(TokenType.LEFT_BRACE):
+                return self.struct_instantiation(name)
+            return Identifier(name)
         
         if self.match(TokenType.LEFT_PAREN):
             expr = self.expression()
             self.consume(TokenType.RIGHT_PAREN, "Expected ')' after expression")
             return expr
         
+        if self.match(TokenType.LEFT_BRACKET):
+            return self.array_literal()
+        
         raise self.error(self.peek(), "Expected expression")
+
+    def array_literal(self) -> ArrayLiteral:
+        """Parse array literal: [elem1, elem2, ...]"""
+        elements = []
+        
+        if not self.check(TokenType.RIGHT_BRACKET):
+            while True:
+                elements.append(self.expression())
+                if not self.match(TokenType.COMMA):
+                    break
+        
+        self.consume(TokenType.RIGHT_BRACKET, "Expected ']' after array elements")
+        return ArrayLiteral(elements)
+
+    def struct_instantiation(self, struct_name: str) -> StructInstantiation:
+        """Parse struct instantiation: StructName { field: value, ... }"""
+        self.consume(TokenType.LEFT_BRACE, "Expected '{' for struct instantiation")
+        field_values = {}
+        
+        if not self.check(TokenType.RIGHT_BRACE):
+            while True:
+                field_name = self.consume(TokenType.IDENTIFIER, "Expected field name").value
+                self.consume(TokenType.COLON, "Expected ':' after field name")
+                value = self.expression()
+                field_values[field_name] = value
+                
+                if not self.match(TokenType.COMMA):
+                    break
+        
+        self.consume(TokenType.RIGHT_BRACE, "Expected '}' after struct fields")
+        return StructInstantiation(struct_name, field_values)
     
     def match(self, *types: TokenType) -> bool:
         """Check if current token matches any of the types"""
@@ -543,7 +680,8 @@ class Parser:
         """Check if current token is of type"""
         if self.is_at_end():
             return False
-        return self.peek().type == type
+        # Compare by name to handle potential TokenType module duplication issues
+        return self.peek().type.name == type.name
     
     def advance(self) -> Token:
         """Advance and return current token"""

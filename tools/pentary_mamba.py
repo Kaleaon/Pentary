@@ -167,7 +167,6 @@ class PentarySSMCore:
             for j in range(self.d_model):
                 # Pentary multiply-accumulate
                 h[:, i, j] = (A_bar[:, j, i] if A_bar.shape[2] > i else 1.0) * h[:, i, j]
-```suggestion
                 h[:, i, j] += ((B_bar[:, j, i] if B_bar.shape[2] > i else 0) * x[:, j])
         
         h = np.clip(h, -10, 10)  # Prevent explosion

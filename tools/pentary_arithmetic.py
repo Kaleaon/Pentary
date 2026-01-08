@@ -4,7 +4,15 @@ Pentary Arithmetic Calculator
 Implements pentary arithmetic operations at the digit level
 """
 
+import sys
+import os
 from typing import Tuple, List
+
+# Ensure the tools directory is in path for relative imports
+_this_dir = os.path.dirname(os.path.abspath(__file__))
+if _this_dir not in sys.path:
+    sys.path.insert(0, _this_dir)
+
 from pentary_converter import PentaryConverter
 
 

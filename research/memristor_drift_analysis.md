@@ -434,6 +434,7 @@ Input Current ──┬──►│ R⊕ comparator │──► ⊕ detect
 
 ## 7. References
 
+### Original References
 1. [Drift speed adaptive memristor model](https://link.springer.com/article/10.1007/s00521-023-08401-7) - Neural Computing and Applications
 2. [Mitigating State-Drift in Memristor Crossbar Arrays](https://www.intechopen.com/chapters/78752) - IntechOpen
 3. [AIDX: Adaptive Inference Scheme](https://arxiv.org/pdf/2009.00180.pdf) - ArXiv
@@ -445,8 +446,38 @@ Input Current ──┬──►│ R⊕ comparator │──► ⊕ detect
 9. [Enhancing memristor multilevel resistance state with linearity](https://pubs.rsc.org/en/content/articlelanding/2025/nh/d4nh00623b) - RSC Nanoscale Horizons
 10. [Multi-State Memristors and Their Applications](https://ieeexplore.ieee.org/document/9954408) - IEEE
 
+### Additional References from Chen et al. (2025) Review [DOI: 10.34133/research.0916]
+
+**Drift Mitigation and Stability:**
+11. Chen J, et al. (2025). "Refreshable memristor via dynamic allocation of ferro-ionic phase for neural reuse." *Nat Commun*. DOI: 10.1038/s41467-024-55701-0
+12. Li HX, et al. (2023). "Ni single-atoms based memristors with ultrafast speed and ultralong data retention." *Adv Mater*
+13. Kim KM, et al. (2015). "Self-limited switching in Ta₂O₅/TaOx memristors exhibiting uniform multilevel changes in resistance." *Adv Funct Mater*. DOI: 10.1002/adfm.201403621
+14. Athena FF, et al. (2024). "MAX phase Ti₂AlN for HfO₂ memristors with ultra-low reset current density." *Adv Funct Mater*. DOI: 10.1002/adfm.202316290
+15. Zhou P, et al. (2025). "Engineering titanium dioxide/titanocene-polysulfide interface for thermal-tolerant multilevel memristor." *Nano Lett*. DOI: 10.1021/acs.nanolett.4c05786
+
+**Neuromorphic Plasticity (Drift as Feature):**
+16. Chen S, et al. (2025). "Electrochemical ohmic memristors for continual learning." *Nat Commun*. DOI: 10.1038/s41467-025-57543-w
+17. Ma F, et al. (2020). "Optoelectronic perovskite synapses for neuromorphic computing." *Adv Funct Mater*. DOI: 10.1002/adfm.201908901
+18. Shi J, et al. (2024). "Adaptive processing enabled by sodium alginate based complementary memristor." *Adv Mater*. DOI: 10.1002/adma.202314156
+19. Pei Y, et al. (2025). "Ultra robust negative differential resistance memristor for hardware neuron circuit implementation." *Nat Commun*. DOI: 10.1038/s41467-024-55293-9
+20. Cheng Y, et al. (2025). "Bioinspired adaptive neuron enabled by self-powered optoelectronic memristor." *Adv Sci*. DOI: 10.1002/advs.202417461
+
+**5-Level State Stability:**
+21. Krishnaprasad A, et al. (2022). "MoS₂ synapses with ultra-low variability and their implementation in Boolean logic." *ACS Nano*. DOI: 10.1021/acsnano.1c09904
+22. Kundale SS, et al. (2024). "Multilevel conductance states via electrical and optical modulation." *Adv Sci*. DOI: 10.1002/advs.202405251
+23. Yu J, et al. (2024). "3D nano hafnium-based ferroelectric memory for high-reliability logic-in-memory." *Adv Electron Mater*. DOI: 10.1002/aelm.202400438
+
+**Error Correction and Reliability:**
+24. Lin H, et al. (2021). "Implementation of highly reliable energy efficient in-memory Hamming distance computations." *Adv Mater Technol*. DOI: 10.1002/admt.202100745
+25. Song L, et al. (2025). "Lightweight error-tolerant edge detection using memristor-enabled stochastic computing." *Nat Commun*. DOI: 10.1038/s41467-025-59872-2
+
 ---
 
-**Document Version**: 1.0  
-**Last Updated**: 2025  
-**Status**: Research Analysis Complete
+> **📚 For comprehensive in-memory computing applications**: See [Advances in Memristors for In-Memory Computing](./memristor_in_memory_computing_advances.md)
+
+---
+
+**Document Version**: 2.0  
+**Last Updated**: January 2026  
+**Status**: Research Analysis Complete  
+**Recent Update**: Added 15 additional references from Chen et al. (2025) comprehensive review

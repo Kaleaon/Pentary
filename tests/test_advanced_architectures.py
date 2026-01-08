@@ -24,13 +24,15 @@ import numpy as np
 # Add tools directory to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'tools'))
 
+import pytest
+
 from pentary_mamba import PentaryMamba, PentaryMambaBlock, PentarySSMCore
 from pentary_rwkv import PentaryRWKV, PentaryRWKVBlock, PentaryTimeMix
 from pentary_retnet import PentaryRetNet, PentaryRetNetBlock, PentaryRetention
 from pentary_world_model import PentaryWorldModel, PentaryRSSM, PentaryEncoder, PentaryDecoder
 
 
-class TestResults:
+class ArchitectureTestResults:
     """Track test results."""
     
     def __init__(self):
@@ -59,7 +61,13 @@ class TestResults:
         return self.failed == 0
 
 
-def verify_pentary_weights(weights: np.ndarray, name: str, results: TestResults):
+@pytest.fixture
+def results():
+    """Pytest fixture that provides ArchitectureTestResults instance."""
+    return ArchitectureTestResults()
+
+
+def verify_pentary_weights(weights: np.ndarray, name: str, results: ArchitectureTestResults):
     """Verify weights are in pentary range {-2, -1, 0, +1, +2}."""
     unique_vals = set(np.unique(weights))
     valid_vals = {-2, -1, 0, 1, 2}
@@ -71,7 +79,7 @@ def verify_pentary_weights(weights: np.ndarray, name: str, results: TestResults)
         results.add_fail(f"{name} has invalid values", f"Found: {invalid}")
 
 
-def verify_shape(actual: tuple, expected: tuple, name: str, results: TestResults):
+def verify_shape(actual: tuple, expected: tuple, name: str, results: ArchitectureTestResults):
     """Verify output shape matches expected."""
     if actual == expected:
         results.add_pass(f"{name} shape correct: {actual}")
@@ -79,7 +87,7 @@ def verify_shape(actual: tuple, expected: tuple, name: str, results: TestResults
         results.add_fail(f"{name} shape mismatch", f"Expected {expected}, got {actual}")
 
 
-def test_pentary_mamba(results: TestResults):
+def test_pentary_mamba(results: ArchitectureTestResults):
     """Test PentaryMamba implementation."""
     print("\n" + "="*60)
     print("Testing PentaryMamba")
@@ -139,7 +147,7 @@ def test_pentary_mamba(results: TestResults):
         results.add_fail("Linear complexity", f"Unexpected ratios: {ratio1:.2f}, {ratio2:.2f}")
 
 
-def test_pentary_rwkv(results: TestResults):
+def test_pentary_rwkv(results: ArchitectureTestResults):
     """Test PentaryRWKV implementation."""
     print("\n" + "="*60)
     print("Testing PentaryRWKV")
@@ -201,7 +209,7 @@ def test_pentary_rwkv(results: TestResults):
         results.add_fail("Generation length", f"Expected {prompt.shape[1] + 5}, got {generated.shape[1]}")
 
 
-def test_pentary_retnet(results: TestResults):
+def test_pentary_retnet(results: ArchitectureTestResults):
     """Test PentaryRetNet implementation."""
     print("\n" + "="*60)
     print("Testing PentaryRetNet")
@@ -266,7 +274,7 @@ def test_pentary_retnet(results: TestResults):
         results.add_fail("Generation length", f"Expected {prompt.shape[1] + 5}, got {generated.shape[1]}")
 
 
-def test_pentary_world_model(results: TestResults):
+def test_pentary_world_model(results: ArchitectureTestResults):
     """Test PentaryWorldModel implementation."""
     print("\n" + "="*60)
     print("Testing PentaryWorldModel")
@@ -466,7 +474,7 @@ def main():
     print("PENTARY ADVANCED ARCHITECTURES TEST SUITE")
     print("="*70)
     
-    results = TestResults()
+    results = ArchitectureTestResults()
     
     # Run all tests
     test_pentary_mamba(results)

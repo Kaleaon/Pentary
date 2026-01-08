@@ -49,41 +49,47 @@ A load-store RISC-like ISA designed for pentary operations:
 
 ```
 Pentary/
+├── architecture/                   # Architecture specifications
+│   ├── pentary_processor_architecture.md
+│   ├── pentary_alu_design.md
+│   ├── pentary_neural_network_architecture.md
+│   └── ...
 ├── docs/                           # Documentation
 │   ├── pentary_technical_architecture.md
 │   ├── pentary_chip_design_spec.md
 │   ├── pentary_pcb_design_spec.md
 │   ├── pentary_performance_analysis.md
 │   ├── pentary_software_ecosystem.md
-│   ├── 3t_cell_mitigation_plan.md
-│   └── pentary_project_plan.md
+│   └── ...
 ├── hardware/                       # Verilog RTL
 │   ├── pentary_chip_design.v
 │   ├── pentary_alu_fixed.v
+│   ├── memristor_crossbar_fixed.v
 │   ├── register_file.v
-│   ├── cache_hierarchy.v
+│   └── ...
+├── research/                       # 📚 Research documentation (58 docs)
+│   ├── README.md                   # Research index
+│   ├── COMPREHENSIVE_LITERATURE_REVIEW.md
+│   ├── memristor_in_memory_computing_advances.md  # NEW
+│   ├── EMERGING_TECHNOLOGIES_FOR_PENTARY.md       # NEW
+│   ├── TECHNOLOGY_COMPARISON_MATRIX.md            # NEW
+│   ├── RESEARCHER_CONTACTS_AND_COLLABORATIONS.md  # NEW
+│   ├── FUNDING_AND_GRANT_OPPORTUNITIES.md         # NEW
+│   ├── COLLABORATION_OPPORTUNITIES.md             # NEW
+│   ├── PATENT_LANDSCAPE_ANALYSIS.md               # NEW
+│   ├── STANDARDS_AND_REGULATORY.md                # NEW
 │   └── ...
 ├── software/                       # Software ecosystem
 │   ├── compiler/                   # LLVM-based Pentary compiler
-│   │   ├── PENTARY_ISA.md
-│   │   ├── PentaryTargetMachine.cpp
-│   │   └── README.md
 │   ├── runtime/                    # Pentary runtime library
-│   │   ├── pentary_runtime.h
-│   │   └── ...
 │   ├── kernels/                    # Neural network kernels
-│   │   ├── pentary_nn.h
-│   │   ├── gemm_kernel.c
-│   │   └── ...
-│   ├── python-api/                 # Python API and PyTorch integration
-│   │   ├── pentary.py
-│   │   ├── torch_pentary.py
-│   │   └── ...
-│   ├── simulator/                  # Cycle-accurate simulator
-│   │   └── README.md
-│   └── benchmarks/                 # Performance benchmarks
-│       ├── micro/gemm_bench.py
-│       └── README.md
+│   └── python-api/                 # Python API and PyTorch
+├── tools/                          # Development tools
+│   ├── pentary_cli.py
+│   ├── pentary_converter.py
+│   ├── pentary_simulator.py
+│   └── ...
+├── validation/                     # Test and validation
 └── README.md                       # This file
 ```
 
@@ -294,6 +300,58 @@ If you use Pentary in your research, please cite:
 - **GitHub**: [github.com/Kaleaon/Pentary](https://github.com/Kaleaon/Pentary)
 - **Email**: pentary@example.com
 - **Discord**: [Join our community](https://discord.gg/pentary)
+
+---
+
+## Research and Resources
+
+### 📚 Research Library
+
+Pentary includes a comprehensive research library with 58+ documents. See [research/README.md](research/README.md) for full index.
+
+**Key Documents:**
+
+| Category | Document | Description |
+|----------|----------|-------------|
+| **Technology** | [TECHNOLOGY_COMPARISON_MATRIX.md](research/TECHNOLOGY_COMPARISON_MATRIX.md) | Pentary vs. alternatives |
+| **Literature** | [COMPREHENSIVE_LITERATURE_REVIEW.md](research/COMPREHENSIVE_LITERATURE_REVIEW.md) | 75+ paper review |
+| **Memristors** | [memristor_in_memory_computing_advances.md](research/memristor_in_memory_computing_advances.md) | Latest memristor research |
+| **Future Tech** | [EMERGING_TECHNOLOGIES_FOR_PENTARY.md](research/EMERGING_TECHNOLOGIES_FOR_PENTARY.md) | FeFET, photonics, 2D materials |
+| **Collaboration** | [RESEARCHER_CONTACTS_AND_COLLABORATIONS.md](research/RESEARCHER_CONTACTS_AND_COLLABORATIONS.md) | 50+ researchers |
+| **Funding** | [FUNDING_AND_GRANT_OPPORTUNITIES.md](research/FUNDING_AND_GRANT_OPPORTUNITIES.md) | NSF, DARPA, VC, grants |
+| **IP** | [PATENT_LANDSCAPE_ANALYSIS.md](research/PATENT_LANDSCAPE_ANALYSIS.md) | Patent analysis |
+| **Regulatory** | [STANDARDS_AND_REGULATORY.md](research/STANDARDS_AND_REGULATORY.md) | CE, FCC, EU AI Act |
+
+### 🔬 Key Research References
+
+**Foundational Paper:**
+- **Chen et al. (2025)**: "Advances of Emerging Memristors for In-Memory Computing Applications" - Comprehensive review of memristor materials, logic implementations, and neuromorphic computing. [DOI: 10.34133/research.0916](https://doi.org/10.34133/research.0916)
+
+**Supporting Literature:**
+- Jeon K, et al. (2024). Self-rectifying memristor crossbar arrays. *Nat Commun*
+- Chen W-H, et al. (2019). CMOS-integrated computing-in-memory. *Nat Electron*
+- Prezioso M, et al. (2015). Integrated neuromorphic memristor networks. *Nature*
+- Krishnaprasad A, et al. (2022). MoS₂ synapses with ultra-low variability. *ACS Nano*
+- Han S, et al. (2016). Deep Compression. *ICLR*
+
+### 🤝 Collaboration Opportunities
+
+We welcome collaboration with:
+- **Academic researchers** in quantization, memristors, neuromorphic computing
+- **Industry partners** for technology licensing and joint development
+- **Open source contributors** for tools and documentation
+
+See [research/COLLABORATION_OPPORTUNITIES.md](research/COLLABORATION_OPPORTUNITIES.md) for details.
+
+### 💰 Funding and Support
+
+Pentary is pursuing funding through:
+- NSF Computing and Communication Foundations
+- DARPA Electronics Resurgence Initiative
+- SRC JUMP 2.0 program
+- chipIgnite MPW shuttles
+
+See [research/FUNDING_AND_GRANT_OPPORTUNITIES.md](research/FUNDING_AND_GRANT_OPPORTUNITIES.md) for full guide.
 
 ---
 

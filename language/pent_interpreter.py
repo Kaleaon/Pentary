@@ -20,9 +20,32 @@ from pent_lexer import Lexer
 from pent_parser import (
     Parser, ASTNode, Program, Function, LetStatement, ReturnStatement,
     IfStatement, WhileStatement, ForStatement, Block,
-    BinaryExpression, UnaryExpression, CallExpression, Literal, Identifier
+    BinaryExpression, UnaryExpression, CallExpression, Literal, Identifier,
+    ArrayLiteral, IndexExpression, StructDefinition, StructInstantiation,
+    FieldAccess, Assignment, RangeExpression
 )
 from pent_stdlib import PentStdLib
+
+
+class PentStruct:
+    """Runtime representation of a struct instance"""
+    def __init__(self, struct_name: str, fields: Dict[str, Any]):
+        self.struct_name = struct_name
+        self.fields = fields
+    
+    def __repr__(self):
+        field_str = ", ".join(f"{k}: {v}" for k, v in self.fields.items())
+        return f"{self.struct_name} {{ {field_str} }}"
+    
+    def get_field(self, name: str) -> Any:
+        if name not in self.fields:
+            raise AttributeError(f"Struct '{self.struct_name}' has no field '{name}'")
+        return self.fields[name]
+    
+    def set_field(self, name: str, value: Any):
+        if name not in self.fields:
+            raise AttributeError(f"Struct '{self.struct_name}' has no field '{name}'")
+        self.fields[name] = value
 
 # Import pentary tools
 try:
@@ -92,6 +115,7 @@ class PentInterpreter:
     def __init__(self):
         self.global_env = Environment()
         self.functions: Dict[str, Function] = {}
+        self.structs: Dict[str, StructDefinition] = {}  # Store struct definitions
         self.current_env = self.global_env
     
     def interpret(self, source: str) -> Any:
@@ -119,6 +143,8 @@ class PentInterpreter:
             return self._execute_program(node)
         elif isinstance(node, Function):
             return self._execute_function_def(node)
+        elif isinstance(node, StructDefinition):
+            return self._execute_struct_def(node)
         elif isinstance(node, LetStatement):
             return self._execute_let(node)
         elif isinstance(node, ReturnStatement):
@@ -141,19 +167,33 @@ class PentInterpreter:
             return self._execute_literal(node)
         elif isinstance(node, Identifier):
             return self._execute_identifier(node)
+        elif isinstance(node, ArrayLiteral):
+            return self._execute_array_literal(node)
+        elif isinstance(node, IndexExpression):
+            return self._execute_index(node)
+        elif isinstance(node, StructInstantiation):
+            return self._execute_struct_instantiation(node)
+        elif isinstance(node, FieldAccess):
+            return self._execute_field_access(node)
+        elif isinstance(node, Assignment):
+            return self._execute_assignment(node)
+        elif isinstance(node, RangeExpression):
+            return self._execute_range(node)
         else:
             raise RuntimeError(f"Unknown node type: {type(node)}")
     
     def _execute_program(self, program: Program) -> Any:
         """Execute a program"""
-        # First pass: collect function definitions
+        # First pass: collect function and struct definitions
         for stmt in program.statements:
             if isinstance(stmt, Function):
                 self.functions[stmt.name] = stmt
+            elif isinstance(stmt, StructDefinition):
+                self.structs[stmt.name] = stmt
         
-        # Second pass: execute top-level statements (if any non-functions)
+        # Second pass: execute top-level statements (if any non-functions/structs)
         for stmt in program.statements:
-            if not isinstance(stmt, Function):
+            if not isinstance(stmt, (Function, StructDefinition)):
                 self.execute(stmt)
         
         # Call main() if it exists
@@ -165,6 +205,10 @@ class PentInterpreter:
     def _execute_function_def(self, func: Function) -> None:
         """Store function definition"""
         self.functions[func.name] = func
+    
+    def _execute_struct_def(self, struct: StructDefinition) -> None:
+        """Store struct definition"""
+        self.structs[struct.name] = struct
     
     def _execute_let(self, stmt: LetStatement) -> None:
         """Execute let statement"""
@@ -374,6 +418,83 @@ class PentInterpreter:
         """Execute identifier (variable reference)"""
         return self.current_env.get(expr.name)
     
+    def _execute_array_literal(self, expr: ArrayLiteral) -> List[Any]:
+        """Execute array literal"""
+        return [self.execute(elem) for elem in expr.elements]
+    
+    def _execute_index(self, expr: IndexExpression) -> Any:
+        """Execute array index expression"""
+        array = self.execute(expr.array)
+        index = self.execute(expr.index)
+        
+        if not isinstance(array, list):
+            raise TypeError(f"Cannot index non-array type: {type(array)}")
+        
+        if not isinstance(index, int):
+            raise TypeError(f"Array index must be integer, got: {type(index)}")
+        
+        if index < 0 or index >= len(array):
+            raise IndexError(f"Array index {index} out of bounds (length {len(array)})")
+        
+        return array[index]
+    
+    def _execute_struct_instantiation(self, expr: StructInstantiation) -> PentStruct:
+        """Execute struct instantiation"""
+        if expr.struct_name not in self.structs:
+            raise NameError(f"Undefined struct: {expr.struct_name}")
+        
+        struct_def = self.structs[expr.struct_name]
+        expected_fields = {f.name for f in struct_def.fields}
+        provided_fields = set(expr.field_values.keys())
+        
+        # Check for missing fields
+        missing = expected_fields - provided_fields
+        if missing:
+            raise ValueError(f"Missing fields in struct instantiation: {missing}")
+        
+        # Check for extra fields
+        extra = provided_fields - expected_fields
+        if extra:
+            raise ValueError(f"Unknown fields in struct instantiation: {extra}")
+        
+        # Evaluate field values
+        field_values = {
+            name: self.execute(value)
+            for name, value in expr.field_values.items()
+        }
+        
+        return PentStruct(expr.struct_name, field_values)
+    
+    def _execute_field_access(self, expr: FieldAccess) -> Any:
+        """Execute field access (struct.field)"""
+        obj = self.execute(expr.object)
+        
+        if isinstance(obj, PentStruct):
+            return obj.get_field(expr.field)
+        elif isinstance(obj, list):
+            # Support length property for arrays
+            if expr.field == "len" or expr.field == "length":
+                return len(obj)
+            raise AttributeError(f"Arrays don't have field '{expr.field}'")
+        else:
+            raise TypeError(f"Cannot access field on type: {type(obj)}")
+    
+    def _execute_assignment(self, expr: Assignment) -> Any:
+        """Execute assignment expression"""
+        value = self.execute(expr.value)
+        self.current_env.set(expr.name, value)
+        return value
+    
+    def _execute_range(self, expr: RangeExpression) -> range:
+        """Execute range expression (start..end)"""
+        start = self.execute(expr.start)
+        end = self.execute(expr.end)
+        
+        if not isinstance(start, int) or not isinstance(end, int):
+            raise TypeError("Range bounds must be integers")
+        
+        return range(start, end)
+    
     def _is_truthy(self, value: Any) -> bool:
         """Determine if a value is truthy"""
         if value is None:
@@ -384,6 +505,10 @@ class PentInterpreter:
             return value != 0
         if isinstance(value, str):
             return len(value) > 0
+        if isinstance(value, list):
+            return len(value) > 0
+        if isinstance(value, PentStruct):
+            return True
         return True
 
 

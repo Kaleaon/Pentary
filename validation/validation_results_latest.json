@@ -1,0 +1,75 @@
+{
+  "timestamp": "2026-01-08T20:20:05.196693",
+  "duration": 34.731722,
+  "results": {
+    "python_syntax": {
+      "name": "Python Syntax",
+      "passed": 71,
+      "failed": 0,
+      "skipped": 0,
+      "total": 71,
+      "success_rate": "100.0%",
+      "duration": "0.13s",
+      "errors": []
+    },
+    "pentary_tools": {
+      "name": "Pentary Tools",
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0,
+      "total": 5,
+      "success_rate": "100.0%",
+      "duration": "0.01s",
+      "errors": []
+    },
+    "pent_language": {
+      "name": "Pent Language",
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "total": 6,
+      "success_rate": "100.0%",
+      "duration": "0.00s",
+      "errors": []
+    },
+    "pytest": {
+      "name": "Pytest Suite",
+      "passed": 172,
+      "failed": 0,
+      "skipped": 0,
+      "total": 172,
+      "success_rate": "100.0%",
+      "duration": "34.59s",
+      "errors": []
+    },
+    "hardware": {
+      "name": "Hardware Files",
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0,
+      "total": 20,
+      "success_rate": "100.0%",
+      "duration": "0.00s",
+      "errors": [
+        "NOTE: iverilog not available, syntax check skipped"
+      ]
+    },
+    "documentation": {
+      "name": "Documentation",
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0,
+      "total": 7,
+      "success_rate": "100.0%",
+      "duration": "0.00s",
+      "errors": [
+        "INFO: Found 215 markdown files"
+      ]
+    }
+  },
+  "summary": {
+    "total_passed": 281,
+    "total_failed": 0,
+    "total_skipped": 0
+  }
+}

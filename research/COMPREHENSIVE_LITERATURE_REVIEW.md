@@ -534,6 +534,18 @@ Based on literature review, Pentary offers:
 20. Sebastian, A., et al., Nature Nanotech 15:529-544 (2020)
 21. Lee, J., et al., Science Advances 11:eadr2082 (2025)
 
+### Recent Memristor Advances (from Chen et al. 2025, DOI: 10.34133/research.0916)
+22. Jeon K, et al., "Self-rectifying passive crossbar array" Nat Commun 15:129 (2024)
+23. Chen W-H, et al., "CMOS-integrated computing-in-memory" Nat Electron 2:420-428 (2019)
+24. Li C, et al., "Analogue signal processing with memristor crossbars" Nat Electron (2017)
+25. Chen S, et al., "Electrochemical memristors for continual learning" Nat Commun (2025)
+26. Yu J, et al., "3D nano HfO₂ ferroelectric memory" Adv Electron Mater (2024)
+27. Krishnaprasad A, et al., "MoS₂ ultra-low variability synapses" ACS Nano (2022)
+28. Huang H, et al., "Multi-mode optoelectronic memristor array" Nat Nanotechnol (2024)
+29. Liu Y, et al., "Cellular automata logic-in-memory" Nat Commun 14:2695 (2023)
+30. Wang T, et al., "Textile memristor networks" Nat Commun (2022)
+31. Cheng L, et al., "MemALU demonstration" Adv Funct Mater (2019)
+
 ### AI Accelerators
 22. Jouppi, N.P., et al., "TPU" ISCA (2017)
 23. Chen, Y.-H., et al., "Eyeriss" ISCA (2016)
@@ -552,7 +564,18 @@ Based on literature review, Pentary offers:
 
 ---
 
-**Document Version:** 1.0
-**Total Papers Reviewed:** 45+
-**Last Updated:** December 2024
+## Additional Resources
+
+> **📚 For detailed memristor advances and applications to Pentary**: See [Advances in Memristors for In-Memory Computing](./memristor_in_memory_computing_advances.md) - comprehensive analysis based on Chen et al. (2025), DOI: 10.34133/research.0916
+
+> **📚 For drift analysis and mitigation strategies**: See [Memristor Drift Analysis](./memristor_drift_analysis.md)
+
+> **📚 For neuromorphic computing applications**: See [Pentary Neuromorphic Computing](./pentary_neuromorphic_computing.md)
+
+---
+
+**Document Version:** 2.0
+**Total Papers Reviewed:** 75+
+**Last Updated:** January 2026
 **Status:** Comprehensive literature review complete
+**Recent Update:** Added 10 key references from Chen et al. (2025) memristor review
