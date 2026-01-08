@@ -1,0 +1,53 @@
+# =============================================================================
+# Pentary iCE40 Pin Constraints
+# Target: iCE40UP5K-SG48 (Upduino v3.0 board)
+# =============================================================================
+
+# Clock (12 MHz oscillator)
+set_io clk 20
+
+# Reset (active low, directly from button)
+set_io rst_n 10
+
+# LEDs (accent LEDs on Upduino)
+set_io led[0] 39    # RGB LED Red
+set_io led[1] 40    # RGB LED Green
+set_io led[2] 41    # RGB LED Blue
+set_io led[3] 37    # Accent LED
+
+# UART (directly to FTDI)
+set_io uart_rx 4    # FTDI TX -> FPGA RX
+set_io uart_tx 3    # FPGA TX -> FTDI RX
+
+# SPI Flash (directly to on-board flash)
+set_io spi_clk 15
+set_io spi_mosi 14
+set_io spi_miso 17
+set_io spi_cs_n 16
+
+# =============================================================================
+# Alternative: iCE40-HX8K Breakout Board
+# =============================================================================
+# Uncomment these and comment above for HX8K board
+
+# # Clock
+# set_io clk J3
+
+# # Reset
+# set_io rst_n N10
+
+# # LEDs
+# set_io led[0] B5
+# set_io led[1] B4
+# set_io led[2] A2
+# set_io led[3] A1
+
+# # UART
+# set_io uart_rx B10
+# set_io uart_tx B12
+
+# # SPI
+# set_io spi_clk R11
+# set_io spi_mosi P11
+# set_io spi_miso P12
+# set_io spi_cs_n R12

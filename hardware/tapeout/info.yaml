@@ -1,0 +1,165 @@
+# =============================================================================
+# Pentary 3T Processor - Tiny Tapeout Project Information
+# =============================================================================
+
+project:
+  # Required fields
+  title: "Pentary 3T Processor"
+  author: "Pentary Computing Project"
+  description: |
+    A balanced base-5 (pentary) arithmetic processor using 3-transistor 
+    analog logic principles. Features a 4-digit pentary ALU with add, 
+    subtract, and negate operations. Supports both digital and analog 
+    I/O for native pentary signal processing.
+
+  # Tile configuration
+  tiles: "2x2"  # Options: 1x1, 1x2, 2x2, 4x2
+
+  # Analog pins (requires additional cost)
+  analog_pins: 6  # Options: 0, 2, 4, 6
+
+  # Top module name (must match Verilog)
+  top_module: "tt_um_pentary_3t"
+
+  # Source files (relative to src/)
+  source_files:
+    - "tt_um_pentary_3t.v"
+
+  # Clock configuration
+  clock_hz: 10000000  # 10 MHz target
+
+  # External hardware needed
+  external_hw: |
+    For digital operation: None required.
+    For analog operation:
+      - 0.8V precision reference voltage
+      - 10µA bias current source
+      - 5-level DAC for input
+      - 5-level ADC for output
+
+  # Documentation language
+  language: "en"
+
+  # Contact information
+  discord: ""
+  doc_link: ""
+
+  # Tags for categorization
+  tags:
+    - "processor"
+    - "analog"
+    - "pentary"
+    - "arithmetic"
+    - "experimental"
+
+# =============================================================================
+# Pin Descriptions
+# =============================================================================
+
+pinout:
+  # Dedicated inputs (directly active)
+  ui_in:
+    - description: "Pentary digit A, bit 0"
+      active: "high"
+    - description: "Pentary digit A, bit 1"
+      active: "high"
+    - description: "Pentary digit A, bit 2"
+      active: "high"
+    - description: "Pentary digit B, bit 0"
+      active: "high"
+    - description: "Pentary digit B, bit 1"
+      active: "high"
+    - description: "Pentary digit B, bit 2"
+      active: "high"
+    - description: "Operation select, bit 0"
+      active: "high"
+    - description: "Operation select, bit 1"
+      active: "high"
+
+  # Dedicated outputs
+  uo_out:
+    - description: "Result digit 0, bit 0"
+      active: "high"
+    - description: "Result digit 0, bit 1"
+      active: "high"
+    - description: "Result digit 0, bit 2"
+      active: "high"
+    - description: "Result digit 1, bit 0"
+      active: "high"
+    - description: "Result digit 1, bit 1"
+      active: "high"
+    - description: "Result digit 1, bit 2"
+      active: "high"
+    - description: "Zero flag"
+      active: "high"
+    - description: "Negative flag"
+      active: "high"
+
+  # Bidirectional I/O (directly active as inputs)
+  uio:
+    - description: "Pentary digit A1, bit 0"
+      direction: "input"
+    - description: "Pentary digit A1, bit 1"
+      direction: "input"
+    - description: "Pentary digit A1, bit 2"
+      direction: "input"
+    - description: "Pentary digit B1, bit 0"
+      direction: "input"
+    - description: "Pentary digit B1, bit 1"
+      direction: "input"
+    - description: "Pentary digit B1, bit 2"
+      direction: "input"
+    - description: "Reserved"
+      direction: "input"
+    - description: "Reserved"
+      direction: "input"
+
+  # Analog pins
+  ua:
+    - description: "Analog pentary input A (0-1.6V)"
+      direction: "input"
+      voltage_range: "0.0V to 1.6V"
+    - description: "Analog pentary input B (0-1.6V)"
+      direction: "input"
+      voltage_range: "0.0V to 1.6V"
+    - description: "Analog pentary output (0-1.6V)"
+      direction: "output"
+      voltage_range: "0.0V to 1.6V"
+    - description: "Reference voltage (0.8V nominal)"
+      direction: "input"
+      voltage_range: "0.75V to 0.85V"
+    - description: "Bias current (10µA nominal)"
+      direction: "input"
+      current_range: "5µA to 15µA"
+    - description: "Test/debug output"
+      direction: "output"
+      voltage_range: "0.0V to 1.8V"
+
+# =============================================================================
+# Simulation and Testing
+# =============================================================================
+
+test:
+  # Test framework
+  framework: "cocotb"
+  
+  # Test file location
+  testbench: "test/test.py"
+  
+  # Expected test duration
+  timeout_seconds: 300
+
+# =============================================================================
+# Additional Information
+# =============================================================================
+
+meta:
+  version: "1.0.0"
+  created: "2026-01-06"
+  license: "Apache-2.0"
+  repository: "https://github.com/pentary-project/pentary-tt"
+  
+  references:
+    - "Pentary Computing: Balanced Base-5 Arithmetic"
+    - "3-Transistor Logic for Low-Power Computing"
+    - "Tiny Tapeout Sky130 Design Guide"
