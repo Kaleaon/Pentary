@@ -1,0 +1,134 @@
+{
+  "collection_date": "2026-01-10T18:51:37.016944",
+  "total_papers_attempted": 12,
+  "successful_downloads": 9,
+  "failed_downloads": 3,
+  "papers": [
+    {
+      "title": "Neuromorphic Principles for Efficient Large Language Models",
+      "arxiv_id": "qaDM1R2nlm",
+      "year": "2024",
+      "category": "Neuromorphic Computing",
+      "relevance": 94,
+      "source": "OpenReview (NeurIPS/ICML)",
+      "filepath": "neuromorphic/Neuromorphic_Principles_for_Efficient_Large_Language_Models.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:51:22.885798"
+    },
+    {
+      "title": "Enhancing Efficiency of Neuromorphic In-Memory Computing",
+      "arxiv_id": "2407.00641",
+      "year": "2024",
+      "category": "In-Memory Computing",
+      "relevance": 91,
+      "source": "arXiv",
+      "filepath": "neuromorphic/Enhancing_Efficiency_of_Neuromorphic_In-Memory_Computing.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:51:23.967059"
+    },
+    {
+      "title": "Neuromorphic Intelligence",
+      "arxiv_id": "2509.11940",
+      "year": "2024",
+      "category": "Neuromorphic Computing",
+      "relevance": 88,
+      "source": "arXiv",
+      "filepath": "neuromorphic/Neuromorphic_Intelligence.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:51:25.025940"
+    },
+    {
+      "title": "Variable-precision neuromorphic state space model for on-edge devices",
+      "arxiv_id": "0487X",
+      "year": "2025",
+      "category": "State Space Models",
+      "relevance": 89,
+      "source": "Neurocomputing",
+      "filepath": "infinite_context/Variable-precision_neuromorphic_state_space_model_for_on-edge_devices.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:51:26.087448"
+    },
+    {
+      "title": "Modern Neuromorphic AI: From Intra-Token to Inter-Token Processing",
+      "arxiv_id": "2601.00245",
+      "year": "2025",
+      "category": "Neuromorphic Computing",
+      "relevance": 86,
+      "source": "arXiv",
+      "filepath": "neuromorphic/Modern_Neuromorphic_AI__From_Intra-Token_to_Inter-Token_Processing.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:51:27.148091"
+    },
+    {
+      "title": "Bridging Brains and Machines: A Unified Frontier in Neuroscience",
+      "arxiv_id": "2507.10722",
+      "year": "2024",
+      "category": "Neuromorphic Computing",
+      "relevance": 87,
+      "source": "arXiv",
+      "filepath": "neuromorphic/Bridging_Brains_and_Machines__A_Unified_Frontier_in_Neuroscience.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:51:29.210449"
+    },
+    {
+      "title": "Compute-in-Memory Implementation of State Space Models for Event Sequence Processing",
+      "arxiv_id": "2511.13912",
+      "year": "2024",
+      "category": "State Space Models",
+      "relevance": 93,
+      "source": "Nature Communications",
+      "filepath": "infinite_context/Compute-in-Memory_Implementation_of_State_Space_Models_for_Event_Sequence_Processing.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:51:31.600626"
+    },
+    {
+      "title": "Towards Efficient and Reliable AI Through Neuromorphic Principles",
+      "arxiv_id": "2309.15942",
+      "year": "2024",
+      "category": "Efficient AI",
+      "relevance": 90,
+      "source": "arXiv",
+      "filepath": "infinite_context/Towards_Efficient_and_Reliable_AI_Through_Neuromorphic_Principles.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:51:32.665061"
+    },
+    {
+      "title": "NeuroNAS: Enhancing Efficiency of Neuromorphic In-Memory Computing",
+      "arxiv_id": "2407.00641",
+      "year": "2024",
+      "category": "Neural Architecture Search",
+      "relevance": 89,
+      "source": "arXiv",
+      "filepath": "infinite_context/NeuroNAS__Enhancing_Efficiency_of_Neuromorphic_In-Memory_Computing.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:51:33.783326"
+    },
+    {
+      "title": "Neuromorphic Computing in the Era of Large Models",
+      "arxiv_id": "10977800",
+      "year": "2024",
+      "category": "Neuromorphic Computing",
+      "relevance": 92,
+      "source": "IEEE",
+      "downloaded": false
+    },
+    {
+      "title": "Hardware-Inspired Architectures for Energy-Efficient AI",
+      "arxiv_id": "396002563",
+      "year": "2024",
+      "category": "Efficient AI",
+      "relevance": 85,
+      "source": "ResearchGate",
+      "downloaded": false
+    },
+    {
+      "title": "Can neuromorphic computing help reduce AI's high energy cost?",
+      "arxiv_id": "PMC12595464",
+      "year": "2024",
+      "category": "Energy Efficiency",
+      "relevance": 91,
+      "source": "NIH",
+      "downloaded": false
+    }
+  ]
+}
