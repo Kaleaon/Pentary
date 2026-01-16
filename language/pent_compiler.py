@@ -4,9 +4,10 @@ Pent Language Compiler
 Compiles Pent source code to Pentary Assembly
 """
 
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Tuple
 import sys
 import os
+import re
 
 # Ensure consistent imports by always importing from the language directory
 _this_dir = os.path.dirname(os.path.abspath(__file__))
@@ -23,6 +24,8 @@ from pent_parser import Parser, ASTNode, Function, LetStatement, ReturnStatement
     ArrayLiteral, IndexExpression, StructDefinition, StructField, StructInstantiation, FieldAccess
 
 from tools.pentary_converter import PentaryConverter
+
+REGISTER_PATTERN = re.compile(r"P(\d+)")
 
 
 class CodeGenerator:
@@ -740,12 +743,51 @@ class Compiler:
         assembly = generator.generate(ast)
         
         return assembly
+
+    def compile_with_proof(self, source: str) -> Tuple[List[str], Dict[str, object]]:
+        """Compile Pent source to assembly with register usage proof metadata."""
+        assembly = self.compile(source)
+        proof = self.build_register_proof(assembly)
+        return assembly, proof
     
     def compile_file(self, filename: str) -> List[str]:
         """Compile a Pent source file"""
         with open(filename, 'r') as f:
             source = f.read()
         return self.compile(source)
+
+    @staticmethod
+    def build_register_proof(assembly: List[str]) -> Dict[str, object]:
+        """Build proof metadata about register usage in generated assembly."""
+        registers = set()
+        label_count = 0
+        instruction_count = 0
+        for line in assembly:
+            stripped = line.strip()
+            if not stripped:
+                continue
+            if stripped.endswith(":"):
+                label_count += 1
+            else:
+                instruction_count += 1
+            for match in REGISTER_PATTERN.findall(stripped):
+                registers.add(int(match))
+
+        sorted_registers = sorted(registers)
+        max_register = max(sorted_registers) if sorted_registers else 0
+        uses_zero = 0 in registers
+        register_limit = 28
+        passed = (not uses_zero) and max_register <= register_limit
+
+        return {
+            'registers_used': sorted_registers,
+            'max_register': max_register,
+            'uses_zero_register': uses_zero,
+            'register_limit': register_limit,
+            'instruction_count': instruction_count,
+            'label_count': label_count,
+            'passed': passed
+        }
 
 
 def main():

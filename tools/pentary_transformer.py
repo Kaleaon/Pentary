@@ -9,6 +9,25 @@ from typing import Optional, Tuple, List, Dict
 import math
 
 
+def build_quantization_certificate(weights: np.ndarray, quantized: np.ndarray, scale: float) -> Dict[str, float]:
+    """Create a quantization certificate with bounded error statistics."""
+    dequantized = quantized.astype(np.float32) * scale
+    error = weights - dequantized
+    max_abs_weight = float(np.max(np.abs(weights))) if weights.size else 0.0
+    max_abs_error = float(np.max(np.abs(error))) if error.size else 0.0
+    mean_abs_error = float(np.mean(np.abs(error))) if error.size else 0.0
+    sparsity = float(np.sum(quantized == 0) / quantized.size) if quantized.size else 0.0
+    return {
+        'scale': float(scale),
+        'max_abs_weight': max_abs_weight,
+        'max_abs_error': max_abs_error,
+        'mean_abs_error': mean_abs_error,
+        'error_bound': float(scale * 0.5),
+        'sparsity': sparsity,
+        'levels': [-2, -1, 0, 1, 2],
+    }
+
+
 class PentaryAttention:
     """
     Multi-head self-attention with pentary weight quantization.
@@ -35,12 +54,13 @@ class PentaryAttention:
         self.d_k = d_model // num_heads
         self.scale = 1.0 / math.sqrt(self.d_k)
         self.dropout = dropout
+        self.quantization_certificates: Dict[str, Dict[str, float]] = {}
         
         # Weight matrices (will be quantized to pentary)
-        self.W_q = self._init_weights(d_model, d_model)
-        self.W_k = self._init_weights(d_model, d_model)
-        self.W_v = self._init_weights(d_model, d_model)
-        self.W_o = self._init_weights(d_model, d_model)
+        self.W_q = self._init_weights(d_model, d_model, "W_q")
+        self.W_k = self._init_weights(d_model, d_model, "W_k")
+        self.W_v = self._init_weights(d_model, d_model, "W_v")
+        self.W_o = self._init_weights(d_model, d_model, "W_o")
         
         # Scale factors for dequantization
         self.scale_q = 1.0
@@ -48,20 +68,24 @@ class PentaryAttention:
         self.scale_v = 1.0
         self.scale_o = 1.0
     
-    def _init_weights(self, in_dim: int, out_dim: int) -> np.ndarray:
+    def _init_weights(self, in_dim: int, out_dim: int, name: str) -> np.ndarray:
         """Initialize and quantize weights to pentary"""
         # Xavier initialization
         limit = np.sqrt(6.0 / (in_dim + out_dim))
         weights = np.random.uniform(-limit, limit, (out_dim, in_dim))
         
         # Quantize to pentary {-2, -1, 0, +1, +2}
-        return self._quantize_to_pentary(weights)
+        quantized, certificate = self._quantize_to_pentary(weights, return_certificate=True)
+        self.quantization_certificates[name] = certificate
+        return quantized
     
-    def _quantize_to_pentary(self, x: np.ndarray) -> np.ndarray:
+    def _quantize_to_pentary(self, x: np.ndarray, return_certificate: bool = False):
         """Quantize values to pentary levels"""
         scale = np.max(np.abs(x)) / 2.0 if np.max(np.abs(x)) > 0 else 1.0
         x_scaled = x / scale
         x_quantized = np.clip(np.round(x_scaled), -2, 2).astype(np.int8)
+        if return_certificate:
+            return x_quantized, build_quantization_certificate(x, x_quantized, scale)
         return x_quantized
     
     def _pentary_matmul(self, x: np.ndarray, W: np.ndarray) -> np.ndarray:
@@ -159,6 +183,10 @@ class PentaryAttention:
         
         return sparsity
 
+    def get_quantization_certificate(self) -> Dict[str, Dict[str, float]]:
+        """Return quantization certificates for attention weights."""
+        return dict(self.quantization_certificates)
+
 
 class PentaryFeedForward:
     """
@@ -180,23 +208,29 @@ class PentaryFeedForward:
         self.d_model = d_model
         self.d_ff = d_ff
         self.dropout = dropout
+        self.quantization_certificates: Dict[str, Dict[str, float]] = {}
         
         # Weights (quantized to pentary)
-        self.W1 = self._init_weights(d_model, d_ff)
-        self.W2 = self._init_weights(d_ff, d_model)
+        self.W1 = self._init_weights(d_model, d_ff, "W1")
+        self.W2 = self._init_weights(d_ff, d_model, "W2")
         self.b1 = np.zeros(d_ff)
         self.b2 = np.zeros(d_model)
     
-    def _init_weights(self, in_dim: int, out_dim: int) -> np.ndarray:
+    def _init_weights(self, in_dim: int, out_dim: int, name: str) -> np.ndarray:
         """Initialize and quantize weights"""
         limit = np.sqrt(6.0 / (in_dim + out_dim))
         weights = np.random.uniform(-limit, limit, (out_dim, in_dim))
-        return self._quantize_to_pentary(weights)
+        quantized, certificate = self._quantize_to_pentary(weights, return_certificate=True)
+        self.quantization_certificates[name] = certificate
+        return quantized
     
-    def _quantize_to_pentary(self, x: np.ndarray) -> np.ndarray:
+    def _quantize_to_pentary(self, x: np.ndarray, return_certificate: bool = False):
         """Quantize to pentary levels"""
         scale = np.max(np.abs(x)) / 2.0 if np.max(np.abs(x)) > 0 else 1.0
-        return np.clip(np.round(x / scale), -2, 2).astype(np.int8)
+        quantized = np.clip(np.round(x / scale), -2, 2).astype(np.int8)
+        if return_certificate:
+            return quantized, build_quantization_certificate(x, quantized, scale)
+        return quantized
     
     def _pentary_matmul(self, x: np.ndarray, W: np.ndarray) -> np.ndarray:
         """Pentary matrix multiplication"""
@@ -217,6 +251,10 @@ class PentaryFeedForward:
                     output[:, i] -= 2 * x[:, j]
         
         return output
+
+    def get_quantization_certificate(self) -> Dict[str, Dict[str, float]]:
+        """Return quantization certificates for FFN weights."""
+        return dict(self.quantization_certificates)
     
     def forward(self, x: np.ndarray) -> np.ndarray:
         """Forward pass"""
@@ -315,9 +353,10 @@ class PentaryTransformer:
         self.num_layers = num_layers
         self.d_ff = d_ff
         self.max_seq_len = max_seq_len
+        self.quantization_certificates: Dict[str, Dict[str, float]] = {}
         
         # Token embeddings (quantized)
-        self.token_embedding = self._init_embedding(vocab_size, d_model)
+        self.token_embedding = self._init_embedding(vocab_size, d_model, "token_embedding")
         
         # Positional encoding (fixed, not quantized)
         self.pos_encoding = self._create_positional_encoding(max_seq_len, d_model)
@@ -330,18 +369,23 @@ class PentaryTransformer:
         
         # Output projection (d_model -> vocab_size)
         self.output_norm = PentaryLayerNorm(d_model)
-        self.output_proj = self._init_embedding(vocab_size, d_model)  # (vocab_size, d_model)
+        self.output_proj = self._init_embedding(vocab_size, d_model, "output_proj")  # (vocab_size, d_model)
     
-    def _init_embedding(self, vocab_size: int, d_model: int) -> np.ndarray:
+    def _init_embedding(self, vocab_size: int, d_model: int, name: str) -> np.ndarray:
         """Initialize and quantize embeddings"""
         INIT_SCALE = 0.02  # Standard embedding initialization scale
         embeddings = np.random.randn(vocab_size, d_model) * INIT_SCALE
-        return self._quantize_to_pentary(embeddings)
+        quantized, certificate = self._quantize_to_pentary(embeddings, return_certificate=True)
+        self.quantization_certificates[name] = certificate
+        return quantized
     
-    def _quantize_to_pentary(self, x: np.ndarray) -> np.ndarray:
+    def _quantize_to_pentary(self, x: np.ndarray, return_certificate: bool = False):
         """Quantize to pentary levels"""
         scale = np.max(np.abs(x)) / 2.0 if np.max(np.abs(x)) > 0 else 1.0
-        return np.clip(np.round(x / scale), -2, 2).astype(np.int8)
+        quantized = np.clip(np.round(x / scale), -2, 2).astype(np.int8)
+        if return_certificate:
+            return quantized, build_quantization_certificate(x, quantized, scale)
+        return quantized
     
     def _create_positional_encoding(self, max_len: int, d_model: int) -> np.ndarray:
         """Create sinusoidal positional encodings"""
@@ -484,6 +528,19 @@ class PentaryTransformer:
             'num_heads': self.num_heads,
             'd_ff': self.d_ff,
         }
+
+    def get_quantization_certificates(self) -> Dict[str, Dict[str, Dict[str, float]]]:
+        """Get quantization certificates for embeddings and transformer blocks."""
+        certificates = {
+            'embeddings': dict(self.quantization_certificates),
+            'blocks': {}
+        }
+        for block_idx, block in enumerate(self.blocks):
+            certificates['blocks'][f'block_{block_idx}'] = {
+                'attention': block.attention.get_quantization_certificate(),
+                'ffn': block.ffn.get_quantization_certificate()
+            }
+        return certificates
 
 
 def demo_transformer():
