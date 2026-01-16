@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="760" viewBox="0 0 1000 760">
+  <style>
+    .title { font: 28px 'Arial', sans-serif; fill: #1a1a1a; font-weight: 700; }
+    .label { font: 16px 'Arial', sans-serif; fill: #1a1a1a; }
+    .small { font: 14px 'Arial', sans-serif; fill: #1a1a1a; }
+    .outline { fill: #ffffff; stroke: #1a1a1a; stroke-width: 4; }
+    .drivers { fill: #ffe0b2; stroke: #1a1a1a; stroke-width: 2; }
+    .core { fill: #cfe8ff; stroke: #1a1a1a; stroke-width: 2; }
+    .sensors { fill: #d7f4d0; stroke: #1a1a1a; stroke-width: 2; }
+    .bus { stroke: #1a1a1a; stroke-width: 2; }
+  </style>
+
+  <rect x="40" y="40" width="920" height="680" rx="18" class="outline" />
+  <text x="500" y="85" text-anchor="middle" class="title">64×64 Memristor Crossbar Tile (1mm × 1mm)</text>
+
+  <rect x="140" y="130" width="720" height="110" rx="12" class="drivers" />
+  <text x="500" y="175" text-anchor="middle" class="label">Column Drivers (5-Level DACs)</text>
+  <text x="500" y="200" text-anchor="middle" class="small">64 channels · voltage-coded pentary inputs</text>
+
+  <rect x="140" y="270" width="720" height="260" rx="12" class="core" />
+  <text x="500" y="315" text-anchor="middle" class="label">Memristor Crossbar Core</text>
+  <text x="500" y="340" text-anchor="middle" class="small">64 × 64 devices · 40nm pitch · 6.4µm × 6.4µm core</text>
+
+  <g class="small">
+    <text x="175" y="380">Word Lines (WL0–WL63)</text>
+    <text x="825" y="380" text-anchor="end">Bit Lines (BL0–BL63)</text>
+  </g>
+
+  <line x1="180" y1="405" x2="820" y2="405" class="bus" />
+  <line x1="180" y1="455" x2="820" y2="455" class="bus" />
+  <line x1="180" y1="505" x2="820" y2="505" class="bus" />
+
+  <rect x="140" y="560" width="720" height="110" rx="12" class="sensors" />
+  <text x="500" y="605" text-anchor="middle" class="label">Row Sense Amplifiers (5-Level ADCs)</text>
+  <text x="500" y="630" text-anchor="middle" class="small">64 channels · current-mode readout</text>
+</svg>
