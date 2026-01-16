@@ -26,6 +26,7 @@ from pent_parser import Parser, ASTNode, Function, LetStatement, ReturnStatement
 from tools.pentary_converter import PentaryConverter
 
 REGISTER_PATTERN = re.compile(r"P(\d+)")
+REGISTER_LIMIT = 28
 
 
 class CodeGenerator:
@@ -705,7 +706,7 @@ class CodeGenerator:
         """Allocate a new register"""
         reg = self.register_counter
         self.register_counter += 1
-        if reg > 28:  # P1-P28 are available
+        if reg > REGISTER_LIMIT:  # P1-P28 are available
             raise Exception("Out of registers")
         return reg
     
@@ -776,14 +777,13 @@ class Compiler:
         sorted_registers = sorted(registers)
         max_register = max(sorted_registers) if sorted_registers else 0
         uses_zero = 0 in registers
-        register_limit = 28
-        passed = (not uses_zero) and max_register <= register_limit
+        passed = (not uses_zero) and max_register <= REGISTER_LIMIT
 
         return {
             'registers_used': sorted_registers,
             'max_register': max_register,
             'uses_zero_register': uses_zero,
-            'register_limit': register_limit,
+            'register_limit': REGISTER_LIMIT,
             'instruction_count': instruction_count,
             'label_count': label_count,
             'passed': passed

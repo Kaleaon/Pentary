@@ -9,13 +9,21 @@ from typing import Optional, Tuple, List, Dict
 import math
 
 
+def quantize_to_pentary(x: np.ndarray) -> Tuple[np.ndarray, float]:
+    """Quantize values to pentary levels with scale."""
+    scale = np.max(np.abs(x)) / 2.0 if np.max(np.abs(x)) > 0 else 1.0
+    quantized = np.clip(np.round(x / scale), -2, 2).astype(np.int8)
+    return quantized, scale
+
+
 def build_quantization_certificate(weights: np.ndarray, quantized: np.ndarray, scale: float) -> Dict[str, float]:
     """Create a quantization certificate with bounded error statistics."""
-    dequantized = quantized.astype(np.float32) * scale
-    error = weights - dequantized
-    max_abs_weight = float(np.max(np.abs(weights))) if weights.size else 0.0
-    max_abs_error = float(np.max(np.abs(error))) if error.size else 0.0
-    mean_abs_error = float(np.mean(np.abs(error))) if error.size else 0.0
+    error = weights - (quantized.astype(np.float32) * scale)
+    abs_weights = np.abs(weights)
+    abs_error = np.abs(error)
+    max_abs_weight = float(np.max(abs_weights)) if weights.size else 0.0
+    max_abs_error = float(np.max(abs_error)) if error.size else 0.0
+    mean_abs_error = float(np.mean(abs_error)) if error.size else 0.0
     sparsity = float(np.sum(quantized == 0) / quantized.size) if quantized.size else 0.0
     return {
         'scale': float(scale),
@@ -75,18 +83,19 @@ class PentaryAttention:
         weights = np.random.uniform(-limit, limit, (out_dim, in_dim))
         
         # Quantize to pentary {-2, -1, 0, +1, +2}
-        quantized, certificate = self._quantize_to_pentary(weights, return_certificate=True)
+        quantized, certificate = self._quantize_to_pentary_with_certificate(weights)
         self.quantization_certificates[name] = certificate
         return quantized
     
-    def _quantize_to_pentary(self, x: np.ndarray, return_certificate: bool = False):
+    def _quantize_to_pentary(self, x: np.ndarray) -> np.ndarray:
         """Quantize values to pentary levels"""
-        scale = np.max(np.abs(x)) / 2.0 if np.max(np.abs(x)) > 0 else 1.0
-        x_scaled = x / scale
-        x_quantized = np.clip(np.round(x_scaled), -2, 2).astype(np.int8)
-        if return_certificate:
-            return x_quantized, build_quantization_certificate(x, x_quantized, scale)
-        return x_quantized
+        quantized, _ = quantize_to_pentary(x)
+        return quantized
+
+    def _quantize_to_pentary_with_certificate(self, x: np.ndarray) -> Tuple[np.ndarray, Dict[str, float]]:
+        """Quantize values to pentary levels with certificate."""
+        quantized, scale = quantize_to_pentary(x)
+        return quantized, build_quantization_certificate(x, quantized, scale)
     
     def _pentary_matmul(self, x: np.ndarray, W: np.ndarray) -> np.ndarray:
         """
@@ -220,17 +229,19 @@ class PentaryFeedForward:
         """Initialize and quantize weights"""
         limit = np.sqrt(6.0 / (in_dim + out_dim))
         weights = np.random.uniform(-limit, limit, (out_dim, in_dim))
-        quantized, certificate = self._quantize_to_pentary(weights, return_certificate=True)
+        quantized, certificate = self._quantize_to_pentary_with_certificate(weights)
         self.quantization_certificates[name] = certificate
         return quantized
     
-    def _quantize_to_pentary(self, x: np.ndarray, return_certificate: bool = False):
+    def _quantize_to_pentary(self, x: np.ndarray) -> np.ndarray:
         """Quantize to pentary levels"""
-        scale = np.max(np.abs(x)) / 2.0 if np.max(np.abs(x)) > 0 else 1.0
-        quantized = np.clip(np.round(x / scale), -2, 2).astype(np.int8)
-        if return_certificate:
-            return quantized, build_quantization_certificate(x, quantized, scale)
+        quantized, _ = quantize_to_pentary(x)
         return quantized
+
+    def _quantize_to_pentary_with_certificate(self, x: np.ndarray) -> Tuple[np.ndarray, Dict[str, float]]:
+        """Quantize to pentary levels with certificate."""
+        quantized, scale = quantize_to_pentary(x)
+        return quantized, build_quantization_certificate(x, quantized, scale)
     
     def _pentary_matmul(self, x: np.ndarray, W: np.ndarray) -> np.ndarray:
         """Pentary matrix multiplication"""
@@ -375,17 +386,19 @@ class PentaryTransformer:
         """Initialize and quantize embeddings"""
         INIT_SCALE = 0.02  # Standard embedding initialization scale
         embeddings = np.random.randn(vocab_size, d_model) * INIT_SCALE
-        quantized, certificate = self._quantize_to_pentary(embeddings, return_certificate=True)
+        quantized, certificate = self._quantize_to_pentary_with_certificate(embeddings)
         self.quantization_certificates[name] = certificate
         return quantized
     
-    def _quantize_to_pentary(self, x: np.ndarray, return_certificate: bool = False):
+    def _quantize_to_pentary(self, x: np.ndarray) -> np.ndarray:
         """Quantize to pentary levels"""
-        scale = np.max(np.abs(x)) / 2.0 if np.max(np.abs(x)) > 0 else 1.0
-        quantized = np.clip(np.round(x / scale), -2, 2).astype(np.int8)
-        if return_certificate:
-            return quantized, build_quantization_certificate(x, quantized, scale)
+        quantized, _ = quantize_to_pentary(x)
         return quantized
+
+    def _quantize_to_pentary_with_certificate(self, x: np.ndarray) -> Tuple[np.ndarray, Dict[str, float]]:
+        """Quantize to pentary levels with certificate."""
+        quantized, scale = quantize_to_pentary(x)
+        return quantized, build_quantization_certificate(x, quantized, scale)
     
     def _create_positional_encoding(self, max_len: int, d_model: int) -> np.ndarray:
         """Create sinusoidal positional encodings"""

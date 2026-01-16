@@ -12,6 +12,8 @@ LANG_DIR = os.path.join(ROOT_DIR, 'language')
 sys.path.insert(0, LANG_DIR)
 sys.path.insert(0, ROOT_DIR)
 
+TOLERANCE = 1e-6
+
 
 def test_compiler_register_proof():
     from pent_compiler import Compiler
@@ -52,8 +54,8 @@ def test_transformer_quantization_certificate_bounds():
     embedding_cert = certificates["embeddings"]["token_embedding"]
     output_cert = certificates["embeddings"]["output_proj"]
 
-    assert embedding_cert["max_abs_error"] <= embedding_cert["error_bound"] + 1e-6
-    assert output_cert["max_abs_error"] <= output_cert["error_bound"] + 1e-6
+    assert embedding_cert["max_abs_error"] <= embedding_cert["error_bound"] + TOLERANCE
+    assert output_cert["max_abs_error"] <= output_cert["error_bound"] + TOLERANCE
 
     block_cert = certificates["blocks"]["block_0"]["attention"]["W_q"]
-    assert block_cert["max_abs_error"] <= block_cert["error_bound"] + 1e-6
+    assert block_cert["max_abs_error"] <= block_cert["error_bound"] + TOLERANCE
