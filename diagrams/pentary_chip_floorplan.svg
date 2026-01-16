@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <style>
+    .title { font: 28px 'Arial', sans-serif; fill: #1a1a1a; font-weight: 700; }
+    .label { font: 16px 'Arial', sans-serif; fill: #1a1a1a; }
+    .small { font: 14px 'Arial', sans-serif; fill: #1a1a1a; }
+    .core { fill: #cfe8ff; stroke: #1a1a1a; stroke-width: 2; }
+    .cache { fill: #f7e1b5; stroke: #1a1a1a; stroke-width: 2; }
+    .io { fill: #d8f5d0; stroke: #1a1a1a; stroke-width: 2; }
+    .outline { fill: #ffffff; stroke: #1a1a1a; stroke-width: 4; }
+  </style>
+
+  <rect x="30" y="30" width="1140" height="640" rx="18" class="outline" />
+  <text x="600" y="70" text-anchor="middle" class="title">Pentary Chip Floorplan (8 cores, 7nm process)</text>
+
+  <rect x="80" y="110" width="230" height="120" rx="12" class="core" />
+  <rect x="340" y="110" width="230" height="120" rx="12" class="core" />
+  <rect x="600" y="110" width="230" height="120" rx="12" class="core" />
+  <rect x="860" y="110" width="230" height="120" rx="12" class="core" />
+
+  <text x="195" y="150" text-anchor="middle" class="label">Core 0</text>
+  <text x="195" y="175" text-anchor="middle" class="small">5W / 10 TOPS</text>
+  <text x="455" y="150" text-anchor="middle" class="label">Core 1</text>
+  <text x="455" y="175" text-anchor="middle" class="small">5W / 10 TOPS</text>
+  <text x="715" y="150" text-anchor="middle" class="label">Core 2</text>
+  <text x="715" y="175" text-anchor="middle" class="small">5W / 10 TOPS</text>
+  <text x="975" y="150" text-anchor="middle" class="label">Core 3</text>
+  <text x="975" y="175" text-anchor="middle" class="small">5W / 10 TOPS</text>
+
+  <rect x="120" y="270" width="960" height="120" rx="14" class="cache" />
+  <text x="600" y="315" text-anchor="middle" class="label">Shared L3 Cache (8MB)</text>
+  <text x="600" y="345" text-anchor="middle" class="small">Memristor Crossbar Arrays</text>
+
+  <rect x="80" y="420" width="230" height="120" rx="12" class="core" />
+  <rect x="340" y="420" width="230" height="120" rx="12" class="core" />
+  <rect x="600" y="420" width="230" height="120" rx="12" class="core" />
+  <rect x="860" y="420" width="230" height="120" rx="12" class="core" />
+
+  <text x="195" y="460" text-anchor="middle" class="label">Core 4</text>
+  <text x="195" y="485" text-anchor="middle" class="small">5W / 10 TOPS</text>
+  <text x="455" y="460" text-anchor="middle" class="label">Core 5</text>
+  <text x="455" y="485" text-anchor="middle" class="small">5W / 10 TOPS</text>
+  <text x="715" y="460" text-anchor="middle" class="label">Core 6</text>
+  <text x="715" y="485" text-anchor="middle" class="small">5W / 10 TOPS</text>
+  <text x="975" y="460" text-anchor="middle" class="label">Core 7</text>
+  <text x="975" y="485" text-anchor="middle" class="small">5W / 10 TOPS</text>
+
+  <rect x="150" y="570" width="900" height="70" rx="12" class="io" />
+  <text x="600" y="615" text-anchor="middle" class="label">Memory Controllers &amp; I/O</text>
+</svg>
