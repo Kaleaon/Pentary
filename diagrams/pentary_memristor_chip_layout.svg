@@ -70,5 +70,5 @@
 
   <rect x="140" y="650" width="920" height="80" rx="12" class="analog" />
   <text x="600" y="695" text-anchor="middle" class="label">Analog Periphery</text>
-  <text x="600" y="718" text-anchor="middle" class="small">DAC Array · ADC Array · Sample &amp; Hold · Reference Generator</text>
+  <text x="600" y="718" text-anchor="middle" class="small">DAC Array · ADC Array · Sample · Hold · Reference Generator</text>
 </svg>
