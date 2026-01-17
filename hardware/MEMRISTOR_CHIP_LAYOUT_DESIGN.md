@@ -31,6 +31,8 @@ This document provides the complete physical layout design for a Pentary Memrist
 
 ### 2.1 Top-Level Block Diagram
 
+![Pentary memristor chip layout diagram](../diagrams/pentary_memristor_chip_layout.svg)
+
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                    PENTARY MEMRISTOR ACCELERATOR CHIP                        │
@@ -111,6 +113,8 @@ This document provides the complete physical layout design for a Pentary Memrist
 ## 3. Memristor Crossbar Tile Design
 
 ### 3.1 Single Crossbar Tile (64×64)
+
+![Memristor crossbar tile layout diagram](../diagrams/pentary_memristor_tile_layout.svg)
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐

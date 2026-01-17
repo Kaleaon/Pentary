@@ -8,6 +8,8 @@ This document provides layout guidelines for the Pentary Neural Network chip, op
 
 ### Die Floorplan
 
+![Pentary chip floorplan diagram](../diagrams/pentary_chip_floorplan.svg)
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                         Pentary Chip                         │

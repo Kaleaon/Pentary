@@ -30,6 +30,8 @@ This document provides the complete physical layout design for a Pentary 3-Trans
 
 ### 2.1 Block Diagram
 
+![Pentary 3T chip layout diagram](../diagrams/pentary_3t_chip_layout.svg)
+
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                        PENTARY 3T CHIP (2×2 Tile)                       │
