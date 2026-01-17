@@ -16,11 +16,11 @@ This roadmap provides actionable milestones for implementing Pentary computing. 
 
 ## Priority Order (Most Essential → Least)
 
-1. **Language & Compiler Correctness** (parser, type checker, ISA coverage, diagnostics, register allocation).
-2. **Formal Proofs & Verification** (arithmetic tables, ISA semantics, compiler correctness proofs, quantization certificates).
-3. **AI Runtime & Tooling** (pentary kernels, model conversion, QAT pipeline, reproducible benchmarks).
-4. **Hardware Validation** (cycle-accurate simulator parity, FPGA prototype, power/area models).
-5. **Packaging & Release** (CLI tooling, docs consolidation, CI coverage, versioned releases).
+1. **Language & Compiler Correctness** (parser, type checker, ISA coverage, diagnostics, register allocation)
+2. **Formal Proofs & Verification** (arithmetic tables, ISA semantics, compiler correctness proofs, quantization certificates)
+3. **AI Runtime & Tooling** (pentary kernels, model conversion, QAT pipeline, reproducible benchmarks)
+4. **Hardware Validation** (cycle-accurate simulator parity, FPGA prototype, power/area models)
+5. **Packaging & Release** (CLI tooling, docs consolidation, CI coverage, versioned releases)
 
 **Work started:** compiler register-usage proof metadata and pentary quantization certificates.
 
