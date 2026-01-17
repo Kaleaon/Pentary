@@ -14,7 +14,9 @@ This roadmap provides actionable milestones for implementing Pentary computing. 
 
 ---
 
-## Priority Order (Most Essential → Least)
+## Priority Order (Most Essential — Least)
+
+Order reflects dependency and risk: correctness and proofs unlock reliable tooling, while hardware and packaging come later.
 
 1. **Language & Compiler Correctness** (parser, type checker, ISA coverage, diagnostics, register allocation)
 2. **Formal Proofs & Verification** (arithmetic tables, ISA semantics, compiler correctness proofs, quantization certificates)
