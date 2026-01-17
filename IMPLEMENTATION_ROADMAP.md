@@ -24,6 +24,13 @@ Order reflects dependency and risk: correctness and proofs unlock reliable tooli
 4. **Hardware Validation** (cycle-accurate simulator parity, FPGA prototype, power/area models)
 5. **Packaging & Release** (CLI tooling, docs consolidation, CI coverage, versioned releases)
 
+**Milestone checks:**
+- Language/compiler: full test suite passes with diagnostic coverage
+- Proofs: pentary arithmetic tables and ISA semantics verified
+- AI tooling: QAT pipeline and benchmark suite reproducible
+- Hardware: FPGA prototype matches simulator within tolerance
+- Packaging: CLI release with consolidated docs and CI coverage
+
 **Work started (Weeks 1-2, Software):** compiler register-usage proof metadata and pentary quantization certificates.
 
 ---
