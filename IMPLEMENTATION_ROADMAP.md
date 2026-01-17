@@ -22,7 +22,7 @@ This roadmap provides actionable milestones for implementing Pentary computing. 
 4. **Hardware Validation** (cycle-accurate simulator parity, FPGA prototype, power/area models)
 5. **Packaging & Release** (CLI tooling, docs consolidation, CI coverage, versioned releases)
 
-**Work started:** compiler register-usage proof metadata and pentary quantization certificates.
+**Work started (Weeks 1-2, Software):** compiler register-usage proof metadata and pentary quantization certificates.
 
 ---
 
