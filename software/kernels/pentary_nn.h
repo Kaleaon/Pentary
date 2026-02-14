@@ -14,6 +14,7 @@
 
 #include <stdbool.h>
 #include "pentary_runtime.h"
+#include <stdbool.h>
 
 #ifdef __cplusplus
 extern "C" {
