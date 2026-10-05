@@ -1,0 +1,318 @@
+{
+  "collection_date": "2026-01-10T18:50:46.347003",
+  "total_papers_attempted": 31,
+  "successful_downloads": 31,
+  "failed_downloads": 0,
+  "papers": [
+    {
+      "title": "Neuromorphic Photonic Processing and Memory with Spiking Resonant Tunnelling Diode Neurons and Neural Networks",
+      "arxiv_id": "2507.20866",
+      "year": "2024",
+      "category": "Photonic Neuromorphic",
+      "relevance": 95,
+      "filepath": "neuromorphic/Neuromorphic_Photonic_Processing_and_Memory_with_Spiking_Resonant_Tunnelling_Diode_Neurons_and_Neura....pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:13.349697"
+    },
+    {
+      "title": "Experimental neuromorphic computing based on quantum memristor",
+      "arxiv_id": "2504.18694",
+      "year": "2025",
+      "category": "Quantum Neuromorphic",
+      "relevance": 98,
+      "filepath": "neuromorphic/Experimental_neuromorphic_computing_based_on_quantum_memristor.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:14.474231"
+    },
+    {
+      "title": "A spiking photonic neural network of 40,000 neurons, trained with backpropagation",
+      "arxiv_id": "2411.19209",
+      "year": "2024",
+      "category": "Photonic Neuromorphic",
+      "relevance": 92,
+      "filepath": "neuromorphic/A_spiking_photonic_neural_network_of_40,000_neurons,_trained_with_backpropagation.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:15.535627"
+    },
+    {
+      "title": "Optical Spiking Neurons Enable High-Speed and Energy-Efficient Neuromorphic Computing",
+      "arxiv_id": "2409.05726",
+      "year": "2024",
+      "category": "Photonic Neuromorphic",
+      "relevance": 90,
+      "filepath": "neuromorphic/Optical_Spiking_Neurons_Enable_High-Speed_and_Energy-Efficient_Neuromorphic_Computing.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:16.595015"
+    },
+    {
+      "title": "Towards Optimal Deployment of Spiking Networks on Neuromorphic Hardware",
+      "arxiv_id": "2510.15542",
+      "year": "2024",
+      "category": "Spiking Neural Networks",
+      "relevance": 88,
+      "filepath": "neuromorphic/Towards_Optimal_Deployment_of_Spiking_Networks_on_Neuromorphic_Hardware.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:17.654205"
+    },
+    {
+      "title": "Spiking Neural Networks: The Future of Brain-Inspired Computing",
+      "arxiv_id": "2510.27379",
+      "year": "2024",
+      "category": "Spiking Neural Networks",
+      "relevance": 85,
+      "filepath": "neuromorphic/Spiking_Neural_Networks__The_Future_of_Brain-Inspired_Computing.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:18.754695"
+    },
+    {
+      "title": "3-dimensional multistate memristor structures based neuromorphic computing",
+      "arxiv_id": "26000094",
+      "year": "2024",
+      "category": "Memristor Hardware",
+      "relevance": 87,
+      "filepath": "neuromorphic/3-dimensional_multistate_memristor_structures_based_neuromorphic_computing.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:19.827581"
+    },
+    {
+      "title": "Recent Progress in Neuromorphic Computing from Memristive Devices",
+      "arxiv_id": "0044",
+      "year": "2024",
+      "category": "Memristor Hardware",
+      "relevance": 89,
+      "filepath": "neuromorphic/Recent_Progress_in_Neuromorphic_Computing_from_Memristive_Devices.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:20.935346"
+    },
+    {
+      "title": "Recent Advancements in 2D Material-Based Memristor Technology",
+      "arxiv_id": "1451",
+      "year": "2024",
+      "category": "Memristor Hardware",
+      "relevance": 86,
+      "filepath": "neuromorphic/Recent_Advancements_in_2D_Material-Based_Memristor_Technology.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:22.000243"
+    },
+    {
+      "title": "Integrated photonic synapses, neurons, memristors, and neural networks",
+      "arxiv_id": "250011",
+      "year": "2025",
+      "category": "Photonic Neuromorphic",
+      "relevance": 91,
+      "filepath": "neuromorphic/Integrated_photonic_synapses,_neurons,_memristors,_and_neural_networks.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:23.059388"
+    },
+    {
+      "title": "A Memory-Efficient Infinite-Context Transformer for Edge Devices",
+      "arxiv_id": "2503.22196",
+      "year": "2025",
+      "category": "Long Context Transformers",
+      "relevance": 94,
+      "filepath": "infinite_context/A_Memory-Efficient_Infinite-Context_Transformer_for_Edge_Devices.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:24.121445"
+    },
+    {
+      "title": "Infinite Retrieval: Attention Enhanced LLMs in Long-Context Processing",
+      "arxiv_id": "2502.12962",
+      "year": "2025",
+      "category": "Memory-Augmented Networks",
+      "relevance": 96,
+      "filepath": "infinite_context/Infinite_Retrieval__Attention_Enhanced_LLMs_in_Long-Context_Processing.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:25.195644"
+    },
+    {
+      "title": "ReAttention: Training-Free Infinite Context with Finite Attention Scope",
+      "arxiv_id": "2407.15176",
+      "year": "2024",
+      "category": "Long Context Transformers",
+      "relevance": 88,
+      "filepath": "infinite_context/ReAttention__Training-Free_Infinite_Context_with_Finite_Attention_Scope.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:26.258867"
+    },
+    {
+      "title": "Human-Inspired Episodic Memory for Infinite Context Processing",
+      "arxiv_id": "c05144b635df",
+      "year": "2025",
+      "category": "Memory-Augmented Networks",
+      "relevance": 91,
+      "filepath": "infinite_context/Human-Inspired_Episodic_Memory_for_Infinite_Context_Processing.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:27.318688"
+    },
+    {
+      "title": "InfiniPot: Infinite Context Processing on Memory-Constrained LLMs",
+      "arxiv_id": "897",
+      "year": "2024",
+      "category": "Long Context Transformers",
+      "relevance": 87,
+      "filepath": "infinite_context/InfiniPot__Infinite_Context_Processing_on_Memory-Constrained_LLMs.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:28.376987"
+    },
+    {
+      "title": "RingAttention with Blockwise Transformers for Near-Infinite Context",
+      "arxiv_id": "1119587863e7",
+      "year": "2024",
+      "category": "Long Context Transformers",
+      "relevance": 93,
+      "filepath": "infinite_context/RingAttention_with_Blockwise_Transformers_for_Near-Infinite_Context.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:29.436973"
+    },
+    {
+      "title": "Retrieval-Augmented Generation with Graphs (GraphRAG)",
+      "arxiv_id": "2501.00309",
+      "year": "2025",
+      "category": "Retrieval-Augmented Generation",
+      "relevance": 95,
+      "filepath": "infinite_context/Retrieval-Augmented_Generation_with_Graphs_(GraphRAG).pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:30.495535"
+    },
+    {
+      "title": "When to use Graphs in RAG: A Comprehensive Analysis",
+      "arxiv_id": "2506.05690",
+      "year": "2024",
+      "category": "Retrieval-Augmented Generation",
+      "relevance": 89,
+      "filepath": "infinite_context/When_to_use_Graphs_in_RAG__A_Comprehensive_Analysis.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:31.554078"
+    },
+    {
+      "title": "LightRAG: Simple and Fast Retrieval-Augmented Generation",
+      "arxiv_id": "2410.05779",
+      "year": "2024",
+      "category": "Retrieval-Augmented Generation",
+      "relevance": 92,
+      "filepath": "infinite_context/LightRAG__Simple_and_Fast_Retrieval-Augmented_Generation.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:32.613964"
+    },
+    {
+      "title": "Retrieval-Augmented Generation with Extreme Long-Context Videos",
+      "arxiv_id": "2502.01549",
+      "year": "2025",
+      "category": "Retrieval-Augmented Generation",
+      "relevance": 88,
+      "filepath": "infinite_context/Retrieval-Augmented_Generation_with_Extreme_Long-Context_Videos.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:33.672595"
+    },
+    {
+      "title": "Sufficient Context: A New Lens on Retrieval Augmented Generation",
+      "arxiv_id": "2411.06037",
+      "year": "2024",
+      "category": "Retrieval-Augmented Generation",
+      "relevance": 86,
+      "filepath": "infinite_context/Sufficient_Context__A_New_Lens_on_Retrieval_Augmented_Generation.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:34.737170"
+    },
+    {
+      "title": "Graph of Records: Boosting Retrieval Augmented Generation",
+      "arxiv_id": "2410.11001",
+      "year": "2024",
+      "category": "Retrieval-Augmented Generation",
+      "relevance": 90,
+      "filepath": "infinite_context/Graph_of_Records__Boosting_Retrieval_Augmented_Generation.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:35.795511"
+    },
+    {
+      "title": "SimRAG: Self-Improving Retrieval-Augmented Generation",
+      "arxiv_id": "2410.17952",
+      "year": "2024",
+      "category": "Retrieval-Augmented Generation",
+      "relevance": 87,
+      "filepath": "infinite_context/SimRAG__Self-Improving_Retrieval-Augmented_Generation.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:36.854279"
+    },
+    {
+      "title": "Transformers are SSMs: Generalized Models and Efficient Algorithms",
+      "arxiv_id": "2405.21060",
+      "year": "2024",
+      "category": "State Space Models",
+      "relevance": 94,
+      "filepath": "infinite_context/Transformers_are_SSMs__Generalized_Models_and_Efficient_Algorithms.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:37.913475"
+    },
+    {
+      "title": "SPATIAL-MAMBA: EFFECTIVE VISUAL STATE SPACE MODELS",
+      "arxiv_id": "b7216f4a3248",
+      "year": "2025",
+      "category": "State Space Models",
+      "relevance": 91,
+      "filepath": "infinite_context/SPATIAL-MAMBA__EFFECTIVE_VISUAL_STATE_SPACE_MODELS.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:38.973025"
+    },
+    {
+      "title": "Essential difficulties of the Mamba architecture demonstrated by analysis",
+      "arxiv_id": "2509.17514",
+      "year": "2024",
+      "category": "State Space Models",
+      "relevance": 85,
+      "filepath": "infinite_context/Essential_difficulties_of_the_Mamba_architecture_demonstrated_by_analysis.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:40.046741"
+    },
+    {
+      "title": "Characterizing the Behavior of Training Mamba-based State Space Models",
+      "arxiv_id": "2508.17679",
+      "year": "2024",
+      "category": "State Space Models",
+      "relevance": 87,
+      "filepath": "infinite_context/Characterizing_the_Behavior_of_Training_Mamba-based_State_Space_Models.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:41.105452"
+    },
+    {
+      "title": "Mamba-ST: State Space Model for Efficient Style Transfer",
+      "arxiv_id": "Botti_Mamba-ST",
+      "year": "2025",
+      "category": "State Space Models",
+      "relevance": 83,
+      "filepath": "infinite_context/Mamba-ST__State_Space_Model_for_Efficient_Style_Transfer.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:42.166912"
+    },
+    {
+      "title": "High-performance ternary logic circuits and neural networks",
+      "arxiv_id": "PMC11721562",
+      "year": "2024",
+      "category": "Ternary Computing",
+      "relevance": 89,
+      "filepath": "infinite_context/High-performance_ternary_logic_circuits_and_neural_networks.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:43.231834"
+    },
+    {
+      "title": "Neuromorphic Programming: Emerging Directions for Brain-Inspired Computing",
+      "arxiv_id": "2410.22352",
+      "year": "2024",
+      "category": "Neuromorphic Computing",
+      "relevance": 86,
+      "filepath": "neuromorphic/Neuromorphic_Programming__Emerging_Directions_for_Brain-Inspired_Computing.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:44.288130"
+    },
+    {
+      "title": "Recent trends in neuromorphic systems for non-von Neumann architectures",
+      "arxiv_id": "041304",
+      "year": "2024",
+      "category": "Neuromorphic Computing",
+      "relevance": 84,
+      "filepath": "neuromorphic/Recent_trends_in_neuromorphic_systems_for_non-von_Neumann_architectures.pdf",
+      "downloaded": true,
+      "download_date": "2026-01-10T18:50:45.346860"
+    }
+  ]
+}
